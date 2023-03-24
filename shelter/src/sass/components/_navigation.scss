@@ -1,0 +1,26 @@
+.navigation {
+   display: flex;
+}
+
+.navigation__link {
+   list-style: none;
+   cursor: pointer;
+   @extend %transition;
+   margin-left: 35.8px;
+   &:hover {
+      color: $color-light-s;
+   }
+   &:active {
+      color: $color-light-s;
+      border-bottom: solid 3px $color-primary;
+   }
+}
+
+.navigation__link_active {
+   border-bottom: solid 3px $color-primary;
+}
+.navigation__link a {
+   text-decoration: none;
+   @extend %paragraph-l;
+   color: $color-dark-s;
+}

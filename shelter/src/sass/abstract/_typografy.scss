@@ -1,0 +1,63 @@
+%h1,
+%h2 {
+   @extend %font-prim;
+   @include font($size: 4.4rem, $height: 130%);
+}
+
+%h3 {
+   @extend %font-prim;
+   @include font($size: 3.5rem, $height: 130%);
+   letter-spacing: 0.06em;
+}
+
+%h3-mobile {
+   @extend %font-prim;
+   @include font($size: 2.5rem, $height: 130%);
+   letter-spacing: 0.06em;
+}
+
+%h4 {
+   @extend %font-prim;
+   @include font($size: 2rem, $height: 115%);
+   letter-spacing: 0.06em;
+}
+
+%h5 {
+   @extend %font-prim;
+   @include font($size: 1.5rem, $height: 110%);
+   letter-spacing: 0.06em;
+}
+
+%h5-modal-window {
+   @extend %font-prim;
+   @include font($size: 1.5rem, $height: 110%);
+   letter-spacing: 0.06em;
+}
+
+%paragraph-l {
+   @extend %font-add-regular;
+   @include font($size: 1.5rem, $height: 160%);
+}
+
+%paragraph-s {
+   @extend %font-add-italic;
+   @include font($size: 1.2rem, $height: 150%);
+   font-family: "Arial";
+}
+
+%paragraph-mobile-menu {
+   @extend %font-add-regular;
+   @include font($size: 3.2rem, $height: 160%);
+}
+
+%logo_title {
+   @extend %font-prim;
+   @include font($size: 3.2rem, $height: 110%);
+   letter-spacing: 0.06em;
+}
+
+%logo_subtitle {
+   @extend %font-add-regular;
+   @include font($size: 1.3rem, $height: 1.5rem);
+   letter-spacing: 0.1em;
+}

@@ -1,0 +1,17 @@
+.logo {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   max-width: 186px;
+}
+.logo-title {
+   cursor: pointer;
+   text-decoration: none;
+   @extend %logo_title;
+   color: $color-primary;
+   margin-bottom: 10px;
+}
+.logo-subtitle {
+   @extend %logo_subtitle;
+   color: $color-light-xl;
+}

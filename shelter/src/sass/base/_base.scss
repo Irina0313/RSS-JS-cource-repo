@@ -1,0 +1,9 @@
+html {
+   font-size: 10px;
+}
+
+h1,
+h2 {
+   @extend %font-prim;
+   @include font($size: 4.4rem, $height: 130%);
+}
