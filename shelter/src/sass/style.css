@@ -275,7 +275,7 @@ input[type=checkbox], input[type=radio] {
   font-style: normal;
   font-display: swap;
 }
-.navigation__link, .button {
+.navigation__link:not(.navigation__link_active), .button {
   transition: all 0.3s linear;
 }
 
@@ -287,7 +287,7 @@ h2, .button, .logo-title,
   font-weight: 400;
 }
 
-.logo-subtitle, .not-only__subheading, .navigation__link a {
+.logo-subtitle, .not-only__subheading, .navigation__link_active a, .navigation__link:not(.navigation__link_active) a {
   font-family: "Arial", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -298,7 +298,7 @@ h2, .button, .logo-title,
   line-height: 130%;
 }
 
-.not-only__subheading, .navigation__link a {
+.not-only__subheading, .navigation__link_active a, .navigation__link:not(.navigation__link_active) a {
   font-size: 1.5rem;
   line-height: 160%;
 }
@@ -406,26 +406,34 @@ h1 {
   display: flex;
 }
 
-.navigation__link {
+.navigation__link:not(.navigation__link_active) {
   list-style: none;
   cursor: pointer;
   margin-left: 35.8px;
+  border-bottom: solid 3px transparent;
 }
-.navigation__link:hover {
+.navigation__link:not(.navigation__link_active) a {
+  text-decoration: none;
+  color: #cdcdcd;
+}
+.navigation__link:not(.navigation__link_active):hover a {
   color: #fafafa;
 }
-.navigation__link:active {
-  color: #fafafa;
+.navigation__link:not(.navigation__link_active):active {
   border-bottom: solid 3px #f1cdb3;
+}
+.navigation__link:not(.navigation__link_active):active a {
+  color: #fafafa;
 }
 
 .navigation__link_active {
+  list-style: none;
   border-bottom: solid 3px #f1cdb3;
 }
-
-.navigation__link a {
+.navigation__link_active a {
   text-decoration: none;
-  color: #cdcdcd;
+  cursor: default;
+  color: #fafafa;
 }
 
 .start-screen {
