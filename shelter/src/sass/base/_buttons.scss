@@ -1,0 +1,28 @@
+.button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   max-width: 207px;
+   height: 52px;
+   padding: 15px 44px;
+   border-radius: 100px;
+   box-sizing: border-box;
+   @extend %button-text;
+   color: $color-dark-3xl;
+   border: none;
+   @extend %transition;
+}
+
+.button_primary {
+   background-color: $color-primary;
+   &:hover {
+      background-color: $color-primary-light;
+   }
+}
+
+.button_secondary {
+   border: 2px solid $color-primary;
+   &:hover {
+      background-color: $color-primary;
+   }
+}

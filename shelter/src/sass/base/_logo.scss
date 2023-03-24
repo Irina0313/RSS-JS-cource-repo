@@ -2,7 +2,7 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-   max-width: 186px;
+   max-width: 185.7px;
 }
 .logo-title {
    cursor: pointer;
@@ -12,6 +12,8 @@
    margin-bottom: 10px;
 }
 .logo-subtitle {
+   text-align: center;
+   width: 100%;
    @extend %logo_subtitle;
    color: $color-light-xl;
 }

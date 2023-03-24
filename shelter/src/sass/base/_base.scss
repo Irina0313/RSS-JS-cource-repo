@@ -7,3 +7,11 @@ h2 {
    @extend %font-prim;
    @include font($size: 4.4rem, $height: 130%);
 }
+
+h1 {
+   visibility: hidden;
+   margin: 0;
+   opacity: 0;
+   width: 0;
+   height: 0;
+}
