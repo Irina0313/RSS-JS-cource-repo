@@ -1,0 +1,67 @@
+.button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 207px;
+   height: 52px;
+   padding: 15px 44px;
+   border-radius: 100px;
+   box-sizing: border-box;
+   @extend %button-text;
+   color: $color-dark-3xl;
+   border: none;
+   @extend %transition;
+}
+
+.button_primary {
+   background-color: $color-primary;
+   &:hover {
+      background-color: $color-primary-light;
+   }
+}
+
+.button_secondary {
+   border: 2px solid $color-primary;
+   &:hover {
+      background-color: $color-primary;
+   }
+}
+
+.slider-btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   //padding: 23px 19px;
+   box-sizing: border-box;
+   width: 52px;
+   height: 52px;
+   border: 2px solid $color-primary;
+   border-radius: 100px;
+   background-repeat: no-repeat;
+   background-position: center;
+   @extend %transition;
+   cursor: pointer;
+   &_left {
+      background-image: url("../img/icons/slider-arrow.svg");
+   }
+   &_right {
+      background-image: url("../img/icons/slider-arrow.svg");
+      transform: rotate(180deg);
+   }
+   &:hover {
+      background-color: $color-primary-light;
+   }
+}
+
+.slider-card__button {
+   width: 187px;
+}
+
+.pets__button_primary {
+   margin: 60px 0 0;
+   width: 261px;
+}
+.pets__button_primary {
+   width: 261px;
+   margin: 56px 0 100px 0;
+}
