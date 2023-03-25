@@ -1,6 +1,9 @@
 .start-screen {
    padding: 30px 0 0;
-   background: $background-dark;
+   background-image: url("../img/not-only/start-screen-background.png");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: $background-dark;
 }
 
 .not-only__wrapper {
