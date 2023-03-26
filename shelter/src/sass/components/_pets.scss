@@ -55,14 +55,14 @@
    height: 270px;
    background-size: contain;
    background-repeat: no-repeat;
-   border-radius: 9px;
-   &.first-card {
+   border-radius: 9px 9px 0px 0px;
+   &.katrine {
       background-image: url(../img/pets/katrine.png);
    }
-   &.second-card {
+   &.jennifer {
       background-image: url(../img/pets/jennifer.png);
    }
-   &.third-card {
+   &.woody {
       background-image: url(../img/pets/woody.png);
    }
 }

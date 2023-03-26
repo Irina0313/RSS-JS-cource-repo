@@ -1,12 +1,12 @@
-.donation {
+.in-addition {
    background-color: $color-light-l;
 }
 
-.donation__wrapper {
+.in-addition__wrapper {
    padding: 80px 0 83px 0;
 }
 
-.donation__content {
+.in-addition__content {
    display: flex;
    flex-direction: column;
    > * {
@@ -17,18 +17,18 @@
    padding: 0 0 0 30px;
 }
 
-.donation__heading {
+.in-addition__heading {
    @extend %h3;
    color: $color-dark-l;
    max-width: 300px;
 }
 
-.donation__subheading {
+.in-addition__subheading {
    @extend %h5;
    color: $color-dark-l;
 }
 
-.donation-card-row {
+.in-addition-card-row {
    display: flex;
    justify-content: space-between;
    padding: 10px 15px;
@@ -43,7 +43,7 @@
 .card-icon {
    width: 30px;
    height: 23px;
-   background-image: url("../img/icons/donation/credit-card.svg");
+   background-image: url("../img/icons/in-addition/credit-card.svg");
 }
 
 .card-number {
@@ -51,12 +51,12 @@
    color: $color-dark-l;
 }
 
-.donation__legal-information {
+.in-addition__legal-information {
    @extend %paragraph-s;
    color: $color-dark-m;
 }
 
-.donation__image {
+.in-addition__image {
    margin: 0 0 16px 0;
    order: 1;
 }

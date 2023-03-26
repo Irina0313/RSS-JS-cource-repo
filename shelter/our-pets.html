@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/sass/style.css">
+   <title>Our pets</title>
+</head>
+
+<body>
+   <div class="start-screen start-screen_light">
+      <header class="header header_light">
+         <div class="wrapper header__wrapper">
+            <div class="logo header__logo">
+               <a href="#" class="logo-title">Cozy House</a>
+               <p class="logo-subtitle">Shelter for pets in Boston</p>
+            </div>
+            <nav class="header__navigation">
+               <ul class="navigation">
+                  <li class="navigation__link">
+                     <a href="index.html">About the shelter</a>
+                  </li>
+                  <li class="navigation__link navigation__link_unactive">
+                     <a href="our-pets.html" onclick="return false">Our pets</a>
+                  </li>
+                  <li class="navigation__link">
+                     <a href="#">Help the shelter</a>
+                  </li>
+                  <li class="navigation__link">
+                     <a href="#">Contacts</a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </header>
+      <main>
+         <section class="our-friends">
+            <div class="wrapper our-friends__wrapper">
+               <h3 class="our-friends__heading">Our friends who<br>
+                  are looking for a house</h3>
+               <div class="our-friends__content">
+                  <div class="slider-card">
+                     <div class="slider-card__image katrine"></div>
+                     <div class="slider-card__text">Katrine</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+                  <div class="slider-card">
+                     <div class="slider-card__image jennifer"></div>
+                     <div class="slider-card__text">Jennifer</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+                  <div class="slider-card">
+                     <div class="slider-card__image woody"></div>
+                     <div class="slider-card__text">Woody</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+                  <div class="slider-card">
+                     <div class="slider-card__image sophia"></div>
+                     <div class="slider-card__text">Sophia</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+                  <div class="slider-card">
+                     <div class="slider-card__image timmy"></div>
+                     <div class="slider-card__text">Timmy</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+                  <div class="slider-card">
+                     <div class="slider-card__image charly"></div>
+                     <div class="slider-card__text">Charly</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+                  <div class="slider-card">
+                     <div class="slider-card__image scarlett"></div>
+                     <div class="slider-card__text">Scarlett</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+                  <div class="slider-card">
+                     <div class="slider-card__image freddie"></div>
+                     <div class="slider-card__text">Freddie</div>
+                     <button class="button button_secondary slider-card__button
+                  ">Learn&nbsp;more</button>
+                  </div>
+               </div>
+               <div class="pagination-row our-friends__navigation">
+                  <div class="slider-btn slider-btn_inactive first-page-btn" onclick="return false">&lt;&lt;</div>
+                  <div class="slider-btn slider-btn_inactive prev-page-btn" onclick="return false">&lt;</div>
+                  <div class="slider-btn slider-btn_paginator-active">1</div>
+                  <div class="slider-btn next-page-btn">&gt;</div>
+                  <div class="slider-btn last-page-btn">&gt;&gt;</div>
+               </div>
+            </div>
+         </section>
+      </main>
+      <footer class="footer">
+         <div class="wrapper footer__wrapper">
+            <div class="footer-colum footer__contacts">
+               <h3 class="footer-title">For questions and suggestions</h3>
+               <div class="footer__contacts-email">
+                  <span class="email-icon"></span>
+                  <a href="mailto:email@shelter.com" class="email">email@shelter.com</a>
+               </div>
+               <div class="footer__contacts-phone">
+                  <span class="phone-icon"></span>
+                  <a href="tel:+136745677554">+13 674 567 75 54</a>
+               </div>
+            </div>
+            <div class="footer-colum footer__locations">
+               <h3 class="footer-title">We are waiting for your visit</h3>
+               <div class="city boston">
+                  <span class="location-item"></span>
+                  <a href="https://maps.google.com?saddr=Current+Location&daddr=42.366001,-71.060935">1 Central Street,
+                     Boston (entrance from the store)</a>
+
+               </div>
+               <div class="city london">
+                  <span class="location-item"></span>
+                  <a
+                     href="https://maps.google.com?saddr=Current+Location&daddr=51.543383658557836,-0.15487675696338138">18
+                     South Park, London</a>
+               </div>
+            </div>
+            <img src="./src/img/footer/footer-puppy.png" alt="Purry">
+         </div>
+      </footer>
+   </div>
+   <script src="scripts.js"></script>
+</body>
+
+</html>
