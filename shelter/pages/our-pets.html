@@ -5,7 +5,11 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="src/sass/style.css">
+   <link rel="apple-touch-icon" sizes="180x180" href="../src/img/favicon/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="../src/img/favicon/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="../src/img/favicon/favicon-16x16.png">
+   <link rel="manifest" href="../src/img/favicon/site.webmanifest">
+   <link rel="stylesheet" href="../src/sass/style.css">
    <title>Our pets</title>
 </head>
 
@@ -13,14 +17,14 @@
    <div class="start-screen start-screen_light">
       <header class="header header_light">
          <div class="wrapper header__wrapper">
-            <div class="logo header__logo">
-               <a href="#" class="logo-title">Cozy House</a>
-               <p class="logo-subtitle">Shelter for pets in Boston</p>
+            <div class="logo header__logo header__logo-pets">
+               <a href="../index.html" class="logo-title">Cozy House</a>
+               <p class="logo-subtitle ">Shelter for pets in Boston</p>
             </div>
             <nav class="header__navigation">
                <ul class="navigation">
                   <li class="navigation__link">
-                     <a href="index.html">About the shelter</a>
+                     <a href="../index.html">About the shelter</a>
                   </li>
                   <li class="navigation__link navigation__link_unactive">
                      <a href="our-pets.html" onclick="return false">Our pets</a>
@@ -29,7 +33,7 @@
                      <a href="#">Help the shelter</a>
                   </li>
                   <li class="navigation__link">
-                     <a href="#">Contacts</a>
+                     <a href="#footer">Contacts</a>
                   </li>
                </ul>
             </nav>
@@ -38,8 +42,8 @@
       <main>
          <section class="our-friends">
             <div class="wrapper our-friends__wrapper">
-               <h3 class="our-friends__heading">Our friends who<br>
-                  are looking for a house</h3>
+               <h1 class="our-friends__heading">Our friends who<br>
+                  are looking for a house</h1>
                <div class="our-friends__content">
                   <div class="slider-card">
                      <div class="slider-card__image katrine"></div>
@@ -100,39 +104,37 @@
             </div>
          </section>
       </main>
-      <footer class="footer">
+      <footer class="footer" id="footer">
          <div class="wrapper footer__wrapper">
             <div class="footer-colum footer__contacts">
                <h3 class="footer-title">For questions and suggestions</h3>
                <div class="footer__contacts-email">
-                  <span class="email-icon"></span>
-                  <a href="mailto:email@shelter.com" class="email">email@shelter.com</a>
+                  <a href="mailto:email@shelter.com" class="email"><span class="email-icon"></span>email@shelter.com</a>
                </div>
                <div class="footer__contacts-phone">
-                  <span class="phone-icon"></span>
-                  <a href="tel:+136745677554">+13 674 567 75 54</a>
+                  <a href="tel:+136745677554">
+                     <span class="phone-icon"></span>+13 674 567 75 54</a>
                </div>
             </div>
             <div class="footer-colum footer__locations">
                <h3 class="footer-title">We are waiting for your visit</h3>
                <div class="city boston">
-                  <span class="location-item"></span>
-                  <a href="https://maps.google.com?saddr=Current+Location&daddr=42.366001,-71.060935">1 Central Street,
+                  <a href="https://maps.google.com?saddr=Current+Location&daddr=42.366001,-71.060935"><span
+                        class="location-item"></span>1 Central Street,
                      Boston (entrance from the store)</a>
-
                </div>
                <div class="city london">
-                  <span class="location-item"></span>
                   <a
-                     href="https://maps.google.com?saddr=Current+Location&daddr=51.543383658557836,-0.15487675696338138">18
+                     href="https://maps.google.com?saddr=Current+Location&daddr=51.543383658557836,-0.15487675696338138"><span
+                        class="location-item"></span>18
                      South Park, London</a>
                </div>
             </div>
-            <img src="./src/img/footer/footer-puppy.png" alt="Purry">
+            <img src="../src/img/footer/footer-puppy.png" alt="Purry">
          </div>
       </footer>
    </div>
-   <script src="scripts.js"></script>
+   <script src="../scripts.js"></script>
 </body>
 
 </html>

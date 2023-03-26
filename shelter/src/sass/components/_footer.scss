@@ -1,6 +1,5 @@
 .footer {
-   background-image: url("../img/footer/footer-background.png");
-   background-color: $background-footer;
+   background-image: url("../img/footer/footer-background.png"), $background-footer;
    background-repeat: no-repeat;
    background-size: cover;
 }
@@ -30,21 +29,13 @@
 }
 
 .footer a {
+   display: flex;
+   align-items: center;
    text-decoration: none;
    @extend %h4;
    color: $color-primary;
 }
 
-.footer__contacts-email,
-.footer__contacts-phone,
-.city {
-   display: flex;
-   align-items: center;
-}
-
-.boston a {
-   padding: 0 0 0 17px;
-}
 .email-icon {
    width: 40px;
    height: 32px;
@@ -65,4 +56,7 @@
    background-image: url("../img/icons/footer/icon-marker.svg");
    background-repeat: no-repeat;
    background-position: left;
+}
+.boston .location-item {
+   width: 75px;
 }

@@ -3,10 +3,9 @@
 }
 
 .start-screen_dark {
-   background-image: url("../img/not-only/start-screen-background.png");
+   background-image: url("../img/not-only/start-screen-background.png"), $background-dark;
    background-repeat: no-repeat;
    background-size: cover;
-   background-color: $background-dark;
 }
 
 .strat-screen_light {
