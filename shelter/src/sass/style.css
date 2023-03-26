@@ -275,7 +275,7 @@ input[type=checkbox], input[type=radio] {
   font-style: normal;
   font-display: swap;
 }
-.slider-card, .navigation__link:not(.navigation__link_unactive), .slider-btn, .button {
+.slider-card, .navigation__link:not(.navigation__link_unactive), .slider-btn, .button, .logo > * {
   transition: all 0.3s linear;
 }
 
@@ -359,6 +359,7 @@ h2, .slider-card__text, .button, .logo-title, .in-addition__subheading, .footer 
 
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -367,21 +368,13 @@ h2 {
   line-height: 130%;
 }
 
-h1 {
-  visibility: hidden;
-  margin: 0;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
 .logo {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 185.7px;
+  cursor: pointer;
 }
-
 .logo-title {
   cursor: pointer;
   text-decoration: none;
@@ -399,6 +392,13 @@ h1 {
   color: #545454;
 }
 .header_light .logo-subtitle {
+  color: #292929;
+}
+
+.header__logo-pets:hover .logo-title {
+  color: #f1cdb3;
+}
+.header__logo-pets:hover .logo-subtitle {
   color: #292929;
 }
 
@@ -923,19 +923,10 @@ h1 {
 }
 
 .footer a {
-  text-decoration: none;
-  color: #f1cdb3;
-}
-
-.footer__contacts-email,
-.footer__contacts-phone,
-.city {
   display: flex;
   align-items: center;
-}
-
-.boston a {
-  padding: 0 0 0 17px;
+  text-decoration: none;
+  color: #f1cdb3;
 }
 
 .email-icon {
@@ -958,6 +949,10 @@ h1 {
   background-image: url("../img/icons/footer/icon-marker.svg");
   background-repeat: no-repeat;
   background-position: left;
+}
+
+.boston .location-item {
+  width: 75px;
 }
 
 .our-friends {

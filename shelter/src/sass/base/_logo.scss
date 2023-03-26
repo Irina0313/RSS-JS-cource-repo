@@ -3,7 +3,12 @@
    flex-wrap: wrap;
    justify-content: center;
    max-width: 185.7px;
+   cursor: pointer;
+   > * {
+      @extend %transition;
+   }
 }
+
 .logo-title {
    cursor: pointer;
    text-decoration: none;
@@ -21,6 +26,15 @@
 .header_light {
    .logo-title {
       color: $color-dark-l;
+   }
+   .logo-subtitle {
+      color: $color-dark-3xl;
+   }
+}
+
+.header__logo-pets:hover {
+   .logo-title {
+      color: $color-primary;
    }
    .logo-subtitle {
       color: $color-dark-3xl;
