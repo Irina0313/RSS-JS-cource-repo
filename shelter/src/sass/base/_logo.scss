@@ -17,3 +17,12 @@
    @extend %logo_subtitle;
    color: $color-light-xl;
 }
+
+.header_light {
+   .logo-title {
+      color: $color-dark-l;
+   }
+   .logo-subtitle {
+      color: $color-dark-3xl;
+   }
+}

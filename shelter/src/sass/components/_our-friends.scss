@@ -1,0 +1,44 @@
+.our-friends {
+   background-color: $color-light-l;
+}
+
+.our-friends__wrapper {
+   padding: 80px 0 100px 0;
+}
+
+.our-friends__heading {
+   @extend %h3;
+   color: $color-dark-l;
+   max-width: 400px;
+   text-align: center;
+   margin: 0;
+}
+
+.our-friends__content {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   column-gap: 40px;
+   row-gap: 31px;
+   margin: 60px 0;
+}
+
+.slider-card__image {
+   &.sophia {
+      background-position: center;
+      background-size: cover;
+      background-image: url(../img/pets/sophia.png);
+   }
+   &.timmy {
+      background-image: url(../img/pets/timmy.png);
+   }
+   &.charly {
+      background-image: url(../img/pets/charly.png);
+   }
+   &.scarlett {
+      background-image: url(../img/pets/scarlett.png);
+   }
+   &.freddie {
+      background-image: url(../img/pets/freddie.png);
+   }
+}

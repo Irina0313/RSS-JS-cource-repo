@@ -31,7 +31,6 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   //padding: 23px 19px;
    box-sizing: border-box;
    width: 52px;
    height: 52px;
@@ -41,6 +40,8 @@
    background-position: center;
    @extend %transition;
    cursor: pointer;
+   @extend %h4;
+   color: $color-dark-3xl;
    &_left {
       background-image: url("../img/icons/slider-arrow.svg");
    }
@@ -48,8 +49,30 @@
       background-image: url("../img/icons/slider-arrow.svg");
       transform: rotate(180deg);
    }
+
+   &_paginator-active {
+      background-color: $color-primary;
+   }
+   &_paginator-inactive {
+      border: solid 2px $color-dark-s;
+      color: $color-dark-s;
+      pointer-events: none;
+   }
    &:hover {
+      border: solid 2px transparent;
       background-color: $color-primary-light;
+   }
+
+   &_inactive {
+      border: solid 2px $color-dark-s;
+      color: $color-dark-s;
+      pointer-events: none;
+   }
+}
+.pagination-row .slider-btn {
+   &:active {
+      border: solid 2px $color-primary;
+      background-color: $color-primary;
    }
 }
 

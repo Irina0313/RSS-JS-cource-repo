@@ -10,7 +10,7 @@
 </head>
 
 <body>
-   <div class="start-screen">
+   <div class="start-screen start-screen_dark">
       <header class="header">
          <div class="wrapper header__wrapper">
             <div class="logo header__logo">
@@ -19,11 +19,11 @@
             </div>
             <nav class="header__navigation">
                <ul class="navigation">
-                  <li class="navigation__link navigation__link_active">
-                     <a href="#">About the shelter</a>
+                  <li class="navigation__link navigation__link_unactive">
+                     <a href="#" onclick="return false">About the shelter</a>
                   </li>
                   <li class="navigation__link">
-                     <a href="#">Our pets</a>
+                     <a href="our-pets.html">Our pets</a>
                   </li>
                   <li class="navigation__link">
                      <a href="#">Help the shelter</a>
@@ -35,22 +35,25 @@
             </nav>
          </div>
       </header>
-      <section class="not-only">
-         <div class="wrapper not-only__wrapper">
-            <div class="not-only__content">
-               <h1>Not only people need a&nbsp;house</h1>
-               <h2 class="not-only__title">Not only people need a house</h2>
-               <p class="not-only__subheading">We&nbsp;offer to&nbsp;give a&nbsp;chance to&nbsp;a&nbsp;little and nice
-                  puppy with an&nbsp;extremely wide and open heart. He&nbsp;or&nbsp;she will love you more than anybody
-                  else in&nbsp;the world, you will see!</p>
-               <div class="not-only__button">
-                  <button class="button button_primary">Make a friend</button>
-               </div>
+      <main>
+         <section class="not-only">
+            <div class="wrapper not-only__wrapper">
+               <div class="not-only__content">
+                  <h1>Not only people need a&nbsp;house</h1>
+                  <h2 class="not-only__title">Not only people need a house</h2>
+                  <p class="not-only__subheading">We&nbsp;offer to&nbsp;give a&nbsp;chance to&nbsp;a&nbsp;little and
+                     nice
+                     puppy with an&nbsp;extremely wide and open heart. He&nbsp;or&nbsp;she will love you more than
+                     anybody
+                     else in&nbsp;the world, you will see!</p>
+                  <div class="not-only__button">
+                     <button class="button button_primary">Make a friend</button>
+                  </div>
 
+               </div>
+               <img src="src/img/not-only/start-screen-puppy.png" alt="Start Screen Puppy" class="not-only__image">
             </div>
-            <img src="src/img/not-only/start-screen-puppy.png" alt="Start Screen Puppy" class="not-only__image">
-         </div>
-      </section>
+         </section>
    </div>
    <section class="about">
       <div class="wrapper about__wrapper">
@@ -77,19 +80,19 @@
             <div class="slider-container pets__slider-container">
 
                <div class="slider-card">
-                  <div class="slider-card__image first-card"></div>
+                  <div class="slider-card__image katrine"></div>
                   <div class="slider-card__text">Katrine</div>
                   <button class="button button_secondary slider-card__button
                   ">Learn&nbsp;more</button>
                </div>
                <div class="slider-card">
-                  <div class="slider-card__image second-card"></div>
+                  <div class="slider-card__image jennifer"></div>
                   <div class="slider-card__text">Jennifer</div>
                   <button class="button button_secondary slider-card__button
                   ">Learn&nbsp;more</button>
                </div>
                <div class="slider-card">
-                  <div class="slider-card__image third-card"></div>
+                  <div class="slider-card__image woody"></div>
                   <div class="slider-card__text">Woody</div>
                   <button class="button button_secondary slider-card__button
                   ">Learn&nbsp;more</button>
@@ -145,22 +148,23 @@
          </div>
       </div>
    </section>
-   <section class="donation">
-      <div class="donation__wrapper">
-         <div class="donation__content">
-            <h3 class="donation__heading">You can also make a donation</h3>
-            <p class="donation__subheading">Name of the bank / Type of bank account</p>
-            <a href="##" class="donation-card-row">
+   <section class="in-addition">
+      <div class="in-addition__wrapper">
+         <div class="in-addition__content">
+            <h3 class="in-addition__heading">You can also make a donation</h3>
+            <p class="in-addition__subheading">Name of the bank / Type of bank account</p>
+            <a href="#" class="in-addition-card-row">
                <span class="card-icon"></span>
                <span class="card-number">8380 2880 8028 8791 7435</span>
             </a>
-            <p class="donation__legal-information">Legal information and lorem ipsum dolor sit amet, consectetur
+            <p class="in-addition__legal-information">Legal information and lorem ipsum dolor sit amet, consectetur
                adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus
                tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
          </div>
-         <img src="./src/img/donation/donation-dog.png" alt="Donation" class="donation__image">
+         <img src="./src/img/in-addition/in-addition-dog.png" alt="in-addition" class="in-addition__image">
       </div>
    </section>
+   </main>
    <footer class="footer">
       <div class="wrapper footer__wrapper">
          <div class="footer-colum footer__contacts">
@@ -178,19 +182,20 @@
             <h3 class="footer-title">We are waiting for your visit</h3>
             <div class="city boston">
                <span class="location-item"></span>
-               <a href="https://maps.google.com?saddr=Current+Location&daddr=42.366001, -71.060935">1 Central Street,
+               <a href="https://maps.google.com?saddr=Current+Location&daddr=42.366001,-71.060935">1 Central Street,
                   Boston (entrance from the store)</a>
 
             </div>
             <div class="city london">
                <span class="location-item"></span>
-               <a href="https://maps.google.com?saddr=Current+Location&daddr=51.543383658557836, -0.15487675696338138">18
+               <a href="https://maps.google.com?saddr=Current+Location&daddr=51.543383658557836,-0.15487675696338138">18
                   South Park, London</a>
             </div>
          </div>
          <img src="./src/img/footer/footer-puppy.png" alt="Purry">
       </div>
    </footer>
+   <script src="scripts.js"></script>
 </body>
 
 </html>
