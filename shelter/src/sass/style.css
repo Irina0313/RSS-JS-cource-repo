@@ -373,7 +373,15 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 185.7px;
+}
+.logo:hover {
   cursor: pointer;
+}
+.logo:hover .logo-title {
+  color: #f6f6f6;
+}
+.logo:hover .logo-subtitle {
+  color: #f6f6f6;
 }
 .logo-title {
   cursor: pointer;
@@ -624,7 +632,7 @@ h2 {
 }
 
 .start-screen_dark {
-  background-image: url("../img/not-only/start-screen-background.png"), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%);
+  background-image: url("../img/not-only/start-screen-background.webp"), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -744,13 +752,13 @@ h2 {
   border-radius: 9px 9px 0px 0px;
 }
 .slider-card__image.katrine {
-  background-image: url(../img/pets/katrine.png);
+  background-image: url(../img/pets/katrine.webp);
 }
 .slider-card__image.jennifer {
-  background-image: url(../img/pets/jennifer.png);
+  background-image: url(../img/pets/jennifer.webp);
 }
 .slider-card__image.woody {
-  background-image: url(../img/pets/woody.png);
+  background-image: url(../img/pets/woody.webp);
 }
 
 .slider-card__text {
@@ -893,7 +901,7 @@ h2 {
 }
 
 .footer {
-  background-image: url("../img/footer/footer-background.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%);
+  background-image: url("../img/footer/footer-background.webp"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -983,17 +991,17 @@ h2 {
 .slider-card__image.sophia {
   background-position: center;
   background-size: cover;
-  background-image: url(../img/pets/sophia.png);
+  background-image: url(../img/pets/sophia.webp);
 }
 .slider-card__image.timmy {
-  background-image: url(../img/pets/timmy.png);
+  background-image: url(../img/pets/timmy.webp);
 }
 .slider-card__image.charly {
-  background-image: url(../img/pets/charly.png);
+  background-image: url(../img/pets/charly.webp);
 }
 .slider-card__image.scarlett {
-  background-image: url(../img/pets/scarlett.png);
+  background-image: url(../img/pets/scarlett.webp);
 }
 .slider-card__image.freddie {
-  background-image: url(../img/pets/freddie.png);
+  background-image: url(../img/pets/freddie.webp);
 }/*# sourceMappingURL=style.css.map */

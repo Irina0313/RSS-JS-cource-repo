@@ -3,7 +3,17 @@
    flex-wrap: wrap;
    justify-content: center;
    max-width: 185.7px;
-   cursor: pointer;
+   &:hover {
+      cursor: pointer;
+
+      .logo-title {
+         color: $color-light-l;
+      }
+      .logo-subtitle {
+         color: $color-light-l;
+      }
+   }
+
    > * {
       @extend %transition;
    }
