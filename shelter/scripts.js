@@ -43,7 +43,7 @@ console.log(
 
    - плавная прокрутка по якорям +2 - выполено п всей странице через -behavior: smooth;
 
-   - выполняются все ссылочные связи согласно Перечню ссылочных связей для страницы Main +2 - реализованы все пункты через css или js.
+   - выполняются все ссылочные связи согласно Перечню ссылочных связей для страницы Main +2 - реализованы все пункты через css ссылки/якоря.
 
    - выполнена интерактивность ссылок и кнопок. Интерактивность заключается не только в изменении внешнего вида курсора, например, при помощи свойства cursor: pointer, но и в использовании и других визуальных эффектов, например, изменение цвета фона или цвета шрифта, согласно стайлгайду в макете. Если в макете стили не указаны, реализуете их по своему усмотрению, руководствуясь общим стилем макета +2 - реализовано в соответствии с макетом.
 
@@ -83,42 +83,10 @@ console.log(
 
    - плавная прокрутка по якорям +2 - реализовано идентично главной странице;
 
-   - выполняются все ссылочные связи согласно Перечню ссылочных связей для страницы Pets +2 - выполнено через CSS или JS;
+   - выполняются все ссылочные связи согласно Перечню ссылочных связей для страницы Pets +2 - выполнено через CSS ссылки/якоря;
 
    - выполнена интерактивность ссылок и кнопок. Интерактивность заключается не только в изменении внешнего вида курсора, например, при помощи свойства cursor: pointer, но и в использовании и других визуальных эффектов, например, изменение цвета фона или цвета шрифта, согласно стайлгайду в макете. Если в макете стили не указаны, реализуете их по своему усмотрению, руководствуясь общим стилем макета +2 - выполнено по макету. От себя добавлены стили при наведении на логотип, т.к. здесь он имеет ссылку на главную страницу.
 
    - обязательное требование к интерактивности: плавное изменение внешнего вида элемента при наведении и клике, не влияющее на соседние элементы +2 - реализовано через свойство transition`
 )
 
-const petsButtonBrimary = document.querySelector('.pets__button_primary');
-if (petsButtonBrimary) {
-   petsButtonBrimary.addEventListener('click', () => {
-      window.location.href = 'pages/our-pets.html';
-   })
-}
-
-const headerLogoPets = document.querySelector('.header__logo-pets');
-if (headerLogoPets) {
-   headerLogoPets.addEventListener('click', () => {
-      window.location.href = '../index.html';
-   })
-}
-
-const makeFriendLink = document.querySelector('.not-only__button>*[data-goto]');
-if (makeFriendLink) {
-   makeFriendLink.addEventListener("click", onNavigationLinkClick);
-};
-
-function onNavigationLinkClick(e) {
-   const navigationLink = e.target;
-   if (navigationLink.dataset.goto && document.querySelector(navigationLink.dataset.goto)) {
-      const gotoSection = document.querySelector(navigationLink.dataset.goto);
-      const gotoSectionValue = gotoSection.getBoundingClientRect().top + scrollY;
-
-      window.scrollTo({
-         top: gotoSectionValue,
-         behavior: "smooth"
-      });
-      e.preventDefault();
-   }
-}
