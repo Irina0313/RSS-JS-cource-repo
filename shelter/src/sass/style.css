@@ -280,7 +280,7 @@ input[type=checkbox], input[type=radio] {
 }
 
 h1,
-h2, .slider-card__text, .pets__button_primary a, .button a, .button, .logo-title, .in-addition__subheading, .footer a, .card-number, .list-item__text, .slider-btn, .our-friends__heading, .footer-title, .in-addition__heading, .help__title, .pets__title, .about__title,
+h2, .slider-card__text, .button, .logo-title, .in-addition__subheading, .footer a, .card-number, .list-item__text, .slider-btn, .our-friends__heading, .footer-title, .in-addition__heading, .help__title, .pets__title, .about__title,
 .not-only__title {
   font-family: "Georgia", sans-serif;
   font-style: normal;
@@ -345,7 +345,7 @@ h2, .slider-card__text, .pets__button_primary a, .button a, .button, .logo-title
   letter-spacing: 0.1em;
 }
 
-.pets__button_primary a, .button a, .button {
+.button {
   font-size: 1.7rem;
   line-height: 130%;
   letter-spacing: 0.06em;
@@ -423,10 +423,7 @@ h2 {
   box-sizing: border-box;
   color: #292929;
   border: none;
-}
-.button a {
   text-decoration: none;
-  color: #292929;
 }
 
 .button_primary {
@@ -497,10 +494,6 @@ h2 {
 .pets__button_primary {
   width: 261px;
   margin: 56px 0 100px 0;
-}
-.pets__button_primary a {
-  text-decoration: none;
-  color: #292929;
 }
 
 .header__wrapper {

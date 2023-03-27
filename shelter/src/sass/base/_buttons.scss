@@ -11,11 +11,7 @@
    color: $color-dark-3xl;
    border: none;
    @extend %transition;
-   a {
-      text-decoration: none;
-      @extend %button-text;
-      color: $color-dark-3xl;
-   }
+   text-decoration: none;
 }
 
 .button_primary {
@@ -90,9 +86,4 @@
 .pets__button_primary {
    width: 261px;
    margin: 56px 0 100px 0;
-   a {
-      text-decoration: none;
-      @extend %button-text;
-      color: $color-dark-3xl;
-   }
 }
