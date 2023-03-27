@@ -3,6 +3,9 @@
    flex-wrap: wrap;
    justify-content: center;
    max-width: 185.7px;
+   a {
+      text-decoration: none;
+   }
    &:hover {
       cursor: pointer;
 
@@ -21,7 +24,7 @@
 
 .logo-title {
    cursor: pointer;
-   text-decoration: none;
+
    @extend %logo_title;
    color: $color-primary;
    margin-bottom: 10px;
