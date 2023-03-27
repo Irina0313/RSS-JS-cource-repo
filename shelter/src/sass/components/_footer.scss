@@ -28,14 +28,19 @@
    color: $color-light-xl;
 }
 
-.footer a {
-   display: flex;
-   align-items: center;
-   text-decoration: none;
-   @extend %h4;
-   color: $color-primary;
+.footer {
+   a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      @extend %h4;
+      color: $color-primary;
+      @extend %transition;
+   }
 }
-
+.footer-link-row:hover > * {
+   color: $color-light-l;
+}
 .email-icon {
    width: 40px;
    height: 32px;
