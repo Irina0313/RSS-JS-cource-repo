@@ -22,8 +22,10 @@
 
 .button_secondary {
    border: 2px solid $color-primary;
+   background-color: transparent;
    &:hover {
-      background-color: $color-primary;
+      background-color: $color-primary-light;
+      border: 2px solid transparent;
    }
 }
 
@@ -69,12 +71,12 @@
       pointer-events: none;
    }
 }
-.pagination-row .slider-btn {
+/*.pagination-row .slider-btn {
    &:active {
       border: solid 2px $color-primary;
       background-color: $color-primary;
    }
-}
+}*/
 
 .slider-card__button {
    width: 187px;

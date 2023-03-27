@@ -37,7 +37,10 @@
    background-color: $color-primary;
    border-radius: 9px;
    text-decoration: none;
-   //cursor: pointer;
+   @extend %transition;
+   &:hover {
+      background-color: $color-primary-light;
+   }
 }
 
 .card-icon {
