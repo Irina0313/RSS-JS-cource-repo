@@ -1,5 +1,9 @@
 .navigation {
    display: flex;
+   @include media-laptop {
+      padding: 0;
+      margin: 0;
+   }
 }
 
 .navigation__link:not(.navigation__link_unactive) {
@@ -35,6 +39,9 @@
       text-decoration: none;
       cursor: default;
       color: $color-light-s;
+   }
+   @include media-laptop {
+      margin-left: 0;
    }
 }
 

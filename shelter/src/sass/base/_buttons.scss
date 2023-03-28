@@ -72,15 +72,15 @@
       pointer-events: none;
    }
 }
-/*.pagination-row .slider-btn {
-   &:active {
-      border: solid 2px $color-primary;
-      background-color: $color-primary;
-   }
-}*/
 
 .slider-card__button {
    width: 187px;
+}
+.not-only__button {
+   @include media-tablet {
+      display: flex;
+      justify-content: center;
+   }
 }
 
 .pets__button_primary {

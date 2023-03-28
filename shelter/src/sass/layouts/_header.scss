@@ -5,6 +5,10 @@
    display: flex;
    align-items: center;
    justify-content: space-between;
+   @include media-laptop {
+      max-width: $content-width;
+      padding: 0 30px;
+   }
 }
 
 .header_light .header__wrapper {
