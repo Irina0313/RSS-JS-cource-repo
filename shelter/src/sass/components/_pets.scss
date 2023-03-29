@@ -4,10 +4,12 @@
 
 .pets__wrapper {
    padding: 80px 40px 4px;
+
    display: flex;
    flex-direction: column;
    align-items: center;
-   @include media-laptop {
+   @media screen and (max-width: 1279px) {
+      box-sizing: border-box;
       padding: 80px 30px 4px;
    }
 }
@@ -32,8 +34,19 @@
    align-items: center;
    max-width: 990px;
    width: 100%;
+   @include media-laptop {
+      justify-content: space-around;
+   }
+   @include media-tablet {
+      max-width: 580px;
+      justify-content: space-between;
+   }
 }
-
+.pets__slider-container .slider-card:last-of-type {
+   @include media-laptop {
+      display: none;
+   }
+}
 .slider-card {
    display: flex;
    flex-direction: column;
