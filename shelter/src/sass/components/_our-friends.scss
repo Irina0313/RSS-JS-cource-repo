@@ -4,6 +4,9 @@
 
 .our-friends__wrapper {
    padding: 80px 0 100px 0;
+   @media screen and (max-width: 1278px) {
+      padding: 80px 0 76px 0;
+   }
 }
 
 .our-friends__heading {
@@ -21,6 +24,17 @@
    column-gap: 40px;
    row-gap: 31px;
    margin: 60px 0;
+   @media screen and (max-width: 1278px) {
+      margin: 30px 0 40px;
+      padding: 0 30px;
+      justify-content: center;
+   }
+}
+.slider-card:nth-of-type(7),
+.slider-card:nth-of-type(8) {
+   @media screen and (max-width: 1278px) {
+      display: none;
+   }
 }
 
 .slider-card__image {
