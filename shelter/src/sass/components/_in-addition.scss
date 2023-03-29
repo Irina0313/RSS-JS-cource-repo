@@ -11,10 +11,16 @@
    flex-direction: column;
    > * {
       margin: 0 0 19px 0;
+      @include media-laptop {
+         margin: 0 0 20px 0;
+      }
    }
    order: 2;
    max-width: 380px;
    padding: 0 0 0 30px;
+   @include media-laptop {
+      padding: 0;
+   }
 }
 
 .in-addition__heading {
@@ -62,4 +68,7 @@
 .in-addition__image {
    margin: 0 0 16px 0;
    order: 1;
+   @media screen and (max-width: 918px) {
+      margin: 40px 0 100px 0;
+   }
 }

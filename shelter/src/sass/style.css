@@ -587,6 +587,11 @@ h2 {
   max-width: 1200px;
   margin: 0 auto;
 }
+@media screen and (max-width: 918px) {
+  .in-addition__wrapper {
+    flex-direction: column-reverse;
+  }
+}
 
 .footer__wrapper {
   margin: auto;
@@ -1004,6 +1009,16 @@ h2 {
 .in-addition__content > * {
   margin: 0 0 19px 0;
 }
+@media (max-width: 1197px) {
+  .in-addition__content > * {
+    margin: 0 0 20px 0;
+  }
+}
+@media (max-width: 1197px) {
+  .in-addition__content {
+    padding: 0;
+  }
+}
 
 .in-addition__heading {
   color: #545454;
@@ -1045,6 +1060,11 @@ h2 {
 .in-addition__image {
   margin: 0 0 16px 0;
   order: 1;
+}
+@media screen and (max-width: 918px) {
+  .in-addition__image {
+    margin: 40px 0 100px 0;
+  }
 }
 
 .footer {
