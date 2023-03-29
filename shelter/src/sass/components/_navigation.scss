@@ -5,12 +5,15 @@
       margin: 0;
    }
 }
+.navigation__link:not(:last-of-type) {
+   margin-right: 35.8px;
+}
 
 .navigation__link:not(.navigation__link_unactive) {
    list-style: none;
    cursor: pointer;
    @extend %transition;
-   margin-left: 35.8px;
+
    border-bottom: solid 3px transparent;
 
    a {

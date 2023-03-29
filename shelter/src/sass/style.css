@@ -519,6 +519,11 @@ h2 {
 .header_light .header__wrapper {
   padding: 0 40px 30px;
 }
+@media (max-width: 1197px) {
+  .header_light .header__wrapper {
+    padding: 0 30px 30px;
+  }
+}
 
 .not-only__wrapper {
   margin: auto;
@@ -618,10 +623,13 @@ h2 {
   }
 }
 
+.navigation__link:not(:last-of-type) {
+  margin-right: 35.8px;
+}
+
 .navigation__link:not(.navigation__link_unactive) {
   list-style: none;
   cursor: pointer;
-  margin-left: 35.8px;
   border-bottom: solid 3px transparent;
 }
 .navigation__link:not(.navigation__link_unactive) a {
