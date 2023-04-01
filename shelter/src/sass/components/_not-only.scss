@@ -69,6 +69,9 @@
       height: 593px;
       align-self: flex-end;
    }
+   @media screen and (max-width: 600px) {
+      height: 400px;
+   }
    @include media-mobile {
       max-width: 260px;
       height: 272px;

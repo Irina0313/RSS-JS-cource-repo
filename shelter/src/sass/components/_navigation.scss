@@ -4,7 +4,7 @@
       padding: 0;
       margin: 0;
    }
-   @include media-mobile {
+   @media screen and (max-width: 760px) {
       display: none;
    }
 }
@@ -69,7 +69,7 @@
 }
 
 .burger {
-   @include media-mobile {
+   @media screen and (max-width: 760px) {
       display: block;
    }
    display: none;
