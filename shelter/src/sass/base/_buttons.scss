@@ -47,7 +47,7 @@
    color: $color-dark-3xl;
    &_left {
       background-image: url("../img/icons/slider-arrow.svg");
-      @include media-mobile {
+      @media screen and (max-width: 755px) {
          margin-left: 58px;
          order: 2;
       }
@@ -55,7 +55,7 @@
    &_right {
       background-image: url("../img/icons/slider-arrow.svg");
       transform: rotate(180deg);
-      @include media-mobile {
+      @media screen and (max-width: 755px) {
          margin-right: 58px;
          order: 3;
       }

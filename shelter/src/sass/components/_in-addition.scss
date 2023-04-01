@@ -96,6 +96,9 @@
    @media screen and (max-width: 918px) {
       margin: 40px 0 17px 0;
    }
+   @media screen and (max-width: 755px) {
+      max-width: 90%;
+   }
    @include media-mobile {
       max-width: 260px;
       margin: 23px 0 17px 0;
