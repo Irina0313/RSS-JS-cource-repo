@@ -66,6 +66,13 @@
    .navigation__link_unactive a {
       color: $color-dark-3xl;
    }
+   .burger {
+      border-bottom: 2px solid #000000;
+      border-top: 2px solid #000000;
+      &:after {
+         background-color: #000000;
+      }
+   }
 }
 
 .burger {
@@ -92,4 +99,7 @@
    display: flex;
    column-gap: 20px;
    justify-content: center;
+   @include media-mobile {
+      column-gap: 10px;
+   }
 }
