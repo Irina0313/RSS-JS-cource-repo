@@ -47,10 +47,18 @@
    color: $color-dark-3xl;
    &_left {
       background-image: url("../img/icons/slider-arrow.svg");
+      @include media-mobile {
+         margin-left: 58px;
+         order: 2;
+      }
    }
    &_right {
       background-image: url("../img/icons/slider-arrow.svg");
       transform: rotate(180deg);
+      @include media-mobile {
+         margin-right: 58px;
+         order: 3;
+      }
    }
 
    &_paginator-active {
@@ -86,4 +94,7 @@
 .pets__button_primary {
    width: 261px;
    margin: 56px 0 100px 0;
+   @include media-mobile {
+      margin: 40px 0 41px 0;
+   }
 }
