@@ -362,10 +362,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  overflow: overlay;
-}
-
 h1,
 h2 {
   font-size: 4.4rem;
@@ -547,7 +543,7 @@ h2 {
     padding: 0 30px 30px;
   }
 }
-@media (max-width: 1197px) {
+@media (max-width: 414px) {
   .header_light .header__wrapper {
     padding: 0 20px 30px;
   }
@@ -664,7 +660,7 @@ h2 {
     margin: 0;
   }
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 767px) {
   .navigation {
     display: none;
   }
@@ -694,7 +690,6 @@ h2 {
 }
 
 .navigation__link_unactive {
-  margin-left: 35.8px;
   list-style: none;
   border-bottom: solid 3px #f1cdb3;
 }
@@ -737,7 +732,7 @@ h2 {
   border-bottom: 2px solid #f1cdb3;
   border-top: 2px solid #f1cdb3;
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 767px) {
   .burger {
     display: block;
   }
@@ -1240,11 +1235,16 @@ h2 {
 }
 
 .in-addition__wrapper {
-  padding: 80px 0 83px 0;
+  padding: 80px 0;
+}
+@media (max-width: 768px) {
+  .in-addition__wrapper {
+    padding: 80px 0 84px 0;
+  }
 }
 @media (max-width: 414px) {
   .in-addition__wrapper {
-    padding: 40px 10px 25px;
+    padding: 40px 10px 23px;
   }
 }
 
@@ -1256,7 +1256,7 @@ h2 {
   padding: 0 0 0 30px;
 }
 .in-addition__content > * {
-  margin: 0 0 19px 0;
+  margin: 0 0 20px 0;
 }
 @media (max-width: 1197px) {
   .in-addition__content {
@@ -1332,7 +1332,7 @@ h2 {
 .in-addition__legal-information {
   color: #b2b2b2;
 }
-@media (max-width: 1197px) {
+@media (max-width: 414px) {
   .in-addition__legal-information {
     padding: 0 10px;
     max-width: 100%;
@@ -1362,7 +1362,7 @@ h2 {
 }
 
 .footer {
-  background-image: url("../img/footer/footer-background.webp"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%);
+  background-image: url("../img/footer/footer-gradient-background.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -1549,6 +1549,11 @@ h2 {
     margin: 30px 0 40px;
     padding: 0 30px;
     justify-content: center;
+  }
+}
+@media (max-width: 414px) {
+  .our-friends__content {
+    padding: 0 25px;
   }
 }
 @media (max-width: 414px) {

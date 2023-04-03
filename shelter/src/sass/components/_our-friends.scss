@@ -36,6 +36,9 @@
       padding: 0 30px;
       justify-content: center;
    }
+   @include media-mobile {
+      padding: 0 25px;
+   }
    .slider-card {
       @include media-mobile {
          margin: 0;

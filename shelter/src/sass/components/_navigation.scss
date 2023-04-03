@@ -4,7 +4,7 @@
       padding: 0;
       margin: 0;
    }
-   @media screen and (max-width: 760px) {
+   @media screen and (max-width: 767px) {
       display: none;
    }
 }
@@ -37,7 +37,7 @@
 }
 
 .navigation__link_unactive {
-   margin-left: 35.8px;
+   //  margin-left: 35.8px;
    list-style: none;
    border-bottom: solid 3px $color-primary;
    a {
@@ -76,7 +76,7 @@
 }
 
 .burger {
-   @media screen and (max-width: 760px) {
+   @media screen and (max-width: 767px) {
       display: block;
    }
    display: none;
