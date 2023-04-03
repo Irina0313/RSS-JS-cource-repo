@@ -47,10 +47,18 @@
    color: $color-dark-3xl;
    &_left {
       background-image: url("../img/icons/slider-arrow.svg");
+      @media screen and (max-width: 755px) {
+         margin-left: 58px;
+         order: 2;
+      }
    }
    &_right {
       background-image: url("../img/icons/slider-arrow.svg");
       transform: rotate(180deg);
+      @media screen and (max-width: 755px) {
+         margin-right: 58px;
+         order: 3;
+      }
    }
 
    &_paginator-active {
@@ -72,18 +80,21 @@
       pointer-events: none;
    }
 }
-/*.pagination-row .slider-btn {
-   &:active {
-      border: solid 2px $color-primary;
-      background-color: $color-primary;
-   }
-}*/
 
 .slider-card__button {
    width: 187px;
+}
+.not-only__button {
+   @include media-tablet {
+      display: flex;
+      justify-content: center;
+   }
 }
 
 .pets__button_primary {
    width: 261px;
    margin: 56px 0 100px 0;
+   @include media-mobile {
+      margin: 40px 0 41px 0;
+   }
 }

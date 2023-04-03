@@ -1,11 +1,23 @@
 .footer {
-   background-image: url("../img/footer/footer-background.webp"), $background-footer;
+   background-image: url("../img/footer/footer-gradient-background.png"), $background-footer;
    background-repeat: no-repeat;
    background-size: cover;
 }
 
 .footer__wrapper {
    padding: 40px 0 0 0;
+   @media screen and (max-width: 1270px) {
+      padding: 30px 30px 0;
+      flex-wrap: wrap;
+      justify-content: space-around;
+   }
+   @include media-tablet {
+      padding: 30px 30px 0;
+   }
+   @media screen and (max-width: 685px) {
+      padding: 30px 10px 0;
+      box-sizing: border-box;
+   }
 }
 
 .footer-colum {
@@ -13,19 +25,55 @@
    flex-direction: column;
    justify-content: space-between;
    padding: 16px 0 60px 0;
+   @include media-laptop {
+      height: 234px;
+   }
+   @include media-tablet {
+      padding: 0;
+      margin: 0 0 65px 0;
+   }
+
+   @media screen and (max-width: 685px) {
+      height: 208px;
+      margin: 0 0 40px;
+   }
 }
 .footer__contacts {
    max-width: 294px;
+
+   @include media-tablet {
+      margin: 0 0 0 14px;
+   }
+   @media screen and (max-width: 685px) {
+      margin: 0 0 40px 0;
+   }
+   @include media-mobile {
+      align-items: center;
+   }
+   /*@include media-mobile {
+      margin: 0 0 40px 0;
+      align-items: center;
+   }*/
 }
 
 .footer__locations {
    max-width: 315px;
+   @media screen and (max-width: 685px) {
+      height: 222px;
+      align-items: flex-start;
+   }
 }
 
 .footer-title {
    margin: 0;
    @extend %h3;
    color: $color-light-xl;
+   @media screen and (max-width: 685px) {
+      @include font($size: 2.5rem, $height: 130%);
+      text-align: center;
+      max-width: 80%;
+      align-self: center;
+   }
 }
 
 .footer {
@@ -64,4 +112,10 @@
 }
 .boston .location-item {
    width: 75px;
+}
+
+.footer__image {
+   @include media-mobile {
+      max-width: 260px;
+   }
 }

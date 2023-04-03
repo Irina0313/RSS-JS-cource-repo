@@ -4,9 +4,17 @@
 
 .pets__wrapper {
    padding: 80px 40px 4px;
+
    display: flex;
    flex-direction: column;
    align-items: center;
+   @media screen and (max-width: 1279px) {
+      box-sizing: border-box;
+      padding: 80px 30px 4px;
+   }
+   @include media-mobile {
+      padding: 40px 10px 4px;
+   }
 }
 
 .pets__title {
@@ -15,12 +23,23 @@
    max-width: 400px;
    text-align: center;
    margin: 0 0 60px;
+   @include media-mobile {
+      @extend %font-prim;
+      @include font($size: 2.5rem, $height: 130%);
+      letter-spacing: 0.06em;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 0 43px;
+   }
 }
 .pets__slider {
    display: flex;
    align-items: center;
    justify-content: space-between;
    width: 100%;
+   @media screen and (max-width: 755px) {
+      flex-wrap: wrap;
+   }
 }
 
 .slider-container {
@@ -29,8 +48,29 @@
    align-items: center;
    max-width: 990px;
    width: 100%;
+   @include media-laptop {
+      justify-content: space-around;
+   }
+   @include media-tablet {
+      max-width: 580px;
+      justify-content: space-between;
+   }
+   @media screen and (max-width: 755px) {
+      max-width: 100%;
+      order: 1;
+      justify-content: center;
+   }
 }
-
+.pets__slider-container .slider-card:last-of-type {
+   @include media-laptop {
+      display: none;
+   }
+}
+.pets__slider-container .slider-card:nth-of-type(2) {
+   @media screen and (max-width: 755px) {
+      display: none;
+   }
+}
 .slider-card {
    display: flex;
    flex-direction: column;
@@ -48,6 +88,10 @@
          background-color: $color-primary-light;
          border: 2px solid transparent;
       }
+   }
+   @media screen and (max-width: 755px) {
+      padding: 0 0 30px 0;
+      margin: 0 0 20px 0;
    }
 }
 
