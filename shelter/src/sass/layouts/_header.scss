@@ -5,8 +5,22 @@
    display: flex;
    align-items: center;
    justify-content: space-between;
+   @include media-laptop {
+      max-width: $content-width;
+      padding: 0 30px;
+   }
+   @include media-mobile {
+      max-width: $content-width;
+      padding: 0 20px;
+   }
 }
 
 .header_light .header__wrapper {
    padding: 0 40px 30px;
+   @include media-laptop {
+      padding: 0 30px 30px;
+   }
+   @include media-mobile {
+      padding: 0 20px 30px;
+   }
 }

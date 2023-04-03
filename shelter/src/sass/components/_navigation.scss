@@ -1,12 +1,22 @@
 .navigation {
    display: flex;
+   @include media-laptop {
+      padding: 0;
+      margin: 0;
+   }
+   @media screen and (max-width: 767px) {
+      display: none;
+   }
+}
+.navigation__link:not(:last-of-type) {
+   margin-right: 35.8px;
 }
 
 .navigation__link:not(.navigation__link_unactive) {
    list-style: none;
    cursor: pointer;
    @extend %transition;
-   margin-left: 35.8px;
+
    border-bottom: solid 3px transparent;
 
    a {
@@ -27,7 +37,7 @@
 }
 
 .navigation__link_unactive {
-   margin-left: 35.8px;
+   //  margin-left: 35.8px;
    list-style: none;
    border-bottom: solid 3px $color-primary;
    a {
@@ -35,6 +45,9 @@
       text-decoration: none;
       cursor: default;
       color: $color-light-s;
+   }
+   @include media-laptop {
+      margin-left: 0;
    }
 }
 
@@ -53,10 +66,40 @@
    .navigation__link_unactive a {
       color: $color-dark-3xl;
    }
+   .burger {
+      border-bottom: 2px solid #000000;
+      border-top: 2px solid #000000;
+      &:after {
+         background-color: #000000;
+      }
+   }
+}
+
+.burger {
+   @media screen and (max-width: 767px) {
+      display: block;
+   }
+   display: none;
+   position: relative;
+   width: 30px;
+   height: 18px;
+   border-bottom: 2px solid $color-primary;
+   border-top: 2px solid $color-primary;
+   &:after {
+      position: absolute;
+      top: 8px;
+      content: "";
+      width: 100%;
+      height: 2px;
+      background-color: $color-primary;
+   }
 }
 
 .pagination-row {
    display: flex;
    column-gap: 20px;
    justify-content: center;
+   @include media-mobile {
+      column-gap: 10px;
+   }
 }
