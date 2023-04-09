@@ -26,21 +26,25 @@
 
             </div>
             <nav class="header__navigation">
-               <ul class="navigation">
-                  <li class="navigation__link navigation__link_unactive">
-                     <a href="#" onclick="return false">About&nbsp;the&nbsp;shelter</a>
-                  </li>
-                  <li class="navigation__link">
-                     <a href="pages/our-pets.html">Our&nbsp;pets</a>
-                  </li>
-                  <li class="navigation__link">
-                     <a href="#help">Help&nbsp;the&nbsp;shelter</a>
-                  </li>
-                  <li class="navigation__link">
-                     <a href="#footer">Contacts</a>
-                  </li>
-               </ul>
-               <span class="burger"></span>
+               <div class="navigation-container">
+                  <ul class="navigation">
+                     <li class="navigation__link navigation__link_disabled">
+                        <a href="#" onclick="return false">About&nbsp;the&nbsp;shelter</a>
+                     </li>
+                     <li class="navigation__link ">
+                        <a href="pages/our-pets.html">Our&nbsp;pets</a>
+                     </li>
+                     <li class="navigation__link">
+                        <a href="#help">Help&nbsp;the&nbsp;shelter</a>
+                     </li>
+                     <li class="navigation__link">
+                        <a href="#footer">Contacts</a>
+                     </li>
+                  </ul>
+               </div>
+
+
+               <span class="burger burger_unactive"></span>
             </nav>
          </div>
       </header>
@@ -209,6 +213,7 @@
       </div>
    </footer>
    <script src="scripts.js"></script>
+   <script src="scripts/burger.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,22 @@
+.header__navigation {
+   &_burger {
+      @media screen and (max-width: 767px) {
+         z-index: 10;
+         position: fixed;
+         top: 0;
+         right: 0;
+         height: 100vh;
+         width: 320px;
+         display: flex;
+         flex-direction: column-reverse;
+         justify-content: flex-end;
+         transition: right 0.3s ease;
+         padding: 50px 21px;
+         box-sizing: border-box;
+      }
+   }
+}
+
 .navigation {
    display: flex;
    @include media-laptop {
@@ -8,11 +27,45 @@
       display: none;
    }
 }
+.navigation-container {
+   @media screen and (max-width: 767px) {
+      transition: all 1s ease;
+      background-color: transparent;
+      width: 320px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      right: -500px;
+   }
+   &_active {
+      @media screen and (max-width: 767px) {
+         transition: right 0.5s ease;
+         background-color: $color-dark-3xl;
+         right: 0;
+      }
+   }
+}
+.navigation__burger-active {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   row-gap: 37px;
+}
+.navigation__link {
+   box-sizing: border-box;
+}
 .navigation__link:not(:last-of-type) {
-   margin-right: 35.8px;
+   margin: 0 35.8px 0 0;
+   @media screen and (max-width: 767px) {
+      margin: 0;
+   }
 }
 
-.navigation__link:not(.navigation__link_unactive) {
+.navigation__link:not(.navigation__link_disabled) {
    list-style: none;
    cursor: pointer;
    @extend %transition;
@@ -23,6 +76,9 @@
       text-decoration: none;
       @extend %paragraph-l;
       color: $color-dark-s;
+      @media screen and (max-width: 767px) {
+         @include font($size: 3.2rem, $height: 160%);
+      }
    }
 
    &:hover a {
@@ -36,8 +92,7 @@
    }
 }
 
-.navigation__link_unactive {
-   //  margin-left: 35.8px;
+.navigation__link_disabled {
    list-style: none;
    border-bottom: solid 3px $color-primary;
    a {
@@ -45,6 +100,9 @@
       text-decoration: none;
       cursor: default;
       color: $color-light-s;
+      @media screen and (max-width: 767px) {
+         @include font($size: 3.2rem, $height: 160%);
+      }
    }
    @include media-laptop {
       margin-left: 0;
@@ -73,18 +131,24 @@
          background-color: #000000;
       }
    }
+   .navigation-container_active {
+      background-color: $color-light-l;
+   }
 }
 
 .burger {
    @media screen and (max-width: 767px) {
       display: block;
    }
+   @extend %transition;
+   align-self: flex-end;
    display: none;
    position: relative;
    width: 30px;
    height: 18px;
    border-bottom: 2px solid $color-primary;
    border-top: 2px solid $color-primary;
+   z-index: 5;
    &:after {
       position: absolute;
       top: 8px;
@@ -92,6 +156,9 @@
       width: 100%;
       height: 2px;
       background-color: $color-primary;
+   }
+   &_active {
+      transform: rotate(90deg);
    }
 }
 
