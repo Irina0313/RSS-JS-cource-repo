@@ -7,3 +7,16 @@ h2 {
    @extend %font-prim;
    @include font($size: 4.4rem, $height: 130%);
 }
+.scroll-hidden {
+   overflow: hidden;
+   &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      width: calc(100%);
+      height: 100%;
+      background: rgba(41, 41, 41, 0.6);
+   }
+}
