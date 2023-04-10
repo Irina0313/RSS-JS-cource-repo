@@ -161,9 +161,9 @@ function changeToForward() {
 //Генерация html
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-const getCardsAmount = () => {
-   let cardsAmount = 0;
-   if (screenWidth > 1197) {
+/*const getCardsAmount = () => {
+   let cardsAmount = 3;
+   /*if (screenWidth > 1197) {
       cardsAmount = 3;
    }
    if (screenWidth > 755 && screenWidth < 1198) {
@@ -173,8 +173,8 @@ const getCardsAmount = () => {
       cardsAmount = 1;
    }
    return cardsAmount;
-}
-
+}*/
+let cardsAmount = 3;
 
 
 const sliderContainer = document.querySelector('.pets__slider-container');
@@ -183,7 +183,7 @@ const sliderContainer = document.querySelector('.pets__slider-container');
 
 
 const createSliderCard = (cardsAmount) => {
-
+   console.log(cardsAmount)
    for (let i = 0; i < cardsAmount; i++) {
       let div = document.createElement('div');
       div.classList.add('slider-card');
@@ -206,10 +206,9 @@ const createSliderCard = (cardsAmount) => {
       button.classList.add('slider-card__button');
       button.innerText = 'Learn\u00A0more';
       sliderCard[i].append(button);
-
    }
 }
-createSliderCard(getCardsAmount());
+createSliderCard(cardsAmount);
 
 const sliderCardImage = document.querySelectorAll('.slider-card__image');
 const sliderCardText = document.querySelectorAll('.slider-card__text');
