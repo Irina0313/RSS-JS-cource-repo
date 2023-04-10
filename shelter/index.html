@@ -26,21 +26,25 @@
 
             </div>
             <nav class="header__navigation">
-               <ul class="navigation">
-                  <li class="navigation__link navigation__link_unactive">
-                     <a href="#" onclick="return false">About&nbsp;the&nbsp;shelter</a>
-                  </li>
-                  <li class="navigation__link">
-                     <a href="pages/our-pets.html">Our&nbsp;pets</a>
-                  </li>
-                  <li class="navigation__link">
-                     <a href="#help">Help&nbsp;the&nbsp;shelter</a>
-                  </li>
-                  <li class="navigation__link">
-                     <a href="#footer">Contacts</a>
-                  </li>
-               </ul>
-               <span class="burger"></span>
+               <div class="navigation-container">
+                  <ul class="navigation">
+                     <li class="navigation__link navigation__link_disabled">
+                        <a href="#" onclick="return false">About&nbsp;the&nbsp;shelter</a>
+                     </li>
+                     <li class="navigation__link ">
+                        <a href="pages/our-pets.html">Our&nbsp;pets</a>
+                     </li>
+                     <li class="navigation__link">
+                        <a href="#help">Help&nbsp;the&nbsp;shelter</a>
+                     </li>
+                     <li class="navigation__link">
+                        <a href="#footer">Contacts</a>
+                     </li>
+                  </ul>
+               </div>
+
+
+               <span class="burger burger_unactive"></span>
             </nav>
          </div>
       </header>
@@ -93,7 +97,7 @@
                <div class="slider-btn slider-btn_left"></div>
                <div class="slider-container pets__slider-container">
 
-                  <div class="slider-card">
+                  <!--<div class="slider-card">
                      <div class="slider-card__image katrine"></div>
                      <div class="slider-card__text">Katrine</div>
                      <button class="button button_secondary slider-card__button
@@ -110,7 +114,7 @@
                      <div class="slider-card__text">Woody</div>
                      <button class="button button_secondary slider-card__button
                   ">Learn&nbsp;more</button>
-                  </div>
+                  </div>-->
 
                </div>
                <div class="slider-btn slider-btn_right"></div>
@@ -209,6 +213,8 @@
       </div>
    </footer>
    <script src="scripts.js"></script>
+   <script src="scripts/burger.js"></script>
+   <script src="scripts/slider.js"></script>
 </body>
 
 </html>
