@@ -667,7 +667,7 @@ h2 {
 
 @media screen and (max-width: 767px) {
   .header__navigation_burger {
-    z-index: 10;
+    z-index: 11;
     position: fixed;
     top: 0;
     right: 0;
@@ -701,14 +701,14 @@ h2 {
   .navigation-container {
     transition: all 1s ease;
     background-color: transparent;
-    width: 320px;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     top: 0;
     right: -500px;
+    width: 0;
+    height: 100%;
   }
 }
 @media screen and (max-width: 767px) {
@@ -716,6 +716,8 @@ h2 {
     transition: right 0.5s ease;
     background-color: #292929;
     right: 0;
+    width: 320px;
+    height: 100%;
   }
 }
 
