@@ -183,7 +183,6 @@ const sliderContainer = document.querySelector('.pets__slider-container');
 
 
 const createSliderCard = (cardsAmount) => {
-   console.log(cardsAmount)
    for (let i = 0; i < cardsAmount; i++) {
       let div = document.createElement('div');
       div.classList.add('slider-card');
@@ -212,8 +211,6 @@ createSliderCard(cardsAmount);
 
 const sliderCardImage = document.querySelectorAll('.slider-card__image');
 const sliderCardText = document.querySelectorAll('.slider-card__text');
-console.log(sliderCardText)
-
 
 async function getPet() {
    let pets = 'scripts/pets.json';

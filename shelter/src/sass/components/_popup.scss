@@ -1,0 +1,130 @@
+.popup-container {
+   @extend %transition;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 100;
+   &_hidden {
+      @extend %transition;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+   }
+}
+.popup {
+   position: relative;
+   @extend %transition;
+   width: 900px;
+   height: 500px;
+   background: $color-light-s;
+   border-radius: 9px;
+   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+   display: flex;
+}
+
+.popup-img {
+   width: 55.55%;
+   height: 100%;
+   background-size: contain;
+   background-repeat: no-repeat;
+   border-radius: 9px 0px 0px 9px;
+   @extend %transition;
+}
+.popup-content {
+   box-sizing: border-box;
+   width: 44.45%;
+   display: flex;
+   flex-direction: column;
+   padding: 50px 20px 0 30px;
+}
+
+.popup-name {
+   @extend %h3;
+   color: #000000;
+   margin: 0 0 10px 0;
+}
+
+.popup-type {
+   @extend %h4;
+   color: #000000;
+   margin: 0 0 40px 0;
+}
+
+.popup-description {
+   @extend %h5;
+   color: #000000;
+   margin: 0 0 40px 0;
+}
+
+.popup-list {
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   list-style-type: none;
+}
+
+.popup-list-item {
+   position: relative;
+   @extend %h5-modal-window;
+   color: #000000;
+   padding: 0 0 0 14px;
+   margin: 0 0 11px 0;
+
+   &::before {
+      content: "";
+      position: absolute;
+      top: 30%;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      background-color: $color-primary;
+      border-radius: 50%;
+   }
+}
+
+.popup-title {
+   font-weight: bold;
+}
+
+.popup-btn {
+   position: absolute;
+   box-sizing: border-box;
+   top: -52px;
+   right: -40px;
+   width: 52px;
+   height: 52px;
+   border: 2px solid $color-primary;
+   border-radius: 100px;
+   &::after,
+   &::before {
+      position: absolute;
+      content: "";
+      width: 18px;
+      height: 2.5px;
+      background: $color-dark-3xl;
+      top: 24px;
+      left: 16.5px;
+      &:hover {
+         background: #000000;
+      }
+   }
+   &::before {
+      transform: rotate(45deg);
+   }
+   &::after {
+      transform: rotate(-45deg);
+   }
+   &:hover {
+      background-color: $color-primary;
+      cursor: pointer;
+   }
+}

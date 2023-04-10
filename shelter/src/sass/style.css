@@ -275,12 +275,12 @@ input[type=checkbox], input[type=radio] {
   font-style: normal;
   font-display: swap;
 }
-.footer a, .in-addition-card-row, .slider-card__text, .slider-card__image, .slider-card, .burger, .navigation__link:not(.navigation__link_disabled), .slider-btn, .button, .logo > * {
+.popup-img, .popup, .popup-container_hidden, .popup-container, .footer a, .in-addition-card-row, .slider-card__text, .slider-card__image, .slider-card, .burger, .navigation__link:not(.navigation__link_disabled), .slider-btn, .button, .logo > * {
   transition: all 0.3s linear;
 }
 
 h1,
-h2, .slider-card__text, .button, .logo-title, .in-addition__subheading, .footer a, .card-number, .list-item__text, .slider-btn, .our-friends__heading, .footer-title, .in-addition__heading, .help__title, .pets__title, .about__title,
+h2, .slider-card__text, .button, .logo-title, .popup-list-item, .popup-description, .in-addition__subheading, .popup-type, .footer a, .card-number, .list-item__text, .slider-btn, .popup-name, .our-friends__heading, .footer-title, .in-addition__heading, .help__title, .pets__title, .about__title,
 .not-only__title {
   font-family: "Georgia", sans-serif;
   font-style: normal;
@@ -304,19 +304,25 @@ h2, .slider-card__text, .button, .logo-title, .in-addition__subheading, .footer 
   line-height: 130%;
 }
 
-.our-friends__heading, .footer-title, .in-addition__heading, .help__title, .pets__title, .about__title {
+.popup-name, .our-friends__heading, .footer-title, .in-addition__heading, .help__title, .pets__title, .about__title {
   font-size: 3.5rem;
   line-height: 130%;
   letter-spacing: 0.06em;
 }
 
-.footer a, .card-number, .list-item__text, .slider-btn {
+.popup-type, .footer a, .card-number, .list-item__text, .slider-btn {
   font-size: 2rem;
   line-height: 115%;
   letter-spacing: 0.06em;
 }
 
-.in-addition__subheading {
+.popup-description, .in-addition__subheading {
+  font-size: 1.5rem;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+}
+
+.popup-list-item {
   font-size: 1.5rem;
   line-height: 110%;
   letter-spacing: 0.06em;
@@ -360,6 +366,10 @@ h2, .slider-card__text, .button, .logo-title, .in-addition__subheading, .footer 
 html {
   font-size: 10px;
   scroll-behavior: smooth;
+}
+
+.body-scroll-hidden {
+  position: relative;
 }
 
 h1,
@@ -1676,4 +1686,127 @@ h2 {
 }
 .slider-card__image.freddie {
   background-image: url(../img/pets/freddie.webp);
+}
+
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.popup-container_hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+}
+
+.popup {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  background: #fafafa;
+  border-radius: 9px;
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  display: flex;
+}
+
+.popup-img {
+  width: 55.55%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 9px 0px 0px 9px;
+}
+
+.popup-content {
+  box-sizing: border-box;
+  width: 44.45%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px 0 30px;
+}
+
+.popup-name {
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+
+.popup-type {
+  color: #000000;
+  margin: 0 0 40px 0;
+}
+
+.popup-description {
+  color: #000000;
+  margin: 0 0 40px 0;
+}
+
+.popup-list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.popup-list-item {
+  position: relative;
+  color: #000000;
+  padding: 0 0 0 14px;
+  margin: 0 0 11px 0;
+}
+.popup-list-item::before {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background-color: #f1cdb3;
+  border-radius: 50%;
+}
+
+.popup-title {
+  font-weight: bold;
+}
+
+.popup-btn {
+  position: absolute;
+  box-sizing: border-box;
+  top: -52px;
+  right: -40px;
+  width: 52px;
+  height: 52px;
+  border: 2px solid #f1cdb3;
+  border-radius: 100px;
+}
+.popup-btn::after, .popup-btn::before {
+  position: absolute;
+  content: "";
+  width: 18px;
+  height: 2.5px;
+  background: #292929;
+  top: 24px;
+  left: 16.5px;
+}
+.popup-btn::after:hover, .popup-btn::before:hover {
+  background: #000000;
+}
+.popup-btn::before {
+  transform: rotate(45deg);
+}
+.popup-btn::after {
+  transform: rotate(-45deg);
+}
+.popup-btn:hover {
+  background-color: #f1cdb3;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

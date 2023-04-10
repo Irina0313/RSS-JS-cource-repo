@@ -184,6 +184,7 @@ window.onload = function () {
       for (let i = 0; i < cardsAmount; i++) {
          let div = document.createElement('div');
          div.classList.add('slider-card');
+         div.classList.add('slider-padinator');
          ourFriendsContent.append(div);
       }
 
