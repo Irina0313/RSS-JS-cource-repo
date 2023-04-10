@@ -101,15 +101,7 @@
    background-size: contain;
    background-repeat: no-repeat;
    border-radius: 9px 9px 0px 0px;
-   &.katrine {
-      background-image: url(../img/pets/katrine.webp);
-   }
-   &.jennifer {
-      background-image: url(../img/pets/jennifer.webp);
-   }
-   &.woody {
-      background-image: url(../img/pets/woody.webp);
-   }
+   @extend %transition;
 }
 
 .slider-card__text {
@@ -117,4 +109,5 @@
    text-align: center;
    color: $color-dark-l;
    margin: 30px 0 32px;
+   @extend %transition;
 }

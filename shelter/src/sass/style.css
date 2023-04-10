@@ -275,7 +275,7 @@ input[type=checkbox], input[type=radio] {
   font-style: normal;
   font-display: swap;
 }
-.footer a, .in-addition-card-row, .slider-card, .burger, .navigation__link:not(.navigation__link_disabled), .slider-btn, .button, .logo > * {
+.footer a, .in-addition-card-row, .slider-card__text, .slider-card__image, .slider-card, .burger, .navigation__link:not(.navigation__link_disabled), .slider-btn, .button, .logo > * {
   transition: all 0.3s linear;
 }
 
@@ -1176,15 +1176,6 @@ h2 {
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 9px 9px 0px 0px;
-}
-.slider-card__image.katrine {
-  background-image: url(../img/pets/katrine.webp);
-}
-.slider-card__image.jennifer {
-  background-image: url(../img/pets/jennifer.webp);
-}
-.slider-card__image.woody {
-  background-image: url(../img/pets/woody.webp);
 }
 
 .slider-card__text {
