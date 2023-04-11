@@ -19,7 +19,9 @@ const getArray = () => {
    } else if (arrayEightNum.includes(num) && arrayEightNum.length < 8) {
       getArray();
    }
+
 }
+
 
 
 //\\\\\\\\\\\\Нарезка "зерна"\\\\\\\\\\\\
@@ -53,6 +55,7 @@ const getArrayModificator = () => {
    }
 }
 
+
 //модифицируем массив
 
 const getModifiedArray = (arr) => {
@@ -78,10 +81,9 @@ const getTargetArray = (arr1, arr2, arr3) => {
 
 }
 //getTargetArray(subArrayOne, subArrayTwo, subArrayThree);
-
-
 //следим за размером окна и получаем требуемое кооличество страниц по условию при ширине экрана 1280px - 6, при 768px - 8, при 320px - 16 страниц
 let numberOfPages = 0;
+
 const getPages = () => {
 
    const width = document.body.clientWidth;
@@ -94,23 +96,60 @@ const getPages = () => {
    if (width <= 320) {
       numberOfPages = 16;
    }
+
    getPagesObject(numberOfPages);
    return numberOfPages;
+}
+
+
+const getArrayModificatorFor8Num = (arrEight) => {
+
+   let num = getRamdomNum(8);
+
+   if (!arrEight.includes(num) && arrEight.length < 8) {
+      arrEight.push(num);
+
+      if (arrEight.length < 8) {
+         getArrayModificatorFor8Num(arrEight);
+      }
+   } else if (arrEight.includes(num) && arrEight.length < 8) {
+      getArrayModificatorFor8Num(arrEight);
+   }
+
 }
 
 //создаем набор страниц
 let pages = [];
 const getPagesObject = (num) => {
    pages.splice(0, pages.length - 1);
-   let pageNum = 0;
-   for (let i = 0; i < targetArray.length; i += (targetArray.length / num)) {
-      pageNum += 1;
-      pages.push({
-         'page-number': pageNum,
-         'pets-numbers': targetArray.slice(i, i + (targetArray.length / num))
-      });
+   if (num === 6) {
+
+      let pageNum = 0;
+      for (let i = 0; i < 6; i++) {
+         pageNum += 1;
+         let arrEight = [];
+
+         getArrayModificatorFor8Num(arrEight);
+         pages.push({
+            'page-number': pageNum,
+            'pets-numbers': arrEight
+         });
+
+      }
+      return pages;
    }
-   return pages;
+   else {
+      let pageNum = 0;
+      for (let i = 0; i < targetArray.length; i += (targetArray.length / num)) {
+         pageNum += 1;
+         pages.push({
+            'page-number': pageNum,
+            'pets-numbers': targetArray.slice(i, i + (targetArray.length / num))
+         });
+      }
+      return pages;
+   }
+
 }
 
 //Получаем и отображаем номер страницы
@@ -214,7 +253,7 @@ window.onload = function () {
    async function getPet() {
       const sliderCardImage = document.querySelectorAll('.slider-card__image');
       const sliderCardText = document.querySelectorAll('.slider-card__text');
-      getPages();
+      //getPages();
       let cardsAmount = targetArray.length / numberOfPages;
       getPageNumber();
       let pets = '../scripts/pets.json';
