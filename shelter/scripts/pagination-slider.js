@@ -23,7 +23,6 @@ const getArray = () => {
 }
 
 
-
 //\\\\\\\\\\\\Нарезка "зерна"\\\\\\\\\\\\
 
 //Делим массив на 3 субмассива
@@ -78,8 +77,9 @@ const getTargetArray = (arr1, arr2, arr3) => {
       targetArray = targetArray.concat(subArrayThree);
 
    }
-
+   console.log(targetArray)
 }
+
 //getTargetArray(subArrayOne, subArrayTwo, subArrayThree);
 //следим за размером окна и получаем требуемое кооличество страниц по условию при ширине экрана 1280px - 6, при 768px - 8, при 320px - 16 страниц
 let numberOfPages = 0;
@@ -359,4 +359,5 @@ window.onload = function () {
       }
    });
 }
+
 
