@@ -1,5 +1,20 @@
 const screenWidth = window.screen.width;
 
+
+const getCardsAmount = () => {
+
+   if (screenWidth > 1197) {
+      return 3;
+   }
+   if (screenWidth > 755 && screenWidth < 1198) {
+      return 2;
+   }
+   if (screenWidth < 756) {
+      return 1;
+   }
+}
+let cardsAmount = getCardsAmount();
+
 const firstCard = [];
 const secondCard = [];
 const thirdCard = [];
@@ -16,28 +31,67 @@ const getRamdomNum = () => {
 
 //функция получения нового массива (newArr) с контролем уникальности значения в baseArr
 const getArray = (newArr, baseArr) => {
+   ///3 карточки
+   if (cardsAmount === 3) {
 
-   if (baseArr.length === 0) {
-      let set = new Set([getRamdomNum(), getRamdomNum(), getRamdomNum()]);
-      if (set.size < 3) {
-         getArray(newArr, baseArr);
+      const createArr = () => {
+         let num = getRamdomNum(8)
+         if (!newArr.includes(num) && !baseArr.includes(num) && newArr.length < 3) {
+            newArr.push(num);
+            if (newArr.length < 3) {
+               createArr();
+            } else {
+               return newArr;
+            }
+         } else {
+            createArr();
+         }
       }
-      set.forEach(item => {
-         newArr.push(item);
-      })
-   } else {
-      let num = getRamdomNum();
-      if (!baseArr.includes(num) && !newArr.includes(num)) {
-         newArr.push(num);
 
-      } else {
-         getArray(newArr, baseArr);
+      createArr();
+   }
+   ///2 катрочки
+   if (cardsAmount === 2) {
+
+      const createArr = () => {
+         let num = getRamdomNum(8)
+         if (!newArr.includes(num) && !baseArr.includes(num) && newArr.length < 2) {
+            newArr.push(num);
+            if (newArr.length < 2) {
+               createArr();
+            } else {
+               return newArr;
+            }
+         } else {
+            createArr();
+         }
       }
-      if (newArr.length < 3) {
-         getArray(newArr, baseArr);
+
+      createArr();
+   }
+
+
+   /// 1 карточка
+   if (cardsAmount === 1) {
+      //console.log(pastArr, currArr, nextArr)
+      const createArr = () => {
+         let num = getRamdomNum(8)
+         //if (!baseArr.includes(num) && !pastArr.includes(num)) {
+         if (!baseArr.includes(num)) {
+            newArr.push(num);
+            return newArr;
+         } else {
+            createArr();
+         }
       }
+      createArr();
    }
 }
+
+
+
+
+
 
 //функция обнуления значения массива
 const cleanArray = (array) => {
@@ -59,21 +113,22 @@ const moveArrOneToArrTwo = (arrOne, arrTwo) => {
 function init() {
    //генерируем массив nextArr;
    getArray(nextArr, currArr);
-
+   //console.log('1', pastArr, currArr, nextArr)
    //перемещаем значения из массива nextArr (попутно его обнуляя) в массив currArr;
    moveArrOneToArrTwo(nextArr, currArr);
-
+   //  console.log(pastArr, currArr, nextArr)
    //генерируем массив nextArr (помним про проверку на наличие значений в currArr);
    getArray(nextArr, currArr);
-
+   // console.log(pastArr, currArr, nextArr)
    //перемещаем значения из массива currArr (попутно его обнуляя) в массив pastArr;
    moveArrOneToArrTwo(currArr, pastArr);
-
+   //  console.log(pastArr, currArr, nextArr)
    //перемещаем значения из массива nextArr (попутно его обнуляя) в массив currArr;
    moveArrOneToArrTwo(nextArr, currArr);
-
+   // console.log(pastArr, currArr, nextArr)
    //генерируем массив nextArr (помним про проверку на наличие значений в currArr);
    getArray(nextArr, currArr);
+   // console.log(pastArr, currArr, nextArr)
 }
 
 init();
@@ -161,20 +216,7 @@ function changeToForward() {
 //Генерация html
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-/*const getCardsAmount = () => {
-   let cardsAmount = 3;
-   /*if (screenWidth > 1197) {
-      cardsAmount = 3;
-   }
-   if (screenWidth > 755 && screenWidth < 1198) {
-      cardsAmount = 2;
-   }
-   if (screenWidth < 756) {
-      cardsAmount = 1;
-   }
-   return cardsAmount;
-}*/
-let cardsAmount = 3;
+
 
 
 const sliderContainer = document.querySelectorAll('.pets__slider-container');
@@ -235,8 +277,8 @@ const createSliderCardNext = (cardsAmount) => {
       sliderCard[i].append(button);
    }
 }
-createSliderCardNext(cardsAmount);
-createSliderCard(cardsAmount);
+createSliderCardNext(3);
+createSliderCard(3);
 const createSliderCardPrev = (cardsAmount) => {
    for (let i = 0; i < cardsAmount; i++) {
       let div = document.createElement('div');
@@ -260,8 +302,9 @@ const createSliderCardPrev = (cardsAmount) => {
       button.innerText = 'Learn\u00A0more';
       sliderCard[i].append(button);
    }
+
 }
-createSliderCardPrev(cardsAmount);
+createSliderCardPrev(3);
 
 
 const sliderCardImage = document.querySelectorAll('.slider-card__image');
@@ -271,19 +314,36 @@ async function getPet() {
    let pets = 'scripts/pets.json';
    const res = await fetch(pets);
    const data = await res.json();
-
-   for (let i = 0; i < sliderCardText.length / 3; i++) {
-
-      sliderCardText[i + 3].innerText = `${data[currArr[i]].name}`;
-      sliderCardImage[i + 3].style.backgroundImage = `url(${data[currArr[i]].img})`;
-
+   //console.log(sliderCardText.length)
+   console.log(pastArr, currArr, nextArr)
+   if (currArr.length === 3) {
+      for (let i = 0; i < 3; i++) {
+         console.log(i, currArr, data[currArr[i]].name)
+         sliderCardText[3 + i].innerText = `${data[currArr[i]].name}`;
+         sliderCardImage[3 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+      }
+   }
+   if (currArr.length === 2) {
+      for (let i = 0; i < 2; i++) {
+         console.log(i, currArr, data[currArr[i]].name)
+         sliderCardText[3 + i].innerText = `${data[currArr[i]].name}`;
+         sliderCardImage[3 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+      }
+   }
+   if (currArr.length === 1) {
+      for (let i = 0; i < 1; i++) {
+         // console.log(i, currArr, data[currArr[i]].name)
+         sliderCardText[3 + i].innerText = `${data[currArr[i]].name}`;
+         sliderCardImage[3 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+      }
    }
 
-};
 
+};
 getPet();
 
-async function getPetPrev() {
+
+/*async function getPetPrev() {
    let pets = 'scripts/pets.json';
    const res = await fetch(pets);
    const data = await res.json();
@@ -295,8 +355,8 @@ async function getPetPrev() {
 
    }
 
-};
-async function getPetNext() {
+};*/
+/*async function getPetNext() {
    let pets = 'scripts/pets.json';
    const res = await fetch(pets);
    const data = await res.json();
@@ -308,22 +368,26 @@ async function getPetNext() {
 
    }
 
-};
+};*/
 
 const sliderBtnRight = document.querySelector('.slider-btn_right');
 const sliderBtnLeft = document.querySelector('.slider-btn_left');
 const carusel = document.querySelector('.carusel');
-let direction = [];
+let direction = ['0'];
 
+// кнопки
 
 sliderBtnRight.addEventListener('click', () => {
    carusel.classList.add('transition-right');
-   if (direction[0] === '' || direction[0] === 'right') {
+   console.log(direction[0])
+   if (direction[0] === '0' || direction[0] === 'right') {
       forward();
       getPet();
    }
    if (direction[0] === 'left') {
-      changeToForward();
+      changeToBackward();
+      //changeToForward();
+      //backward();
       getPet();
    }
    direction.shift();
@@ -331,13 +395,17 @@ sliderBtnRight.addEventListener('click', () => {
 })
 
 sliderBtnLeft.addEventListener('click', () => {
-   carusel.classList.add('transition-left')
-   if (direction[0] === '' || direction[0] === 'left') {
+   carusel.classList.add('transition-left');
+   console.log(direction[0])
+   if (direction[0] === '0' || direction[0] === 'left') {
       backward();
+      // forward();
       getPet();
    }
    if (direction[0] === 'right') {
+      // changeToForward();
       changeToBackward();
+      //forward();
       getPet();
    }
    direction.shift();
@@ -351,4 +419,15 @@ carusel.addEventListener('animationend', () => {
 
 })
 
-
+window.addEventListener('resize', (e) => {
+   let numberOfCards = currArr.length;
+   if (screenWidth > 1197 && numberOfCards != 3) {
+      init();
+   }
+   if (screenWidth > 755 && screenWidth < 1198 && numberOfCards != 2) {
+      init()
+      if (screenWidth < 756 && numberOfCards != 1) {
+         init();
+      }
+   }
+})
