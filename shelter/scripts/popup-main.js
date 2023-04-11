@@ -124,10 +124,10 @@ async function fillPopup(petName) {
          popupName.innerText = `${data[i].name}`;
          popupType.innerText = `${data[i].type} - ${data[i].breed}`;
          popupDescription.innerText = `${data[i].description}`;
-         popupListItem[0].insertAdjacentHTML('beforeend', `  "${data[i].age}"`);
-         popupListItem[1].insertAdjacentHTML('beforeend', `  "${data[i].inoculations}"`);
-         popupListItem[2].insertAdjacentHTML('beforeend', `  "${data[i].diseases}"`);
-         popupListItem[3].insertAdjacentHTML('beforeend', `  "${data[i].parasites}"`);
+         popupListItem[0].insertAdjacentHTML('beforeend', `  ${data[i].age}`);
+         popupListItem[1].insertAdjacentHTML('beforeend', `  ${data[i].inoculations}`);
+         popupListItem[2].insertAdjacentHTML('beforeend', `  ${data[i].diseases}`);
+         popupListItem[3].insertAdjacentHTML('beforeend', `  ${data[i].parasites}`);
       }
    }
 }

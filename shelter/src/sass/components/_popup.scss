@@ -29,6 +29,15 @@
    border-radius: 9px;
    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
    display: flex;
+   @include media-laptop {
+      width: 630px;
+
+      height: 350px;
+   }
+   @media screen and (max-width: 700px) {
+      width: 240px;
+      height: 380px;
+   }
 }
 
 .popup-img {
@@ -38,31 +47,62 @@
    background-repeat: no-repeat;
    border-radius: 9px 0px 0px 9px;
    @extend %transition;
+   @include media-laptop {
+      width: 350px;
+      height: 350px;
+   }
+   @media screen and (max-width: 700px) {
+      display: none;
+   }
 }
 .popup-content {
    box-sizing: border-box;
-   width: 44.45%;
+   width: 400px;
    display: flex;
    flex-direction: column;
    padding: 50px 20px 0 30px;
+   @include media-laptop {
+      width: 280px;
+      padding: 10px 5px 0 11px;
+   }
+   @media screen and (max-width: 700px) {
+      width: 100%;
+      padding: 10px;
+      padding: 10px;
+   }
 }
 
 .popup-name {
    @extend %h3;
    color: #000000;
    margin: 0 0 10px 0;
+   @media screen and (max-width: 700px) {
+      width: 100%;
+      text-align: center;
+   }
 }
 
 .popup-type {
    @extend %h4;
    color: #000000;
    margin: 0 0 40px 0;
+   @include media-laptop {
+      margin: 0 0 20px 0;
+   }
+   @media screen and (max-width: 700px) {
+      width: 100%;
+      text-align: center;
+   }
 }
 
 .popup-description {
    @extend %h5;
    color: #000000;
    margin: 0 0 40px 0;
+   @include media-laptop {
+      @include font($size: 1.3rem, $height: 110%);
+      margin: 0 0 10px 0;
+   }
 }
 
 .popup-list {
@@ -78,6 +118,9 @@
    color: #000000;
    padding: 0 0 0 14px;
    margin: 0 0 11px 0;
+   @include media-laptop {
+      margin: 0 0 6px 0;
+   }
 
    &::before {
       content: "";
