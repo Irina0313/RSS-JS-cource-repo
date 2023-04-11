@@ -1,11 +1,13 @@
 const burger = document.querySelector('.burger');
+
 const headerNavigationContainer = document.querySelector('.header__navigation');
 const navigation = document.querySelector('.navigation');
 const navigationContainer = document.querySelector('.navigation-container');
 const body = document.querySelector('body');
 
 
-burger.addEventListener('click', () => {
+burger.addEventListener('click', (e) => {
+   console.log(e.target)
    if (burger.classList.contains('burger_active')) {
       closeBurgerMenu();
    } else {
@@ -15,11 +17,14 @@ burger.addEventListener('click', () => {
 })
 
 const openBurgerMenu = () => {
-   burger.classList.add('burger_active');
+
    headerNavigationContainer.classList.add('header__navigation_burger');
    navigation.classList.add('navigation__burger-active');
    navigationContainer.classList.add('navigation-container_active');
-   body.classList.add('scroll-hidden');
+   body.classList.add('scroll-hidden-burger');
+   burger.classList.remove('burger_unactive')
+   burger.classList.add('burger_active')
+
 
 
    window.addEventListener('click', e => {
@@ -39,6 +44,6 @@ const closeBurgerMenu = () => {
    headerNavigationContainer.classList.remove('header__navigation_burger');
    navigation.classList.remove('navigation__burger-active');
    navigationContainer.classList.remove('navigation-container_active');
-   body.classList.remove('scroll-hidden');
+   body.classList.remove('scroll-hidden-burger');
 }
 
