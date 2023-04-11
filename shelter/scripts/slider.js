@@ -177,7 +177,10 @@ function changeToForward() {
 let cardsAmount = 3;
 
 
-const sliderContainer = document.querySelector('.pets__slider-container');
+const sliderContainer = document.querySelectorAll('.pets__slider-container');
+const sliderContainerNext = document.querySelector('.pets__slider-container_next');
+const sliderContainerCurr = document.querySelector('.pets__slider-container_curr');
+const sliderContainerPrev = document.querySelector('.pets__slider-container_prev');
 
 //функция генерирования карточек слайдера
 
@@ -186,8 +189,7 @@ const createSliderCard = (cardsAmount) => {
    for (let i = 0; i < cardsAmount; i++) {
       let div = document.createElement('div');
       div.classList.add('slider-card');
-      sliderContainer.append(div);
-
+      sliderContainerCurr.append(div);
    }
    const sliderCard = document.querySelectorAll('.slider-card');
    for (let i = 0; i < cardsAmount; i++) {
@@ -207,7 +209,60 @@ const createSliderCard = (cardsAmount) => {
       sliderCard[i].append(button);
    }
 }
+
+
+const createSliderCardNext = (cardsAmount) => {
+   for (let i = 0; i < cardsAmount; i++) {
+      let div = document.createElement('div');
+      div.classList.add('slider-card');
+      sliderContainerNext.append(div);
+   }
+   const sliderCard = document.querySelectorAll('.slider-card');
+   for (let i = 0; i < cardsAmount; i++) {
+      div = document.createElement('div');
+      div.classList.add('slider-card__image');
+      sliderCard[i].append(div);
+
+      div = document.createElement('div');
+      div.classList.add('slider-card__text');
+      sliderCard[i].append(div);
+
+      let button = document.createElement('button');
+      button.classList.add('button');
+      button.classList.add('button_secondary');
+      button.classList.add('slider-card__button');
+      button.innerText = 'Learn\u00A0more';
+      sliderCard[i].append(button);
+   }
+}
+createSliderCardNext(cardsAmount);
 createSliderCard(cardsAmount);
+const createSliderCardPrev = (cardsAmount) => {
+   for (let i = 0; i < cardsAmount; i++) {
+      let div = document.createElement('div');
+      div.classList.add('slider-card');
+      sliderContainerPrev.append(div);
+   }
+   const sliderCard = document.querySelectorAll('.slider-card');
+   for (let i = 0; i < cardsAmount; i++) {
+      div = document.createElement('div');
+      div.classList.add('slider-card__image');
+      sliderCard[i].append(div);
+
+      div = document.createElement('div');
+      div.classList.add('slider-card__text');
+      sliderCard[i].append(div);
+
+      let button = document.createElement('button');
+      button.classList.add('button');
+      button.classList.add('button_secondary');
+      button.classList.add('slider-card__button');
+      button.innerText = 'Learn\u00A0more';
+      sliderCard[i].append(button);
+   }
+}
+createSliderCardPrev(cardsAmount);
+
 
 const sliderCardImage = document.querySelectorAll('.slider-card__image');
 const sliderCardText = document.querySelectorAll('.slider-card__text');
@@ -217,9 +272,10 @@ async function getPet() {
    const res = await fetch(pets);
    const data = await res.json();
 
-   for (let i = 0; i < sliderCardText.length; i++) {
-      sliderCardText[i].innerText = `${data[currArr[i]].name}`;
-      sliderCardImage[i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+   for (let i = 0; i < sliderCardText.length / 3; i++) {
+
+      sliderCardText[i + 3].innerText = `${data[currArr[i]].name}`;
+      sliderCardImage[i + 3].style.backgroundImage = `url(${data[currArr[i]].img})`;
 
    }
 
@@ -227,12 +283,41 @@ async function getPet() {
 
 getPet();
 
+async function getPetPrev() {
+   let pets = 'scripts/pets.json';
+   const res = await fetch(pets);
+   const data = await res.json();
+
+   for (let i = 0; i < sliderCardText.length / 3; i++) {
+
+      sliderCardText[i].innerText = `${data[currArr[i]].name}`;
+      sliderCardImage[i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+
+   }
+
+};
+async function getPetNext() {
+   let pets = 'scripts/pets.json';
+   const res = await fetch(pets);
+   const data = await res.json();
+
+   for (let i = 0; i < sliderCardText.length / 3; i++) {
+
+      sliderCardText[i + 6].innerText = `${data[currArr[i]].name}`;
+      sliderCardImage[i + 6].style.backgroundImage = `url(${data[currArr[i]].img})`;
+
+   }
+
+};
+
 const sliderBtnRight = document.querySelector('.slider-btn_right');
 const sliderBtnLeft = document.querySelector('.slider-btn_left');
-
+const carusel = document.querySelector('.carusel');
 let direction = [];
 
+
 sliderBtnRight.addEventListener('click', () => {
+   carusel.classList.add('transition-right');
    if (direction[0] === '' || direction[0] === 'right') {
       forward();
       getPet();
@@ -243,10 +328,10 @@ sliderBtnRight.addEventListener('click', () => {
    }
    direction.shift();
    direction.push('right');
-
 })
 
 sliderBtnLeft.addEventListener('click', () => {
+   carusel.classList.add('transition-left')
    if (direction[0] === '' || direction[0] === 'left') {
       backward();
       getPet();
@@ -260,6 +345,10 @@ sliderBtnLeft.addEventListener('click', () => {
 
 })
 
+carusel.addEventListener('animationend', () => {
+   carusel.classList.remove('transition-left');
+   carusel.classList.remove('transition-right');
 
+})
 
 
