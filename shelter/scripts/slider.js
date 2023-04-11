@@ -318,7 +318,7 @@ async function getPet() {
    console.log(pastArr, currArr, nextArr)
    if (currArr.length === 3) {
       for (let i = 0; i < 3; i++) {
-         console.log(i, currArr, data[currArr[i]].name)
+         //   console.log(i, currArr, data[currArr[i]].name)
          sliderCardText[3 + i].innerText = `${data[currArr[i]].name}`;
          sliderCardImage[3 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
       }
@@ -426,8 +426,9 @@ window.addEventListener('resize', (e) => {
    }
    if (screenWidth > 755 && screenWidth < 1198 && numberOfCards != 2) {
       init()
-      if (screenWidth < 756 && numberOfCards != 1) {
-         init();
-      }
    }
+   if (screenWidth < 756 && numberOfCards != 1) {
+      init();
+   }
+
 })
