@@ -24,7 +24,6 @@ const openBurgerMenu = () => {
 
    window.addEventListener('click', e => {
       const target = e.target;
-      console.log(target)
       if (!target.closest('.navigation-container') && !target.closest('.burger')) {
          closeBurgerMenu();
       }
