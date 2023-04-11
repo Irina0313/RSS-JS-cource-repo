@@ -378,10 +378,12 @@ h2 {
   line-height: 130%;
 }
 
-.scroll-hidden {
+.scroll-hidden,
+.scroll-hidden-burger {
   overflow: hidden;
 }
-.scroll-hidden::after {
+.scroll-hidden::after,
+.scroll-hidden-burger::after {
   content: "";
   position: absolute;
   top: 0;
@@ -811,6 +813,7 @@ h2 {
   color: #292929;
 }
 .header_light .burger {
+  z-index: 50;
   border-bottom: 2px solid #000000;
   border-top: 2px solid #000000;
 }
