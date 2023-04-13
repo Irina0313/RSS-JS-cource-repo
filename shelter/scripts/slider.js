@@ -441,7 +441,6 @@ sliderBtnLeft.addEventListener('click', () => {
    console.log(direction[0])
    if (direction[0] === '0' || direction[0] === 'left') {
       backward();
-      // forward();
       getPet();
    }
    if (direction[0] === 'right') {
