@@ -1,8 +1,8 @@
 
-const screenWidth = window.screen.width;
+//const screenWidth = window.screen.width;
 
 const getCardsAmount = (width) => {
-
+   width = document.body.clientWidth;
    if (width > 1197) {
       return 3;
    }
@@ -14,7 +14,7 @@ const getCardsAmount = (width) => {
    }
 
 }
-let cardsAmount = getCardsAmount(screenWidth);
+let cardsAmount = getCardsAmount();
 
 const firstCard = [];
 const secondCard = [];
@@ -32,6 +32,7 @@ const getRamdomNum = () => {
 
 //функция получения нового массива (newArr) с контролем уникальности значения в baseArr
 const getArray = (newArr, baseArr) => {
+
    ///3 карточки
    if (cardsAmount === 3) {
 
@@ -142,6 +143,14 @@ function initChanged() {
       currArr.push(item);
    })
    getArray(nextArr, currArr);
+
+}
+
+function initChangedDown() {
+
+   currArr.splice(currArr.length - 1, 1);
+   nextArr.splice(nextArr.length - 1, 1);
+
 
 }
 
@@ -464,21 +473,38 @@ carusel.addEventListener('animationend', () => {
 window.addEventListener('resize', (e) => {
    const width = document.body.clientWidth;
 
+   //console.log(width)
+   let checker = currArr.length;
+   if (width > 1197 && nextArr.length != 3) {
+      cardsAmount = 3;
+      // console.log(cardsAmount)
+      initChanged()
+      // console.log('111', pastArr, currArr, nextArr)
+      //  console.log(getCardsAmount(width));
+      getPet();
+      checker = 3;
+   }
+   if (width > 755 && width < 1198 && nextArr.length != 2) {
+      cardsAmount = 2;
+      if (checker < 2) {
+         initChanged();
+         //  console.log('111', pastArr, currArr, nextArr)
+         getPet();
+      }
 
-   if (width === 1198) {
-      getCardsAmount(width);
-      initChanged()
-      getPet();
+      if (checker > 2) {
+         initChangedDown();
+         checker = 2;
+         // console.log(nextArr.length)
+      }
    }
-   if (width === 756) {
-      getCardsAmount(width);
-      initChanged()
-      getPet();
-   }
-   if (width === 755) {
-      getCardsAmount(width);
-      initChanged()
-      getPet();
+   if (width < 756 && nextArr.length != 1) {
+      cardsAmount = 1;
+      if (checker > 1) {
+         initChangedDown();
+         checker = 1;
+      }
+
    }
 
 })
