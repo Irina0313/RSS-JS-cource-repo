@@ -54,34 +54,27 @@ const closeBurgerMenu = () => {
 
 //Прокрутка при клике
 const navigationLinks = document.querySelectorAll('.navigation__link>*[data-goto]');
+
 if (navigationLinks.length > 0) {
    navigationLinks.forEach(navigationLink => {
+
       navigationLink.addEventListener("click", onNavigationLinkClick);
    });
-
    function onNavigationLinkClick(e) {
       const navigationLink = e.target;
       if (navigationLink.dataset.goto && document.querySelector(navigationLink.dataset.goto)) {
          const gotoSection = document.querySelector(navigationLink.dataset.goto);
+         console.log(gotoSection)
+         const gotoSectionValue = gotoSection.getBoundingClientRect().top + scrollY;
 
-         /*if (window.scrollY) {
-            window.scroll(0, 0);
-         }*/
-         const gotoSectionValue = gotoSection.getBoundingClientRect().top + scrollY * 10;
-         console.log(gotoSectionValue)
-         // const gotoSectionValue = gotoSection.getBoundingClientRect().top + scrollY + scrollY + scrollY + scrollY;
-
-         /*if (burger.classList.contains('_active')) {
-            document.body.classList.remove('_lock');
-            burger.classList.remove('_active');
-            headerNavigation.classList.remove('_active');
-         }*/
-         closeBurgerMenu();
          window.scrollTo({
             top: gotoSectionValue,
+
             behavior: "smooth"
          });
          e.preventDefault();
+
+         closeBurgerMenu();
       }
    }
 }
