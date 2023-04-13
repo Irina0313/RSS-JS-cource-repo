@@ -382,15 +382,15 @@ h2 {
 .scroll-hidden-burger {
   overflow: hidden;
 }
-.scroll-hidden::after,
-.scroll-hidden-burger::after {
+.scroll-hidden::before,
+.scroll-hidden-burger::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   z-index: 5;
   width: 100%;
-  height: 100%;
+  height: 200vh;
   background: rgba(41, 41, 41, 0.6);
 }
 
