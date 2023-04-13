@@ -13,14 +13,14 @@ h2 {
 .scroll-hidden,
 .scroll-hidden-burger {
    overflow: hidden;
-   &::after {
+   &::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       z-index: 5;
       width: calc(100%);
-      height: 100%;
+      height: 200vh;
       background: rgba(41, 41, 41, 0.6);
    }
 }

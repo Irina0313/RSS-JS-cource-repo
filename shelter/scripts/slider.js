@@ -1,19 +1,20 @@
+
 const screenWidth = window.screen.width;
 
+const getCardsAmount = (width) => {
 
-const getCardsAmount = () => {
-
-   if (screenWidth > 1197) {
+   if (width > 1197) {
       return 3;
    }
-   if (screenWidth > 755 && screenWidth < 1198) {
+   if (width > 755 && width < 1198) {
       return 2;
    }
-   if (screenWidth < 756) {
+   if (width < 756) {
       return 1;
    }
+
 }
-let cardsAmount = getCardsAmount();
+let cardsAmount = getCardsAmount(screenWidth);
 
 const firstCard = [];
 const secondCard = [];
@@ -113,25 +114,36 @@ const moveArrOneToArrTwo = (arrOne, arrTwo) => {
 function init() {
    //генерируем массив nextArr;
    getArray(nextArr, currArr);
-   //console.log('1', pastArr, currArr, nextArr)
+   console.log('1', pastArr, currArr, nextArr)
    //перемещаем значения из массива nextArr (попутно его обнуляя) в массив currArr;
    moveArrOneToArrTwo(nextArr, currArr);
-   //  console.log(pastArr, currArr, nextArr)
+   console.log(pastArr, currArr, nextArr)
    //генерируем массив nextArr (помним про проверку на наличие значений в currArr);
    getArray(nextArr, currArr);
-   // console.log(pastArr, currArr, nextArr)
+   console.log(pastArr, currArr, nextArr)
    //перемещаем значения из массива currArr (попутно его обнуляя) в массив pastArr;
    moveArrOneToArrTwo(currArr, pastArr);
-   //  console.log(pastArr, currArr, nextArr)
+   console.log(pastArr, currArr, nextArr)
    //перемещаем значения из массива nextArr (попутно его обнуляя) в массив currArr;
    moveArrOneToArrTwo(nextArr, currArr);
-   // console.log(pastArr, currArr, nextArr)
+   console.log(pastArr, currArr, nextArr)
    //генерируем массив nextArr (помним про проверку на наличие значений в currArr);
    getArray(nextArr, currArr);
-   // console.log(pastArr, currArr, nextArr)
+   console.log(pastArr, currArr, nextArr)
 }
 
 init();
+
+function initChanged() {
+   getArray(nextArr, currArr);
+
+   nextArr.splice(0, currArr.length);
+   nextArr.forEach(item => {
+      currArr.push(item);
+   })
+   getArray(nextArr, currArr);
+
+}
 
 //\\\\\\\\\\\\\\ Прокрутка вправо \\\\\\\\\\\\\\ 
 
@@ -319,22 +331,52 @@ async function getPet() {
    if (currArr.length === 3) {
       for (let i = 0; i < 3; i++) {
          //   console.log(i, currArr, data[currArr[i]].name)
+         sliderCardText[i].innerText = `${data[currArr[i]].name}`;
+         sliderCardImage[i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+      }
+      for (let i = 0; i < 3; i++) {
+         //   console.log(i, currArr, data[currArr[i]].name)
          sliderCardText[3 + i].innerText = `${data[currArr[i]].name}`;
          sliderCardImage[3 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+      }
+      for (let i = 0; i < 3; i++) {
+         //   console.log(i, currArr, data[currArr[i]].name)
+         sliderCardText[6 + i].innerText = `${data[currArr[i]].name}`;
+         sliderCardImage[6 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
       }
    }
    if (currArr.length === 2) {
       for (let i = 0; i < 2; i++) {
-         console.log(i, currArr, data[currArr[i]].name)
+         //console.log(i, currArr, data[currArr[i]].name)
+         sliderCardText[i].innerText = `${data[currArr[i]].name}`;
+         sliderCardImage[i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+      }
+      for (let i = 0; i < 2; i++) {
+         //console.log(i, currArr, data[currArr[i]].name)
          sliderCardText[3 + i].innerText = `${data[currArr[i]].name}`;
          sliderCardImage[3 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+      }
+      for (let i = 0; i < 2; i++) {
+         //console.log(i, currArr, data[currArr[i]].name)
+         sliderCardText[6 + i].innerText = `${data[currArr[i]].name}`;
+         sliderCardImage[6 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
       }
    }
    if (currArr.length === 1) {
       for (let i = 0; i < 1; i++) {
+         for (let i = 0; i < 1; i++) {
+            // console.log(i, currArr, data[currArr[i]].name)
+            sliderCardText[i].innerText = `${data[currArr[i]].name}`;
+            sliderCardImage[i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+         }
          // console.log(i, currArr, data[currArr[i]].name)
          sliderCardText[3 + i].innerText = `${data[currArr[i]].name}`;
          sliderCardImage[3 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+         for (let i = 0; i < 1; i++) {
+            // console.log(i, currArr, data[currArr[i]].name)
+            sliderCardText[6 + i].innerText = `${data[currArr[i]].name}`;
+            sliderCardImage[6 + i].style.backgroundImage = `url(${data[currArr[i]].img})`;
+         }
       }
    }
 
@@ -420,15 +462,23 @@ carusel.addEventListener('animationend', () => {
 })
 
 window.addEventListener('resize', (e) => {
-   let numberOfCards = currArr.length;
-   if (screenWidth > 1197 && numberOfCards != 3) {
-      init();
+   const width = document.body.clientWidth;
+
+
+   if (width === 1198) {
+      getCardsAmount(width);
+      initChanged()
+      getPet();
    }
-   if (screenWidth > 755 && screenWidth < 1198 && numberOfCards != 2) {
-      init()
+   if (width === 756) {
+      getCardsAmount(width);
+      initChanged()
+      getPet();
    }
-   if (screenWidth < 756 && numberOfCards != 1) {
-      init();
+   if (width === 755) {
+      getCardsAmount(width);
+      initChanged()
+      getPet();
    }
 
 })

@@ -6,6 +6,10 @@ const navigationContainer = document.querySelector('.navigation-container');
 const body = document.querySelector('body');
 
 
+
+
+
+
 burger.addEventListener('click', (e) => {
    console.log(e.target)
    if (burger.classList.contains('burger_active')) {
@@ -22,12 +26,13 @@ const openBurgerMenu = () => {
    navigation.classList.add('navigation__burger-active');
    navigationContainer.classList.add('navigation-container_active');
    body.classList.add('scroll-hidden-burger');
+   body.classList.add('scroll-hidden-burger');
    burger.classList.remove('burger_unactive')
    burger.classList.add('burger_active')
 
 
 
-   window.addEventListener('click', e => {
+   /*window.addEventListener('click', e => {
       const target = e.target;
       if (!target.closest('.navigation-container') && !target.closest('.burger')) {
          closeBurgerMenu();
@@ -36,7 +41,7 @@ const openBurgerMenu = () => {
          closeBurgerMenu();
       }
 
-   })
+   })*/
 
 }
 const closeBurgerMenu = () => {
@@ -47,3 +52,29 @@ const closeBurgerMenu = () => {
    body.classList.remove('scroll-hidden-burger');
 }
 
+//Прокрутка при клике
+const navigationLinks = document.querySelectorAll('.navigation__link>*[data-goto]');
+
+if (navigationLinks.length > 0) {
+   navigationLinks.forEach(navigationLink => {
+
+      navigationLink.addEventListener("click", onNavigationLinkClick);
+   });
+   function onNavigationLinkClick(e) {
+      const navigationLink = e.target;
+      if (navigationLink.dataset.goto && document.querySelector(navigationLink.dataset.goto)) {
+         const gotoSection = document.querySelector(navigationLink.dataset.goto);
+         console.log(gotoSection)
+         const gotoSectionValue = gotoSection.getBoundingClientRect().top + scrollY;
+
+         window.scrollTo({
+            top: gotoSectionValue,
+
+            behavior: "smooth"
+         });
+         e.preventDefault();
+
+         closeBurgerMenu();
+      }
+   }
+}
