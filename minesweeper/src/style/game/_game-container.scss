@@ -1,6 +1,5 @@
 .game {
   box-sizing: border-box;
-  max-width: 282px;
   margin: 0 auto;
 }
 .game__header,
@@ -56,7 +55,6 @@
 /* Lines  */
 
 .border-line {
-  width: 240px;
   height: 16.5px;
   background-image: url("../../img/field-borders/border_hor_2x.png");
   background-size: contain;
@@ -74,18 +72,12 @@
   height: 48px;
 }
 
-.left-border_field,
-.right-border_field {
-  height: 240px;
-}
-
 /* header container  */
 
 .game__header-container {
   padding: 4.5px;
   display: flex;
-  width: 240px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: $main-color;
 }
@@ -173,7 +165,6 @@
 .game__field {
   display: flex;
   flex-wrap: wrap;
-  max-width: 240px;
 }
 
 .cell {
