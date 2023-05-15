@@ -1,0 +1,184 @@
+.game {
+  box-sizing: border-box;
+  max-width: 282px;
+  margin: 0 auto;
+}
+.game__header,
+.game__field-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game__header-container {
+  box-sizing: border-box;
+}
+
+.top-border,
+.middle-border,
+.bottom-border {
+  display: flex;
+  margin: 0;
+}
+
+/*  Corner  */
+
+.corner {
+  width: 18px;
+  height: 16.5px;
+  background-size: 100% 100%;
+}
+
+.left-top-corner {
+  background-image: url("../../img/field-borders/corner_up_left_2x.png");
+}
+
+.right-top-corner {
+  background-image: url("../../img/field-borders/corner_up_right_2x.png");
+}
+
+.left-middle-corner {
+  background-image: url("../../img/field-borders/t_left_2x.png");
+}
+
+.right-middle-corner {
+  background-image: url("../../img/field-borders/t_right_2x.png");
+}
+
+.left-bottom-corner {
+  background-image: url("../../img/field-borders/corner_bottom_left_2x.png");
+}
+
+.right-bottom-corner {
+  background-image: url("../../img/field-borders/corner_bottom_right_2x.png");
+}
+
+/* Lines  */
+
+.border-line {
+  width: 240px;
+  height: 16.5px;
+  background-image: url("../../img/field-borders/border_hor_2x.png");
+  background-size: contain;
+  background-size: 100% 100%;
+}
+
+.left-border,
+.right-border {
+  background-image: url("../../img/field-borders/border_vert_2x.png");
+  background-size: contain;
+  width: 18px;
+}
+.left-border_header,
+.right-border_header {
+  height: 48px;
+}
+
+.left-border_field,
+.right-border_field {
+  height: 240px;
+}
+
+/* header container  */
+
+.game__header-container {
+  padding: 4.5px;
+  display: flex;
+  width: 240px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $main-color;
+}
+
+/*  mines amount and timer  */
+
+.mines-amount,
+.timer {
+  display: flex;
+  column-gap: 3px;
+  padding: 3px;
+  background-image: url("../../img/numbers-field/nums_background.svg");
+  background-size: contain;
+}
+
+.num {
+  width: 16.5px;
+  height: 31.5px;
+}
+
+.num0 {
+  background-image: url("../../img/numbers-field/d0.svg");
+  background-size: contain;
+}
+.num1 {
+  background-image: url("../../img/numbers-field/d1.svg");
+  background-size: contain;
+}
+.num2 {
+  background-image: url("../../img/numbers-field/d2.svg");
+  background-size: contain;
+}
+.num3 {
+  background-image: url("../../img/numbers-field/d3.svg");
+  background-size: contain;
+}
+.num4 {
+  background-image: url("../../img/numbers-field/d4.svg");
+  background-size: contain;
+}
+.num5 {
+  background-image: url("../../img/numbers-field/d5.svg");
+  background-size: contain;
+}
+.num6 {
+  background-image: url("../../img/numbers-field/d6.svg");
+  background-size: contain;
+}
+.num7 {
+  background-image: url("../../img/numbers-field/d7.svg");
+  background-size: contain;
+}
+.num8 {
+  background-image: url("../../img/numbers-field/d8.svg");
+  background-size: contain;
+}
+.num9 {
+  background-image: url("../../img/numbers-field/d9.svg");
+  background-size: contain;
+}
+
+/*  smile  */
+
+.smile {
+  width: 39px;
+  height: 39px;
+  background-size: contain;
+  &:hover {
+    cursor: pointer;
+  }
+  &_unpressed {
+    background-image: url("../../img/buttons/face_unpressed.svg");
+  }
+  &_pressed {
+    background-image: url("../../img/buttons/face_pressed.svg");
+  }
+  &_active {
+    background-image: url("../../img/buttons/face_active.svg");
+  }
+  &_lose {
+    background-image: url("../../img/buttons/face_lose.svg");
+  }
+}
+
+.game__field {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 240px;
+}
+
+.cell {
+  width: 24px;
+  height: 24px;
+  background-image: url("../../img/buttons/closed.svg");
+  background-size: cover;
+}

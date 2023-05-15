@@ -1,4 +1,7 @@
+import '@babel/polyfill/lib';
 import './index.html';
 import './style.scss';
 
-console.log(2 + 2);
+import { createHeaderHTML } from './modules/header';
+
+createHeaderHTML();
