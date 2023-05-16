@@ -1,13 +1,18 @@
 import { ElementBuilder } from './elem-builder';
-import { getLevelOptions } from './variables';
+import { GetLevelOptions } from './variables';
 
-
+function createCells(field, width, height) {
+  const cellsNumber = width * height;
+  for (let i = 0; i < cellsNumber; i += 1) {
+    let cell = new ElementBuilder('div', field, 'cell');
+    cell = cell.createElement();
+  }
+}
 
 export function createMainHeaderHTML() {
-  let activeLevel = document.querySelector('.level.level_active');
-  let options = new getLevelOptions(activeLevel.innerText);
-
-  let body = document.querySelector('body');
+  const activeLevel = document.querySelector('.level.level_active');
+  const options = new GetLevelOptions(activeLevel.innerText);
+  const body = document.querySelector('body');
 
   let main = new ElementBuilder('main', body, 'main');
   main = main.createElement();
@@ -17,7 +22,8 @@ export function createMainHeaderHTML() {
 
   let game = new ElementBuilder('div', wrapper, 'game');
   game = game.createElement();
-  game.style.maxWidth = `${options.getGameMaxWidth()}px`;
+
+  game.style.width = `${options.getGameMaxWidth()}px`;
 
   /* Game header  */
 
@@ -40,8 +46,8 @@ export function createMainHeaderHTML() {
   cornerRight = cornerRight.createElement();
 
   /* Left border */
-  let leftBorder = new ElementBuilder('div', gameHeader, 'left-border', 'left-border_header');
-  leftBorder = leftBorder.createElement();
+  const leftBorder = new ElementBuilder('div', gameHeader, 'left-border', 'left-border_header');
+  leftBorder.createElement();
 
   /* Header container */
 
@@ -64,9 +70,8 @@ export function createMainHeaderHTML() {
 
   /*  Smile */
 
-  let smile = new ElementBuilder('div', gameHeaderContainer, 'smile', 'smile_unpressed');
-  smile = smile.createElement();
-
+  const smile = new ElementBuilder('div', gameHeaderContainer, 'smile', 'smile_unpressed');
+  smile.createElement();
 
   /* Timer */
 
@@ -80,11 +85,11 @@ export function createMainHeaderHTML() {
   num = num.createElement();
 
   num = new ElementBuilder('div', timer, 'num', 'third-num');
-  num = num.createElement();
+  num.createElement();
 
   /* Right border */
-  let rightBorder = new ElementBuilder('div', gameHeader, 'right-border', 'right-border_header');
-  rightBorder = rightBorder.createElement();
+  const rightBorder = new ElementBuilder('div', gameHeader, 'right-border', 'right-border_header');
+  rightBorder.createElement();
 
   /*  Middle border */
 
@@ -92,21 +97,21 @@ export function createMainHeaderHTML() {
   middleBorder = middleBorder.createElement();
 
   cornerLeft = new ElementBuilder('div', middleBorder, 'corner', 'left-middle-corner');
-  cornerLeft = cornerLeft.createElement();
+  cornerLeft.createElement();
 
   borderLine = new ElementBuilder('div', middleBorder, 'border-line');
   borderLine = borderLine.createElement();
   borderLine.style.width = `${options.getWidthPixels()}px`;
 
   cornerRight = new ElementBuilder('div', middleBorder, 'corner', 'right-middle-corner');
-  cornerRight = cornerRight.createElement();
+  cornerRight.createElement();
 }
 
 export function createGameFieldHTML() {
-  let activeLevel = document.querySelector('.level.level_active');
-  let options = new getLevelOptions(activeLevel.innerText);
+  const activeLevel = document.querySelector('.level.level_active');
+  const options = new GetLevelOptions(activeLevel.innerText);
 
-  let game = document.querySelector('.game');
+  const game = document.querySelector('.game');
 
   /* Container */
   let gameFieldContainer = new ElementBuilder('div', game, 'game__field-container');
@@ -121,15 +126,13 @@ export function createGameFieldHTML() {
 
   let gameField = new ElementBuilder('div', gameFieldContainer, 'game__field');
   gameField = gameField.createElement();
-  gameField.style.maxWidth = `${options.getWidthPixels()}px`;
+  gameField.style.width = `${options.getWidthPixels()}px`;
 
   /* Cells */
 
-  let width = options.getWidth();
-  let height = options.getHeight();
+  const width = options.getWidth();
+  const height = options.getHeight();
   createCells(gameField, width, height);
-
-
 
   /* Right border */
   let rightBorderField = new ElementBuilder('div', gameFieldContainer, 'right-border', 'right-border_field');
@@ -141,28 +144,18 @@ export function createGameFieldHTML() {
   let bottomBorder = new ElementBuilder('div', gameFieldContainer, 'bottom-border');
   bottomBorder = bottomBorder.createElement();
 
-  let cornerLeft = new ElementBuilder('div', bottomBorder, 'corner', 'left-bottom-corner');
-  cornerLeft = cornerLeft.createElement();
+  const cornerLeft = new ElementBuilder('div', bottomBorder, 'corner', 'left-bottom-corner');
+  cornerLeft.createElement();
 
   let borderLine = new ElementBuilder('div', bottomBorder, 'border-line');
   borderLine = borderLine.createElement();
   borderLine.style.width = `${options.getWidthPixels()}px`;
 
-  let cornerRight = new ElementBuilder('div', bottomBorder, 'corner', 'right-bottom-corner');
-  cornerRight = cornerRight.createElement();
-}
-
-
-function createCells(field, width, height) {
-  let cellsNumber = width * height;
-  for (let i = 0; i < cellsNumber; i++) {
-    let cell = new ElementBuilder('div', field, 'cell');
-    cell = cell.createElement();
-  }
+  const cornerRight = new ElementBuilder('div', bottomBorder, 'corner', 'right-bottom-corner');
+  cornerRight.createElement();
 }
 
 export function clearGame() {
-  let main = document.querySelector('.main');
+  const main = document.querySelector('.main');
   main.remove();
-
 }

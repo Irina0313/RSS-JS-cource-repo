@@ -36,10 +36,26 @@
 
 .custom-settings {
   margin: 0;
+  align-items: center;
 }
 .settings-item {
   list-style-type: none;
   color: $dark-text-color;
   font-size: 1.6em;
   font-weight: 600;
+}
+
+.update-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 25px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  border: solid 1px $dark-text-color;
+  &:hover {
+    cursor: pointer;
+    color: $light-text-color;
+  }
 }

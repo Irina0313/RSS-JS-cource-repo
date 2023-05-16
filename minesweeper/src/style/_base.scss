@@ -3,7 +3,9 @@ html {
 }
 
 .wrapper {
+  box-sizing: border-box;
   padding: 20px 50px;
+  overflow: auto;
 }
 
 .hidden {

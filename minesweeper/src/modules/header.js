@@ -1,6 +1,9 @@
 import { ElementBuilder } from './elem-builder';
+import { LocalStorageActions } from './functions';
 
 export function createHeaderHTML() {
+  const localStor = new LocalStorageActions();
+
   const body = document.querySelector('body');
 
   let header = new ElementBuilder('header', body, 'header');
@@ -50,6 +53,17 @@ export function createHeaderHTML() {
   input.setAttribute('id', 'custom-width');
   input.setAttribute('max', '100');
   input.setAttribute('min', '10');
+  if (localStorage['custom-width']) {
+    if (!localStor.getItem('custom-width')) {
+      localStor.changeValue('custom-width', '10');
+      input.value = 10;
+    } else {
+      input.value = Number(localStor.getItem('custom-width'));
+    }
+  } else {
+    input.value = 10;
+    localStor.setItem('custom-width', input.value);
+  }
 
   settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item');
   settingsItem = settingsItem.createElement();
@@ -63,6 +77,17 @@ export function createHeaderHTML() {
   input.setAttribute('id', 'custom-height');
   input.setAttribute('max', '100');
   input.setAttribute('min', '10');
+  if (localStorage['custom-height']) {
+    if (!localStor.getItem('custom-height')) {
+      localStor.changeValue('custom-height', '10');
+      input.value = 10;
+    } else {
+      input.value = Number(localStor.getItem('custom-height'));
+    }
+  } else {
+    input.value = 10;
+    localStor.setItem('custom-height', input.value);
+  }
 
   settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item');
   settingsItem = settingsItem.createElement();
@@ -76,4 +101,19 @@ export function createHeaderHTML() {
   input.setAttribute('id', 'custom-mines');
   input.setAttribute('max', '99');
   input.setAttribute('min', '10');
+  if (localStorage['custom-mines']) {
+    if (!localStor.getItem('custom-mines')) {
+      localStor.changeValue('custom-mines', '10');
+      input.value = 10;
+    } else {
+      input.value = Number(localStor.getItem('custom-mines'));
+    }
+  } else {
+    input.value = 10;
+    localStor.setItem('custom-mines', input.value);
+  }
+
+  settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item', 'update-btn');
+  const updateBtn = settingsItem.createElement();
+  updateBtn.innerText = 'Update';
 }
