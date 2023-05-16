@@ -6,15 +6,21 @@ import { createHeaderHTML } from './modules/header';
 import {
   createMainHeaderHTML,
   createGameFieldHTML,
+  createGameFooterHTML,
   clearGame,
 } from './modules/main';
 
-import { LocalStorageActions } from './modules/functions';
+import {
+  LocalStorageActions,
+  changeStesCouner,
+} from './modules/functions';
 
 function gameInit() {
   createHeaderHTML();
   createMainHeaderHTML();
   createGameFieldHTML();
+  createGameFooterHTML();
+
 }
 gameInit();
 
@@ -95,4 +101,36 @@ document.addEventListener('click', (e) => {
     createMainHeaderHTML();
     createGameFieldHTML();
   }
+
+  if (e.target.classList.contains('cell')) {
+    let localStor = new LocalStorageActions();
+    let cellsAmount = document.querySelectorAll('.cell');
+    const isFirstStep = localStor.getItem('first-step');
+    if (isFirstStep === 'true') {
+      e.target.classList.remove('cell_closed');
+      e.target.classList.add('cell_opened');
+      localStor.changeValue(e.target.classList[1], 'cell_opened');
+      localStor.setItem('steps-counter', '1');
+      changeStesCouner();
+      localStor.changeValue('first-step', 'false');
+
+      //createMineField()
+    }
+
+    /*for (let i = 1; i < cellsAmount.length + 1; i+=1) {
+        if (localStor.getItem(`${i}`) !== 'cell_closed') {
+          console.log(localStor.getItem(`${i}`));
+        } else {
+          isFirstStep = true;
+        }
+        if (isFirstStep === true) {
+          e.target.classList.remove('cell_closed');
+          e.target.classList.add('cell_opened');
+          localStor.changeValue(e.target.classList[1], 'cell_opened');
+          createMineField()
+        }
+      }*/
+  }
 });
+
+

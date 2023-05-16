@@ -1,11 +1,21 @@
 import { ElementBuilder } from './elem-builder';
 import { GetLevelOptions } from './variables';
+import { LocalStorageActions } from './functions';
+const localStor = new LocalStorageActions();
 
 function createCells(field, width, height) {
   const cellsNumber = width * height;
   for (let i = 0; i < cellsNumber; i += 1) {
-    let cell = new ElementBuilder('div', field, 'cell');
-    cell = cell.createElement();
+    if (!localStor[`${i + 1}`]) {
+      localStor.setItem(`${i + 1}`, 'cell_closed');
+      let cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, 'cell_closed');
+      cell.createElement();
+      localStor.setItem(`first-step`, 'true');
+    } else {
+      const styleItem = localStor.getItem(`${i + 1}`);
+      let cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
+      cell.createElement();
+    }
   }
 }
 
@@ -73,18 +83,18 @@ export function createMainHeaderHTML() {
   const smile = new ElementBuilder('div', gameHeaderContainer, 'smile', 'smile_unpressed');
   smile.createElement();
 
-  /* Timer */
+  /* Steps */
 
-  let timer = new ElementBuilder('div', gameHeaderContainer, 'timer');
-  timer = timer.createElement();
+  let steps = new ElementBuilder('div', gameHeaderContainer, 'steps');
+  steps = steps.createElement();
 
-  num = new ElementBuilder('div', timer, 'num', 'first-num');
+  num = new ElementBuilder('div', steps, 'num', 'first-num');
   num = num.createElement();
 
-  num = new ElementBuilder('div', timer, 'num', 'second-num');
+  num = new ElementBuilder('div', steps, 'num', 'second-num');
   num = num.createElement();
 
-  num = new ElementBuilder('div', timer, 'num', 'third-num');
+  num = new ElementBuilder('div', steps, 'num', 'third-num');
   num.createElement();
 
   /* Right border */
@@ -109,6 +119,7 @@ export function createMainHeaderHTML() {
 
 export function createGameFieldHTML() {
   const activeLevel = document.querySelector('.level.level_active');
+
   const options = new GetLevelOptions(activeLevel.innerText);
 
   const game = document.querySelector('.game');
@@ -139,19 +150,78 @@ export function createGameFieldHTML() {
   rightBorderField = rightBorderField.createElement();
   rightBorderField.style.height = options.getHeightPixels();
 
-  /* Bottom border */
+}
 
-  let bottomBorder = new ElementBuilder('div', gameFieldContainer, 'bottom-border');
-  bottomBorder = bottomBorder.createElement();
+export function createGameFooterHTML() {
+  const game = document.querySelector('.game');
+  const activeLevel = document.querySelector('.level.level_active');
+  const options = new GetLevelOptions(activeLevel.innerText);
 
-  const cornerLeft = new ElementBuilder('div', bottomBorder, 'corner', 'left-bottom-corner');
+
+  /* Game footer  */
+
+  let gameFooter = new ElementBuilder('div', game, 'game__footer');
+  gameFooter = gameFooter.createElement();
+
+  /*  Middle border */
+
+  let middleBorder = new ElementBuilder('div', gameFooter, 'middle-border');
+  middleBorder = middleBorder.createElement();
+
+  let cornerLeft = new ElementBuilder('div', middleBorder, 'corner', 'left-middle-corner');
   cornerLeft.createElement();
 
-  let borderLine = new ElementBuilder('div', bottomBorder, 'border-line');
+  let borderLine = new ElementBuilder('div', middleBorder, 'border-line');
   borderLine = borderLine.createElement();
   borderLine.style.width = `${options.getWidthPixels()}px`;
 
-  const cornerRight = new ElementBuilder('div', bottomBorder, 'corner', 'right-bottom-corner');
+  let cornerRight = new ElementBuilder('div', middleBorder, 'corner', 'right-middle-corner');
+  cornerRight.createElement();
+
+  /* Left footer border */
+  const leftBorder = new ElementBuilder('div', gameFooter, 'left-border', 'left-border_footer');
+  leftBorder.createElement();
+
+
+  /* Footer container */
+
+  let gameFooterContainer = new ElementBuilder('div', gameFooter, 'game__footer-container');
+  gameFooterContainer = gameFooterContainer.createElement();
+  gameFooterContainer.style.width = `${options.getWidthPixels()}px`;
+
+
+
+  /* Timer */
+
+  let timer = new ElementBuilder('div', gameFooterContainer, 'timer');
+  timer = timer.createElement();
+
+  let num = new ElementBuilder('div', timer, 'num', 'first-num');
+  num = num.createElement();
+
+  num = new ElementBuilder('div', timer, 'num', 'second-num');
+  num = num.createElement();
+
+  num = new ElementBuilder('div', timer, 'num', 'third-num');
+  num.createElement();
+
+  /* Right footer border */
+  const rightBorder = new ElementBuilder('div', gameFooter, 'right-border', 'right-border_footer');
+  rightBorder.createElement();
+
+  /* Bottom border */
+
+  let bottomBorder = new ElementBuilder('div', gameFooter, 'bottom-border');
+  bottomBorder = bottomBorder.createElement();
+
+  cornerLeft = new ElementBuilder('div', bottomBorder, 'corner', 'left-bottom-corner');
+  cornerLeft.createElement();
+
+  borderLine = new ElementBuilder('div', bottomBorder, 'border-line');
+  borderLine = borderLine.createElement();
+  borderLine.style.width = `${options.getWidthPixels()}px`;
+
+  cornerRight = new ElementBuilder('div', bottomBorder, 'corner', 'right-bottom-corner');
   cornerRight.createElement();
 }
 

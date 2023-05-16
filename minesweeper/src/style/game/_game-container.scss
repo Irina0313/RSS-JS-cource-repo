@@ -3,13 +3,15 @@
   margin: 0 auto;
 }
 .game__header,
-.game__field-container {
+.game__field-container,
+.game__footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.game__header-container {
+.game__header-container,
+.game__footer-container {
   box-sizing: border-box;
 }
 
@@ -72,9 +74,10 @@
   height: 48px;
 }
 
-/* header container  */
+/* header/footer container  */
 
-.game__header-container {
+.game__header-container,
+.game__footer-container {
   padding: 4.5px;
   display: flex;
   justify-content: space-around;
@@ -82,10 +85,11 @@
   background-color: $main-color;
 }
 
-/*  mines amount and timer  */
+/*  mines amount, timer, steps  */
 
 .mines-amount,
-.timer {
+.timer,
+.steps {
   display: flex;
   column-gap: 3px;
   padding: 3px;
@@ -170,6 +174,11 @@
 .cell {
   width: 24px;
   height: 24px;
-  background-image: url("../../img/buttons/closed.svg");
   background-size: cover;
+  &_closed {
+    background-image: url("../../img/buttons/closed.svg");
+  }
+  &_opened {
+    background-image: url("../../img/buttons/pressed.svg");
+  }
 }

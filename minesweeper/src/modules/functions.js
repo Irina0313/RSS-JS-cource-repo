@@ -21,3 +21,7 @@ export class LocalStorageActions {
     localStorage[this.name] = this.value;
   }
 }
+
+export function changeStesCouner() {
+  console.log("Здесь надо бы отаботать счетчик шагов")
+}
