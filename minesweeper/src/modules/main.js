@@ -1,19 +1,26 @@
 import { ElementBuilder } from './elem-builder';
-import { GetLevelOptions } from './variables';
-import { LocalStorageActions } from './functions';
+import { GetLevelOptions } from './levels';
+import {
+  LocalStorageActions,
+  changeStepsCouner,
+} from './functions';
+
 const localStor = new LocalStorageActions();
 
 function createCells(field, width, height) {
   const cellsNumber = width * height;
   for (let i = 0; i < cellsNumber; i += 1) {
-    if (!localStor[`${i + 1}`]) {
+    if (!localStorage[`${i + 1}`]) {
       localStor.setItem(`${i + 1}`, 'cell_closed');
-      let cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, 'cell_closed');
+      const cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, 'cell_closed');
       cell.createElement();
-      localStor.setItem(`first-step`, 'true');
+      if (!localStor.getItem('first-step')) {
+        localStor.setItem('first-step', 'true');
+        localStor.setItem('checked-cells', '');
+      }
     } else {
       const styleItem = localStor.getItem(`${i + 1}`);
-      let cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
+      const cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
       cell.createElement();
     }
   }
@@ -96,6 +103,7 @@ export function createMainHeaderHTML() {
 
   num = new ElementBuilder('div', steps, 'num', 'third-num');
   num.createElement();
+  changeStepsCouner('init');
 
   /* Right border */
   const rightBorder = new ElementBuilder('div', gameHeader, 'right-border', 'right-border_header');
@@ -149,14 +157,12 @@ export function createGameFieldHTML() {
   let rightBorderField = new ElementBuilder('div', gameFieldContainer, 'right-border', 'right-border_field');
   rightBorderField = rightBorderField.createElement();
   rightBorderField.style.height = options.getHeightPixels();
-
 }
 
 export function createGameFooterHTML() {
   const game = document.querySelector('.game');
   const activeLevel = document.querySelector('.level.level_active');
   const options = new GetLevelOptions(activeLevel.innerText);
-
 
   /* Game footer  */
 
@@ -182,14 +188,11 @@ export function createGameFooterHTML() {
   const leftBorder = new ElementBuilder('div', gameFooter, 'left-border', 'left-border_footer');
   leftBorder.createElement();
 
-
   /* Footer container */
 
   let gameFooterContainer = new ElementBuilder('div', gameFooter, 'game__footer-container');
   gameFooterContainer = gameFooterContainer.createElement();
   gameFooterContainer.style.width = `${options.getWidthPixels()}px`;
-
-
 
   /* Timer */
 

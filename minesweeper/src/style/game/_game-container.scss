@@ -175,10 +175,87 @@
   width: 24px;
   height: 24px;
   background-size: cover;
-  &_closed {
-    background-image: url("../../img/buttons/closed.svg");
+
+  &:hover {
+    cursor: pointer;
   }
+
   &_opened {
     background-image: url("../../img/buttons/pressed.svg");
   }
 }
+
+.cell_closed,
+.cell-mined_closed,
+.cell-one_closed,
+.cell-two_closed,
+.cell-three_closed,
+.cell-four_closed,
+.cell-five_closed,
+.cell-six_closed,
+.cell-seven_closed,
+.cell-eight_closed {
+  background-image: url("../../img/buttons/closed.svg");
+}
+/*.cell-mined_closed {
+  background-image: url("../../img/buttons/mine_red.svg");
+}*/
+
+.cell-one_opened {
+  background-image: url("../../img/buttons/bombs-number/type1.svg");
+}
+.cell-two_opened {
+  background-image: url("../../img/buttons/bombs-number/type2.svg");
+}
+.cell-three_opened {
+  background-image: url("../../img/buttons/bombs-number/type3.svg");
+}
+.cell-four_opened {
+  background-image: url("../../img/buttons/bombs-number/type4.svg");
+}
+.cell-five_opened {
+  background-image: url("../../img/buttons/bombs-number/type5.svg");
+}
+.cell-six_opened {
+  background-image: url("../../img/buttons/bombs-number/type6.svg");
+}
+.cell-seven_opened {
+  background-image: url("../../img/buttons/bombs-number/type7.svg");
+}
+.cell-eight_opened {
+  background-image: url("../../img/buttons/bombs-number/type8.svg");
+}
+
+.cell-mined_opened-loss {
+  background-image: url("../../img/buttons/mine_red.svg");
+}
+
+.cell-mined_opened {
+  background-image: url("../../img/buttons/mine.svg");
+}
+/*DELETE!!!*/
+/*.cell-one_closed {
+  background-image: url("../../img/buttons/bombs-number/type1.svg");
+}
+.cell-two_closed {
+  background-image: url("../../img/buttons/bombs-number/type2.svg");
+}
+.cell-three_closed {
+  background-image: url("../../img/buttons/bombs-number/type3.svg");
+}
+.cell-four_closed {
+  background-image: url("../../img/buttons/bombs-number/type4.svg");
+}
+.cell-five_closed {
+  background-image: url("../../img/buttons/bombs-number/type5.svg");
+}
+.cell-six_closed {
+  background-image: url("../../img/buttons/bombs-number/type6.svg");
+}
+.cell-seven_closed {
+  background-image: url("../../img/buttons/bombs-number/type7.svg");
+}
+.cell-eight_closed {
+  background-image: url("../../img/buttons/bombs-number/type8.svg");
+}
+*/

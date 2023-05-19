@@ -12,20 +12,25 @@ import {
 
 import {
   LocalStorageActions,
-  changeStesCouner,
+  changeStepsCouner,
+  changeMinesCouner,
 } from './modules/functions';
+
+import { createMineField } from './modules/mineBuilder';
+import { openCellsAround } from './modules/open-empty-cells';
 
 function gameInit() {
   createHeaderHTML();
   createMainHeaderHTML();
   createGameFieldHTML();
   createGameFooterHTML();
-
 }
 gameInit();
 
 const levels = document.querySelector('.levels');
 document.addEventListener('click', (e) => {
+  /* Changing the level */
+
   if (e.target.classList.contains('level') && !e.target.classList.contains('level_active')) {
     for (let i = 0; i < levels.children.length; i += 1) {
       if (levels.children[i].classList.contains('level_active')) {
@@ -44,9 +49,18 @@ document.addEventListener('click', (e) => {
       }
     }
     clearGame();
+    for (let i = 0; i < localStorage.length; i += 1) {
+      const key = localStorage.key(i);
+      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width') {
+        localStorage.removeItem(key);
+      }
+    }
     createMainHeaderHTML();
     createGameFieldHTML();
+    createGameFooterHTML();
   }
+
+  /* Update custom settings */
 
   if (e.target.classList.contains('update-btn')) {
     const localStor = new LocalStorageActions();
@@ -97,40 +111,78 @@ document.addEventListener('click', (e) => {
     localStor.changeValue('custom-mines', `${mines.value}`);
 
     clearGame();
+    for (let i = 0; i < localStorage.length; i += 1) {
+      const key = localStorage.key(i);
+      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width') {
+        localStorage.removeItem(key);
+      }
+    }
 
     createMainHeaderHTML();
     createGameFieldHTML();
+    createGameFooterHTML();
   }
+
+  /* Game field click */
 
   if (e.target.classList.contains('cell')) {
-    let localStor = new LocalStorageActions();
-    let cellsAmount = document.querySelectorAll('.cell');
+    // console.log(e.target);
+    const localStor = new LocalStorageActions();
     const isFirstStep = localStor.getItem('first-step');
+
     if (isFirstStep === 'true') {
-      e.target.classList.remove('cell_closed');
-      e.target.classList.add('cell_opened');
-      localStor.changeValue(e.target.classList[1], 'cell_opened');
-      localStor.setItem('steps-counter', '1');
-      changeStesCouner();
+      changeStepsCouner('game');
       localStor.changeValue('first-step', 'false');
+      createMineField(Number(e.target.classList[1]) - 1);
+      changeMinesCouner();
+      const closedStyle = e.target.classList[2];
+      if (closedStyle.includes('closed')) {
+        e.target.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
+      }
+      openCellsAround();
+    } else {
+      changeStepsCouner('game');
+      const closedStyle = e.target.classList[2];
+      if (closedStyle.includes('closed')) {
+        e.target.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
+      }
+      if (closedStyle === 'cell_closed') {
+        openCellsAround();
+      }
 
-      //createMineField()
+      /* Game over! */
+      if (closedStyle === 'cell-mined_closed' || closedStyle === 'cell-flaged-wrong_closed' || closedStyle === 'cell-flaged-right_closed') {
+        e.target.classList.replace(e.target.classList[2], `${e.target.classList[2]}-loss`);
+        const restMines = [];
+        const closedMines = document.querySelectorAll('.cell-mined_closed');
+        for (let i = 0; i < closedMines.length; i += 1) {
+          restMines.push(closedMines[i]);
+        }
+        const flagedMines = document.querySelectorAll('.cell-flaged-right_closed');
+        for (let i = 0; i < flagedMines.length; i += 1) {
+          restMines.push(flagedMines[i]);
+        }
+        restMines.forEach((item) => {
+          item.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
+        });
+        const cells = document.querySelectorAll('.cell');
+        for (let i = 0; i < cells.length; i += 1) {
+          cells[i].style.pointerEvents = 'none';
+        }
+      }
     }
+  }
 
-    /*for (let i = 1; i < cellsAmount.length + 1; i+=1) {
-        if (localStor.getItem(`${i}`) !== 'cell_closed') {
-          console.log(localStor.getItem(`${i}`));
-        } else {
-          isFirstStep = true;
-        }
-        if (isFirstStep === true) {
-          e.target.classList.remove('cell_closed');
-          e.target.classList.add('cell_opened');
-          localStor.changeValue(e.target.classList[1], 'cell_opened');
-          createMineField()
-        }
-      }*/
+  if (e.target.classList.contains('smile')) {
+    const keys = Object.keys(localStorage);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const key of keys) {
+      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width') localStorage.removeItem(key);
+    }
+    clearGame();
+
+    createMainHeaderHTML();
+    createGameFieldHTML();
+    createGameFooterHTML();
   }
 });
-
-

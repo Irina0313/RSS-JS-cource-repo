@@ -2,17 +2,7 @@ import { LocalStorageActions } from './functions';
 
 const localStor = new LocalStorageActions();
 
-function getWidthSetting() {
-  return Number(localStor.getItem('custom-width'));
-}
-function getHeightSetting() {
-  return Number(localStor.getItem('custom-height'));
-}
-function getMines() {
-  return Number(localStor.getItem('custom-mines'));
-}
-
-const options = {
+export const options = {
   Beginner: {
     width: 10,
     height: 10,
@@ -29,6 +19,16 @@ const options = {
     mines: 99,
   },
 };
+
+function getWidthSetting() {
+  return Number(localStor.getItem('custom-width'));
+}
+function getHeightSetting() {
+  return Number(localStor.getItem('custom-height'));
+}
+function getMines() {
+  return Number(localStor.getItem('custom-mines'));
+}
 
 export class GetLevelOptions {
   constructor(level) {
