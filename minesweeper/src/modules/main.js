@@ -3,22 +3,26 @@ import { GetLevelOptions } from './levels';
 import {
   LocalStorageActions,
   changeStepsCouner,
+  setMinesCouner,
 } from './functions';
 
 const localStor = new LocalStorageActions();
 
 function createCells(field, width, height) {
+  if (!localStor.getItem('first-step')) {
+    localStor.setItem('first-step', 'true');
+    localStor.setItem('checked-cells', '');
+  }
+
   const cellsNumber = width * height;
-  for (let i = 0; i < cellsNumber; i += 1) {
-    if (!localStorage[`${i + 1}`]) {
+  if (localStor.getItem('first-step') === 'true') {
+    for (let i = 0; i < cellsNumber; i += 1) {
       localStor.setItem(`${i + 1}`, 'cell_closed');
       const cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, 'cell_closed');
       cell.createElement();
-      if (!localStor.getItem('first-step')) {
-        localStor.setItem('first-step', 'true');
-        localStor.setItem('checked-cells', '');
-      }
-    } else {
+    }
+  } else if (localStor.getItem('first-step') === 'false') {
+    for (let i = 0; i < cellsNumber; i += 1) {
       const styleItem = localStor.getItem(`${i + 1}`);
       const cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
       cell.createElement();
@@ -84,6 +88,8 @@ export function createMainHeaderHTML() {
 
   num = new ElementBuilder('div', minesAmount, 'num', 'third-num');
   num = num.createElement();
+
+  setMinesCouner('restore');
 
   /*  Smile */
 
@@ -151,6 +157,7 @@ export function createGameFieldHTML() {
 
   const width = options.getWidth();
   const height = options.getHeight();
+
   createCells(gameField, width, height);
 
   /* Right border */

@@ -21,7 +21,7 @@ export function createMineField(number) {
   const num = randomInteger(0, cellsAmount - 1);
   const minedCells = [];
 
-  /* Create array cells' numbers with mines */
+  /* Create array cells numbers with mines */
 
   function getMinedCellsArr(numb) {
     if (minedCells.indexOf(numb) === -1 && numb !== openedCell) {
@@ -38,9 +38,12 @@ export function createMineField(number) {
   /* Change styles and local storage value of mined cells */
 
   minedCells.forEach((item) => {
-    cellsArr[item].classList.replace('cell_closed', 'cell-mined_closed');
+    const currStyle = cellsArr[item].classList[2];
+    const newStyle = currStyle.replace('_closed', '-mined_closed');
+    cellsArr[item].classList.replace(currStyle, newStyle);
+
     const localStor = new LocalStorageActions();
-    localStor.changeValue(`${item}`, 'cell-mined_closed');
+    localStor.changeValue(`${item}`, newStyle);
   });
 
   /* Create numbers around mines */

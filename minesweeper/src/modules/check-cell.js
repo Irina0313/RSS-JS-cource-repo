@@ -370,5 +370,9 @@ export class CheckCells {
         }
       });
     }
+    for (let i = 0; i < this.cells.length; i += 1) {
+      localStorage.setItem(this.cells[i].classList[1], this.cells[i].classList[2]);
+    }
+    // console.log(this.cells)
   }
 }

@@ -94,8 +94,8 @@ export function changeStepsCouner(option) {
 
 /* Mines counter */
 
-export function changeMinesCouner() {
-  const classArr = ['num0', 'num1', 'num2', 'num3', 'num4', 'num5', 'num5', 'num6', 'num7', 'num8', 'num9'];
+export function setMinesCouner(option) {
+  const classArr = ['num0', 'num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9', 'num-minus'];
   const minesCounter = document.querySelector('.mines-amount');
   const firstNum = minesCounter.children[0];
   const secondNum = minesCounter.children[1];
@@ -103,29 +103,69 @@ export function changeMinesCouner() {
   const hiddenMines = document.querySelectorAll('.cell-mined_closed');
   const minesHidden = hiddenMines.length;
 
-  const minesHiddenArr = String(minesHidden).split('');
-  while (minesHiddenArr.length < 3) {
-    minesHiddenArr.unshift('0');
+  function fillCounter(minesHiddenArr) {
+    minesHiddenArr.forEach((item, i) => {
+      if (i === 0) {
+        if (firstNum.classList[2]) {
+          firstNum.classList.remove(firstNum.classList[2]);
+        }
+        if (item !== '-' && item !== '0') {
+          firstNum.classList.add(classArr[Number(item)]);
+        } else if (item === '-') {
+          firstNum.classList.add(classArr[10]);
+        }
+      }
+      if (i === 1) {
+        if (secondNum.classList[2]) {
+          secondNum.classList.remove(secondNum.classList[2]);
+        }
+        if (item !== '-' && item !== '0') {
+          secondNum.classList.add(classArr[Number(item)]);
+        } else if (item === '-') {
+          secondNum.classList.add(classArr[10]);
+        }
+      }
+      if (i === 2) {
+        if (thirdNum.classList[2]) {
+          thirdNum.classList.remove(thirdNum.classList[2]);
+        }
+
+        thirdNum.classList.add(classArr[Number(item)]);
+      }
+    });
   }
 
-  minesHiddenArr.forEach((item, i) => {
-    if (i === 0 && (minesHidden > 99)) {
-      if (firstNum.classList[2]) {
-        firstNum.classList.remove(firstNum.classList[2]);
-      }
-      firstNum.classList.add(classArr[Number(item)]);
+  if (option === 'init') {
+    const minesHiddenArr = String(minesHidden).split('');
+    while (minesHiddenArr.length < 3) {
+      minesHiddenArr.unshift('0');
     }
-    if (i === 1 && (minesHidden > 9)) {
-      if (secondNum.classList[2]) {
-        secondNum.classList.remove(secondNum.classList[2]);
-      }
-      secondNum.classList.add(classArr[Number(item)]);
+    localStorage.setItem('mines-counter', `${minesHidden}`);
+    fillCounter(minesHiddenArr);
+  } else if (option === 'minusMine') {
+    const prevMinesAmount = Number(localStorage.getItem('mines-counter'));
+    const currMinesAmount = prevMinesAmount - 1;
+    localStorage.setItem('mines-counter', `${currMinesAmount}`);
+    const minesHiddenArr = String(currMinesAmount).split('');
+    while (minesHiddenArr.length < 3) {
+      minesHiddenArr.unshift('0');
     }
-    if (i === 2) {
-      if (thirdNum.classList[2]) {
-        thirdNum.classList.remove(thirdNum.classList[2]);
-      }
-      thirdNum.classList.add(classArr[Number(item)]);
+    fillCounter(minesHiddenArr);
+  } else if (option === 'plusMine') {
+    const prevMinesAmount = Number(localStorage.getItem('mines-counter'));
+    const currMinesAmount = prevMinesAmount + 1;
+    localStorage.setItem('mines-counter', `${currMinesAmount}`);
+    const minesHiddenArr = String(currMinesAmount).split('');
+    while (minesHiddenArr.length < 3) {
+      minesHiddenArr.unshift('0');
     }
-  });
+    fillCounter(minesHiddenArr);
+  } else if (option === 'restore') {
+    const currMinesAmount = Number(localStorage.getItem('mines-counter'));
+    const minesHiddenArr = String(currMinesAmount).split('');
+    while (minesHiddenArr.length < 3) {
+      minesHiddenArr.unshift('0');
+    }
+    fillCounter(minesHiddenArr);
+  }
 }

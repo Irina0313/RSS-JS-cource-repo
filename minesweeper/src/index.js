@@ -13,11 +13,15 @@ import {
 import {
   LocalStorageActions,
   changeStepsCouner,
-  changeMinesCouner,
+  setMinesCouner,
+
 } from './modules/functions';
+
+import { GetLevelOptions } from './modules/levels';
 
 import { createMineField } from './modules/mineBuilder';
 import { openCellsAround } from './modules/open-empty-cells';
+import { showMessage } from './modules/pop-up';
 
 function gameInit() {
   createHeaderHTML();
@@ -28,6 +32,7 @@ function gameInit() {
 gameInit();
 
 const levels = document.querySelector('.levels');
+
 document.addEventListener('click', (e) => {
   /* Changing the level */
 
@@ -134,42 +139,55 @@ document.addEventListener('click', (e) => {
       changeStepsCouner('game');
       localStor.changeValue('first-step', 'false');
       createMineField(Number(e.target.classList[1]) - 1);
-      changeMinesCouner();
+      setMinesCouner('init');
       const closedStyle = e.target.classList[2];
       if (closedStyle.includes('closed')) {
         e.target.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
       }
       openCellsAround();
     } else {
-      changeStepsCouner('game');
       const closedStyle = e.target.classList[2];
-      if (closedStyle.includes('closed')) {
-        e.target.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
-      }
-      if (closedStyle === 'cell_closed') {
-        openCellsAround();
+      if (!closedStyle.includes('flaged-right') && !closedStyle.includes('flaged-wrong')) {
+        changeStepsCouner('game');
+        if (closedStyle.includes('closed')) {
+          e.target.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
+          localStorage.setItem(`${e.target.classList[1]}`, e.target.classList[2]);
+        }
+        if (closedStyle === 'cell_closed') {
+          localStorage.setItem(`${e.target.classList[1]}`, e.target.classList[2]);
+          openCellsAround();
+        }
+        /* Game over! */
+        if (closedStyle === 'cell-mined_closed' || closedStyle === 'cell-flaged-wrong_closed' || closedStyle === 'cell-flaged-right_closed') {
+          e.target.classList.replace(e.target.classList[2], `${e.target.classList[2]}-loss`);
+          const restMines = [];
+          const closedMines = document.querySelectorAll('.cell-mined_closed');
+          for (let i = 0; i < closedMines.length; i += 1) {
+            restMines.push(closedMines[i]);
+          }
+          const flagedMines = document.querySelectorAll('.cell-flaged-right_closed');
+          for (let i = 0; i < flagedMines.length; i += 1) {
+            restMines.push(flagedMines[i]);
+          }
+          restMines.forEach((item) => {
+            item.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
+          });
+          const cells = document.querySelectorAll('.cell');
+          for (let i = 0; i < cells.length; i += 1) {
+            cells[i].style.pointerEvents = 'none';
+          }
+          setTimeout(showMessage('lose'), 5000);
+        }
       }
 
-      /* Game over! */
-      if (closedStyle === 'cell-mined_closed' || closedStyle === 'cell-flaged-wrong_closed' || closedStyle === 'cell-flaged-right_closed') {
-        e.target.classList.replace(e.target.classList[2], `${e.target.classList[2]}-loss`);
-        const restMines = [];
-        const closedMines = document.querySelectorAll('.cell-mined_closed');
-        for (let i = 0; i < closedMines.length; i += 1) {
-          restMines.push(closedMines[i]);
-        }
-        const flagedMines = document.querySelectorAll('.cell-flaged-right_closed');
-        for (let i = 0; i < flagedMines.length; i += 1) {
-          restMines.push(flagedMines[i]);
-        }
-        restMines.forEach((item) => {
-          item.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
-        });
-        const cells = document.querySelectorAll('.cell');
-        for (let i = 0; i < cells.length; i += 1) {
-          cells[i].style.pointerEvents = 'none';
-        }
-      }
+      /* if (closedStyle.includes('flaged-right')) {
+        const unFlagedClass = closedStyle.replace('flaged-right_', '');
+        e.target.classList.replace(closedStyle, unFlagedClass);
+      } else if (closedStyle.includes('flaged-wrong')) {
+        const unFlagedClass = closedStyle.replace('flaged-wrong_', '');
+        e.target.classList.replace(closedStyle, unFlagedClass);
+      } */
+      // closedStyle = e.target.classList[2];
     }
   }
 
@@ -184,5 +202,56 @@ document.addEventListener('click', (e) => {
     createMainHeaderHTML();
     createGameFieldHTML();
     createGameFooterHTML();
+  }
+});
+
+/* Mouse right button click */
+
+document.addEventListener('contextmenu', (e) => {
+  const cells = document.querySelectorAll('.cell');
+  const cellsArr = Array.prototype.slice.call(cells);
+  if (cellsArr.indexOf(e.target) !== -1) {
+    e.preventDefault();
+    const localStor = new LocalStorageActions();
+    const isFirstStep = localStor.getItem('first-step');
+    if (isFirstStep === 'true') {
+      changeStepsCouner('game');
+      localStor.changeValue('first-step', 'false');
+      createMineField(Number(e.target.classList[1]) - 1);
+      setMinesCouner('init');
+      // setMinesCouner('minusMine');
+    }
+
+    const closedStyle = e.target.classList[2];
+    if (closedStyle.includes('flaged-right')) {
+      const unFlagedClass = closedStyle.replace('flaged-right_', '');
+      e.target.classList.replace(closedStyle, unFlagedClass);
+      setMinesCouner('plusMine');
+    } else if (closedStyle.includes('flaged-wrong')) {
+      const unFlagedClass = closedStyle.replace('flaged-wrong_', '');
+      e.target.classList.replace(closedStyle, unFlagedClass);
+      setMinesCouner('plusMine');
+    } else {
+      setMinesCouner('minusMine');
+      if (closedStyle === 'cell-mined_closed') {
+        const flagedClass = `flaged-right_${closedStyle}`;
+        e.target.classList.replace(closedStyle, flagedClass);
+      } else if (!closedStyle.includes('opened')) {
+        const flagedClass = `flaged-right_${closedStyle}`;
+        e.target.classList.replace(closedStyle, flagedClass);
+      }
+    }
+    localStor.setItem(e.target.classList[1], e.target.classList[2]);
+  }
+
+  const rightFlagedMines = document.querySelectorAll('.flaged-right_cell-mined_closed');
+  const activeLevel = document.querySelector('.level.level_active');
+  const options = new GetLevelOptions(activeLevel.innerText);
+  const minesAmount = options.getMines();
+  if (rightFlagedMines.length === minesAmount) {
+    const steps = localStorage.getItem('steps-counter');
+    // const time =  localStorage.getItem('time');
+    // saveGameResult(steps, time )
+    showMessage('win');
   }
 });

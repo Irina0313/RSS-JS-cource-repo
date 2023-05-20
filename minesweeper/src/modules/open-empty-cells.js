@@ -53,9 +53,21 @@ export function openCellsAround() {
     const prevCell = cells[startIndex - 1];
 
     function changeStyleToOpened(item) {
+      const closedStyle = item.classList[2];
+      if (closedStyle.includes('flaged-right')) {
+        const unFlagedClass = closedStyle.replace('flaged-right_', '');
+        item.classList.replace(closedStyle, unFlagedClass);
+      } else if (closedStyle.includes('flaged-wrong')) {
+        const unFlagedClass = closedStyle.replace('flaged-wrong_', '');
+        item.classList.replace(closedStyle, unFlagedClass);
+      }
+
       const currStyle = item.classList[2];
       const newStyle = currStyle.replace('closed', 'opened');
       item.classList.replace(currStyle, newStyle);
+
+      const storKey = item.classList[1];
+      localStorr.changeValue(storKey, newStyle);
     }
     /* First cell top row */
 

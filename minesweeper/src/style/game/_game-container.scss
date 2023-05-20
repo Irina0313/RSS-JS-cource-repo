@@ -142,6 +142,10 @@
   background-image: url("../../img/numbers-field/d9.svg");
   background-size: contain;
 }
+.num-minus {
+  background-image: url("../../img/numbers-field/minus.svg");
+  background-size: contain;
+}
 
 /*  smile  */
 
@@ -197,6 +201,30 @@
 .cell-eight_closed {
   background-image: url("../../img/buttons/closed.svg");
 }
+
+.flaged-right_cell_closed,
+.flaged-right_cell-mined_closed,
+.flaged-right_cell-one_closed,
+.flaged-right_cell-two_closed,
+.flaged-right_cell-three_closed,
+.flaged-right_cell-four_closed,
+.flaged-right_cell-five_closed,
+.flaged-right_cell-six_closed,
+.flaged-right_cell-seven_closed,
+.flaged-right_cell-eight_closed,
+.flaged-right_cell-mined_closed,
+.flaged-wrong_cell_closed,
+.flaged-wrong_cell-one_closed,
+.flaged-wrong_cell-two_closed,
+.flaged-wrong_cell-three_closed,
+.flaged-wrong_cell-four_closed,
+.flaged-wrong_cell-five_closed,
+.flaged-wrong_cell-six_closed,
+.flaged-wrong_cell-seven_closed,
+.flaged-wrong_cell-eight_closed {
+  background-image: url("../../img/buttons/flag.svg");
+}
+
 /*.cell-mined_closed {
   background-image: url("../../img/buttons/mine_red.svg");
 }*/
