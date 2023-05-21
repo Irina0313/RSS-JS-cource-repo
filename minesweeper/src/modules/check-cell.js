@@ -275,6 +275,11 @@ export class CheckCells {
             minesAmount += 1;
           }
 
+          const bottomCell = this.cells[currIndex + this.width];
+          if (bottomCell.classList[2] === 'cell-mined_closed') {
+            minesAmount += 1;
+          }
+
           item.classList.remove(item.classList[2]);
           const targetClass = this.mimeAmountClosedClasses[minesAmount];
           item.classList.add(targetClass);
@@ -307,6 +312,11 @@ export class CheckCells {
 
           const bottomLeftCell = this.cells[currIndex + this.width - 1];
           if (bottomLeftCell.classList[2] === 'cell-mined_closed') {
+            minesAmount += 1;
+          }
+
+          const bottomCell = this.cells[currIndex + this.width];
+          if (bottomCell.classList[2] === 'cell-mined_closed') {
             minesAmount += 1;
           }
 
@@ -345,7 +355,6 @@ export class CheckCells {
           }
           // console.log(this.width, currIndex)
           const bottomRightCell = this.cells[currIndex + this.width + 1];
-
           if (bottomRightCell.classList[2] === 'cell-mined_closed') {
             minesAmount += 1;
           }

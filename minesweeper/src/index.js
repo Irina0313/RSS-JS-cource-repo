@@ -14,6 +14,9 @@ import {
   LocalStorageActions,
   changeStepsCouner,
   setMinesCouner,
+  setTimer,
+  getTime,
+  saveGameResult,
 
 } from './modules/functions';
 
@@ -34,7 +37,10 @@ gameInit();
 const levels = document.querySelector('.levels');
 
 document.addEventListener('click', (e) => {
-  /* Changing the level */
+
+  // console.log(e.target);
+
+  /* Changing of the level */
 
   if (e.target.classList.contains('level') && !e.target.classList.contains('level_active')) {
     for (let i = 0; i < levels.children.length; i += 1) {
@@ -53,10 +59,11 @@ document.addEventListener('click', (e) => {
         customSettings.classList.add('hidden');
       }
     }
+    localStorage.setItem('first-step', 'true')
     clearGame();
     for (let i = 0; i < localStorage.length; i += 1) {
       const key = localStorage.key(i);
-      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width') {
+      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width' && key !== 'results') {
         localStorage.removeItem(key);
       }
     }
@@ -118,7 +125,7 @@ document.addEventListener('click', (e) => {
     clearGame();
     for (let i = 0; i < localStorage.length; i += 1) {
       const key = localStorage.key(i);
-      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width') {
+      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width' && key !== 'results') {
         localStorage.removeItem(key);
       }
     }
@@ -131,15 +138,27 @@ document.addEventListener('click', (e) => {
   /* Game field click */
 
   if (e.target.classList.contains('cell')) {
-    // console.log(e.target);
+
     const localStor = new LocalStorageActions();
     const isFirstStep = localStor.getItem('first-step');
+
+
+
 
     if (isFirstStep === 'true') {
       changeStepsCouner('game');
       localStor.changeValue('first-step', 'false');
       createMineField(Number(e.target.classList[1]) - 1);
       setMinesCouner('init');
+      const timer = setInterval(() => {
+        setTimer();
+        if (localStor.getItem('game-over') === 'true') {
+          clearInterval(timer);
+          return;
+        }
+      }, 1000)
+
+
       const closedStyle = e.target.classList[2];
       if (closedStyle.includes('closed')) {
         e.target.classList.replace(closedStyle, closedStyle.replace('closed', 'opened'));
@@ -176,18 +195,15 @@ document.addEventListener('click', (e) => {
           for (let i = 0; i < cells.length; i += 1) {
             cells[i].style.pointerEvents = 'none';
           }
+          cells.forEach(cell => {
+            if (cell.classList[2].includes('flaged-wrong')) {
+              cell.classList.replace(cell.classList[2], 'flaged-wrong-red');
+            }
+          })
+          localStor.setItem('game-over', 'true');
           setTimeout(showMessage('lose'), 5000);
         }
       }
-
-      /* if (closedStyle.includes('flaged-right')) {
-        const unFlagedClass = closedStyle.replace('flaged-right_', '');
-        e.target.classList.replace(closedStyle, unFlagedClass);
-      } else if (closedStyle.includes('flaged-wrong')) {
-        const unFlagedClass = closedStyle.replace('flaged-wrong_', '');
-        e.target.classList.replace(closedStyle, unFlagedClass);
-      } */
-      // closedStyle = e.target.classList[2];
     }
   }
 
@@ -195,7 +211,7 @@ document.addEventListener('click', (e) => {
     const keys = Object.keys(localStorage);
     // eslint-disable-next-line no-restricted-syntax
     for (const key of keys) {
-      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width') localStorage.removeItem(key);
+      if (key !== 'custom-mines' && key !== 'custom-height' && key !== 'custom-width' && key !== 'results') localStorage.removeItem(key);
     }
     clearGame();
 
@@ -203,6 +219,13 @@ document.addEventListener('click', (e) => {
     createGameFieldHTML();
     createGameFooterHTML();
   }
+
+  /* Best results */
+  if (e.target.classList.contains('results')) {
+    showMessage('results');
+  }
+
+
 });
 
 /* Mouse right button click */
@@ -232,13 +255,14 @@ document.addEventListener('contextmenu', (e) => {
       e.target.classList.replace(closedStyle, unFlagedClass);
       setMinesCouner('plusMine');
     } else {
-      setMinesCouner('minusMine');
       if (closedStyle === 'cell-mined_closed') {
         const flagedClass = `flaged-right_${closedStyle}`;
         e.target.classList.replace(closedStyle, flagedClass);
-      } else if (!closedStyle.includes('opened')) {
-        const flagedClass = `flaged-right_${closedStyle}`;
+        setMinesCouner('minusMine');
+      } else if (!closedStyle.includes('opened') && closedStyle !== 'cell-mined_closed') {
+        const flagedClass = `flaged-wrong_${closedStyle}`;
         e.target.classList.replace(closedStyle, flagedClass);
+        setMinesCouner('minusMine');
       }
     }
     localStor.setItem(e.target.classList[1], e.target.classList[2]);
@@ -250,8 +274,9 @@ document.addEventListener('contextmenu', (e) => {
   const minesAmount = options.getMines();
   if (rightFlagedMines.length === minesAmount) {
     const steps = localStorage.getItem('steps-counter');
-    // const time =  localStorage.getItem('time');
-    // saveGameResult(steps, time )
+    const time = getTime();
+    saveGameResult(steps, time);
+    localStorage.setItem('game-over', 'true');
     showMessage('win');
   }
 });

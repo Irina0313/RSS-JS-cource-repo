@@ -11,7 +11,8 @@
 }
 
 .levels,
-.custom-settings {
+.custom-settings,
+.first-row {
   display: flex;
   margin: 0;
   column-gap: 20px;
@@ -20,7 +21,8 @@
   display: none;
 }
 
-.level {
+.level,
+.results {
   list-style-type: none;
   color: $dark-text-color;
   font-size: 1.6em;
@@ -31,6 +33,41 @@
     cursor: pointer;
     color: $light-text-color;
     text-decoration: underline;
+  }
+}
+
+.results-table {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: solid 1px $dark-text-color;
+  border-left: solid 1px $dark-text-color;
+  border-right: solid 1px $dark-text-color;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.result-steps {
+  padding: 2px;
+  text-align: center;
+  font-size: 1.6em;
+  box-sizing: border-box;
+  width: 30%;
+  border-right: solid 1px $dark-text-color;
+  border-bottom: solid 1px $dark-text-color;
+  &_header {
+    font-weight: 600;
+  }
+}
+.result-time {
+  padding: 2px;
+  text-align: center;
+  font-size: 1.6em;
+  box-sizing: border-box;
+  width: 70%;
+  border-bottom: solid 1px $dark-text-color;
+  &_header {
+    font-weight: 600;
   }
 }
 

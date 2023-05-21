@@ -123,6 +123,8 @@ export function setMinesCouner(option) {
           secondNum.classList.add(classArr[Number(item)]);
         } else if (item === '-') {
           secondNum.classList.add(classArr[10]);
+        } else if (item === '0' && minesHiddenArr.length > 2 && minesHiddenArr[0] !== '0') {
+          secondNum.classList.add(classArr[0]);
         }
       }
       if (i === 2) {
@@ -167,5 +169,157 @@ export function setMinesCouner(option) {
       minesHiddenArr.unshift('0');
     }
     fillCounter(minesHiddenArr);
+  }
+}
+
+/* Timer */
+
+export function setTimer() {
+  const classArr = ['num0', 'num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'];
+  const timerWindow = document.querySelector('.timer');
+  const firstNum = timerWindow.children[0];
+  const secondNum = timerWindow.children[1];
+  const thirdNum = timerWindow.children[2];
+
+
+  function fillCounter(array) {
+    array.forEach((item, i) => {
+      if (i === 0) {
+        if (firstNum.classList[2]) {
+          firstNum.classList.remove(firstNum.classList[2]);
+        }
+        if (item !== '-' && item !== '0') {
+          firstNum.classList.add(classArr[Number(item)]);
+        } else if (item === '-') {
+          firstNum.classList.add(classArr[10]);
+        }
+      }
+      if (i === 1) {
+        if (secondNum.classList[2]) {
+          secondNum.classList.remove(secondNum.classList[2]);
+        }
+        if (item !== '-' && item !== '0') {
+          secondNum.classList.add(classArr[Number(item)]);
+        } else if (item === '-') {
+          secondNum.classList.add(classArr[10]);
+        } else if (item === '0' && array.length > 2 && array[0] !== '0') {
+          secondNum.classList.add(classArr[0]);
+        }
+      }
+      if (i === 2) {
+        if (thirdNum.classList[2]) {
+          thirdNum.classList.remove(thirdNum.classList[2]);
+        }
+
+        thirdNum.classList.add(classArr[Number(item)]);
+      }
+    });
+  }
+
+  const firstStep = localStorage.getItem('first-step');
+  let prevTimer = 0;
+  if (firstStep === 'false') {
+    prevTimer = Number(localStorage.getItem('timer'))
+  }
+
+  const currTimer = String(prevTimer + 1);
+  //console.log(currTimer)
+  localStorage.setItem('timer', `${currTimer}`);
+
+  const currTimerArr = currTimer.split('');
+  while (currTimerArr.length < 3) {
+    currTimerArr.unshift('0');
+  }
+  fillCounter(currTimerArr);
+
+}
+
+export function getTime() {
+  const timer = Number(localStorage.getItem('timer')) + 1;
+
+  const hours = Math.floor(timer / 3600);
+  const minutes = Math.floor((timer - (hours * 60)) / 60);
+  const seconds = timer - (hours * 60) - (minutes * 60);
+
+  const timeMessageArr = [];
+  if (hours > 1) {
+    timeMessageArr.push(`${hours} hours `);
+  }
+  if (hours === 1) {
+    timeMessageArr.push(`${hours} hour `);
+  }
+
+  if (minutes > 1) {
+    timeMessageArr.push(`${minutes} minutes `);
+  }
+
+  if (minutes === 1) {
+    timeMessageArr.push(`${minutes} minute `);
+  }
+  if (seconds > 1) {
+    timeMessageArr.push(`${seconds} seconds`);
+  }
+  if (seconds === 1) {
+    timeMessageArr.push(`${seconds} second`);
+  }
+  const timeMessage = timeMessageArr.join('');
+  return timeMessage;
+}
+
+/* Best results */
+
+export function saveGameResult(steps, time) {
+  const activeLevel = document.querySelector('.level_active');
+  const level = activeLevel.innerText.toLowerCase();
+  if (localStorage.getItem('results')) {
+    let resultsObj = JSON.parse(localStorage.results);
+    const targetLevelObj = resultsObj[level];
+    if (targetLevelObj) {
+      const resultsLength = Object.keys(targetLevelObj).length;
+      //console.log(resultsObj)
+      if (resultsLength < 10) {
+        let resultNumber = resultsLength + 1;
+        targetLevelObj[resultNumber] = {
+          steps: steps,
+          time: time,
+        }
+        localStorage.results = JSON.stringify(resultsObj);
+      } else {
+        for (let i = 1; i < 11; i += 1) {
+          if (i < 10) {
+            const nextResult = i + 1;
+            const value = targetLevelObj[nextResult]
+            targetLevelObj[i] = value;
+          } else if (i === 10) {
+            const resultNumber = 10;
+            targetLevelObj[resultNumber] = {
+              steps: steps,
+              time: time,
+            }
+          }
+        }
+        localStorage.results = JSON.stringify(resultsObj);
+      }
+    } else {
+      let resultsObj = JSON.parse(localStorage.results);
+      console.log(resultsObj)
+      resultsObj[level] = {
+        1: {
+          steps: steps,
+          time: time,
+        }
+      }
+      localStorage.results = JSON.stringify(resultsObj);
+    }
+  } else {
+    let resultsObj = JSON.parse(localStorage.results);
+    console.log(resultsObj)
+    resultsObj[level] = {
+      1: {
+        steps: steps,
+        time: time,
+      }
+    }
+    localStorage.results = JSON.stringify(resultsObj);
   }
 }

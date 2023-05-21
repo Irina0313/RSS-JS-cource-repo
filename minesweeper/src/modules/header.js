@@ -16,6 +16,13 @@ export function createHeaderHTML() {
   h1 = h1.createElement();
   h1.innerText = 'Minesweeper';
 
+  /* Best results, Theme */
+  let firstRow = new ElementBuilder('ul', wrapperHeader, 'first-row');
+  firstRow = firstRow.createElement();
+
+  let results = new ElementBuilder('li', firstRow, 'results');
+  results = results.createElement();
+  results.innerText = 'Best results';
   /* Levels */
 
   let levelsList = new ElementBuilder('ul', wrapperHeader, 'levels');

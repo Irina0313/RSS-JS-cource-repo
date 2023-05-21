@@ -9,6 +9,7 @@ import {
 const localStor = new LocalStorageActions();
 
 function createCells(field, width, height) {
+
   if (!localStor.getItem('first-step')) {
     localStor.setItem('first-step', 'true');
     localStor.setItem('checked-cells', '');
@@ -24,8 +25,9 @@ function createCells(field, width, height) {
   } else if (localStor.getItem('first-step') === 'false') {
     for (let i = 0; i < cellsNumber; i += 1) {
       const styleItem = localStor.getItem(`${i + 1}`);
-      const cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
-      cell.createElement();
+      let cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
+      cell = cell.createElement();
+      console.log(cell)
     }
   }
 }
