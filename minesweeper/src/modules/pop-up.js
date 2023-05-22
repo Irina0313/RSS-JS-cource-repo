@@ -4,12 +4,16 @@ import { getTime } from './functions';
 export function showMessage(option) {
   /* Create HTML */
   const body = document.querySelector('body');
+  const theme = localStorage.getItem('theme');
 
   let popUpWrapper = new ElementBuilder('div', body, 'pop-up-wrapper');
   popUpWrapper = popUpWrapper.createElement();
 
   let messageContainer = new ElementBuilder('div', popUpWrapper, 'message-container');
   messageContainer = messageContainer.createElement();
+  if (theme === 'dark') {
+    messageContainer.classList.add('message-container_dark');
+  }
 
   const message = new ElementBuilder('div', messageContainer, 'message');
   message.createElement();
@@ -76,15 +80,28 @@ export function showMessage(option) {
       let targetLevelObj = resultsObj[level];
       if (targetLevelObj) {
 
+
         let table = new ElementBuilder('div', messageContainer, 'results-table');
+
         table = table.createElement();
+        if (theme === 'dark') {
+          table.classList.add('results-table_dark');
+        }
 
         let tableItemHeader = new ElementBuilder('div', table, 'result-steps', 'result-steps_header');
+
         tableItemHeader = tableItemHeader.createElement();
+        if (theme === 'dark') {
+          tableItemHeader.classList.add('result-steps_dark');
+        }
         tableItemHeader.innerText = 'Steps';
 
         tableItemHeader = new ElementBuilder('div', table, 'result-time', 'result-time_header');
+
         tableItemHeader = tableItemHeader.createElement();
+        if (theme === 'dark') {
+          tableItemHeader.classList.add('result-time_dark');
+        }
         tableItemHeader.innerText = 'Time';
 
         let resultsLength = Object.keys(targetLevelObj).length;
@@ -94,30 +111,49 @@ export function showMessage(option) {
           tableItem = tableItem.createElement();
 
           tableItem.innerText = targetLevelObj[i].steps;
+          if (theme === 'dark') {
+            tableItem.classList.add('result-steps_dark');
+          }
 
           tableItem = new ElementBuilder('div', table, 'result-time');
+
           tableItem = tableItem.createElement();
           tableItem.innerText = targetLevelObj[i].time;
+          if (theme === 'dark') {
+            tableItem.classList.add('result-time_dark');
+          }
 
         }
 
       } else {
         let messageText = new ElementBuilder('p', messageContainer, 'message-text');
+
         messageText = messageText.createElement();
+        if (theme === 'dark') {
+          messageText.classList.add('message-text_dark');
+        }
         messageText.innerText = `There is no results. You can be first! Start game!`;
       }
     } else {
       let messageText = new ElementBuilder('p', messageContainer, 'message-text');
       messageText = messageText.createElement();
+      if (theme === 'dark') {
+        messageText.classList.add('message-text_dark');
+      }
       messageText.innerText = `There is no results. You can be first! Start game!`;
     }
 
     let closeBtn = new ElementBuilder('button', messageContainer, 'close-btn');
+
     closeBtn = closeBtn.createElement();
+    if (theme === 'dark') {
+      closeBtn.classList.add('close-btn_dark');
+    }
     closeBtn.innerText = 'Close';
 
     document.addEventListener('click', (e) => {
       const popUp = document.querySelector('.pop-up-wrapper');
+
       if (e.target === closeBtn) {
         popUp.remove();
       }

@@ -2,6 +2,7 @@ import { ElementBuilder } from './elem-builder';
 import { LocalStorageActions } from './functions';
 
 export function createHeaderHTML() {
+  const theme = localStorage.getItem('theme');
   const localStor = new LocalStorageActions();
 
   const body = document.querySelector('body');
@@ -23,6 +24,25 @@ export function createHeaderHTML() {
   let results = new ElementBuilder('li', firstRow, 'results');
   results = results.createElement();
   results.innerText = 'Best results';
+
+  let themeSwitherName = new ElementBuilder('li', firstRow, 'theme-swither-name');
+  themeSwitherName = themeSwitherName.createElement();
+  themeSwitherName.innerText = 'Light/dark theme:';
+
+
+  let themeSwither = new ElementBuilder('label', firstRow, 'theme-swither');
+  themeSwither = themeSwither.createElement();
+
+
+  let switherInput = new ElementBuilder('input', themeSwither, 'theme-swither__input');
+  switherInput = switherInput.createElement();
+  switherInput.setAttribute('type', 'checkbox');
+
+  const switherSpan = new ElementBuilder('span', themeSwither, 'theme-swither__span');
+  switherSpan.createElement();
+
+
+
   /* Levels */
 
   let levelsList = new ElementBuilder('ul', wrapperHeader, 'levels');
@@ -52,6 +72,7 @@ export function createHeaderHTML() {
   settingsItem = settingsItem.createElement();
   let label = new ElementBuilder('label', settingsItem, 'settings-item__name');
   label = label.createElement();
+
   label.innerText = 'Width: ';
   label.htmlFor = 'custom-width';
   let input = new ElementBuilder('input', label, 'settings-item__field');

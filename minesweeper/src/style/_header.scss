@@ -8,6 +8,9 @@
   font-size: 4em;
   margin: 0;
   text-align: center;
+  &_dark {
+    color: $background;
+  }
 }
 
 .levels,
@@ -17,12 +20,17 @@
   margin: 0;
   column-gap: 20px;
 }
+
+.first-row {
+  align-items: center;
+}
 .custom-settings.hidden {
   display: none;
 }
 
 .level,
-.results {
+.results,
+.theme-swither-name {
   list-style-type: none;
   color: $dark-text-color;
   font-size: 1.6em;
@@ -33,6 +41,9 @@
     cursor: pointer;
     color: $light-text-color;
     text-decoration: underline;
+  }
+  &_dark {
+    color: $background;
   }
 }
 
@@ -45,6 +56,11 @@
   border-right: solid 1px $dark-text-color;
   box-sizing: border-box;
   margin-bottom: 20px;
+  &_dark {
+    border-top: solid 1px $background;
+    border-left: solid 1px $background;
+    border-right: solid 1px $background;
+  }
 }
 
 .result-steps {
@@ -58,6 +74,11 @@
   &_header {
     font-weight: 600;
   }
+  &_dark {
+    border-right: solid 1px $background;
+    border-bottom: solid 1px $background;
+    color: $background;
+  }
 }
 .result-time {
   padding: 2px;
@@ -68,6 +89,61 @@
   border-bottom: solid 1px $dark-text-color;
   &_header {
     font-weight: 600;
+  }
+  &_dark {
+    border-bottom: solid 1px $background;
+    color: $background;
+  }
+}
+
+.theme-swither-name {
+  list-style-type: none;
+  color: $dark-text-color;
+  font-size: 1.6em;
+  &_dark {
+    color: $background;
+  }
+}
+
+.theme-swither {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 27px;
+  font-size: 1.6em;
+  color: $dark-text-color;
+}
+
+.theme-swither__input {
+  display: none;
+}
+
+.theme-swither__span {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+  &::before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(77, 75, 75);
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+}
+.theme-swither__input:checked + .theme-swither__span {
+  background-color: $background;
+  &::before {
+    left: 25px;
   }
 }
 
@@ -80,6 +156,9 @@
   color: $dark-text-color;
   font-size: 1.6em;
   font-weight: 600;
+  &_dark {
+    color: $background;
+  }
 }
 
 .update-btn {

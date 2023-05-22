@@ -25,6 +25,8 @@ import { GetLevelOptions } from './modules/levels';
 import { createMineField } from './modules/mineBuilder';
 import { openCellsAround } from './modules/open-empty-cells';
 import { showMessage } from './modules/pop-up';
+import { themeToggler } from './modules/theme-toggler';
+
 
 function gameInit() {
   createHeaderHTML();
@@ -33,6 +35,7 @@ function gameInit() {
   createGameFooterHTML();
 }
 gameInit();
+
 
 const levels = document.querySelector('.levels');
 
@@ -223,8 +226,21 @@ document.addEventListener('click', (e) => {
   /* Best results */
   if (e.target.classList.contains('results')) {
     showMessage('results');
+
+
+
   }
 
+  /* Theme toggler */
+
+  if (e.target.classList.contains('theme-swither__span')) {
+    if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'light') {
+      localStorage.setItem('theme', 'dark');
+    } else if (localStorage.getItem('theme') === 'dark') {
+      localStorage.setItem('theme', 'light');
+    }
+    themeToggler()
+  }
 
 });
 

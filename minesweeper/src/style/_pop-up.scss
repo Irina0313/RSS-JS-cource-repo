@@ -12,6 +12,9 @@
   &_hidden {
     display: none;
   }
+  &_dark {
+    background: rgba(155, 152, 156, 0.3);
+  }
 }
 .message-container {
   transition: all 0.4s;
@@ -22,9 +25,11 @@
   box-sizing: border-box;
   padding: 30px;
   width: 500px;
-  // height: 300px;
   background-color: $background;
   box-shadow: 5px 5px 5px $border-color;
+  &_dark {
+    background-color: $dark-text-color;
+  }
 }
 
 .message-title {
@@ -32,11 +37,17 @@
   font-weight: 800;
   color: rgb(135, 9, 9);
   text-shadow: 5px 5px 5px $border-color;
+  &_dark {
+    color: rgb(236, 253, 1);
+  }
 }
 
 .message-text {
   text-align: center;
   font-size: 1.5em;
+  &_dark {
+    color: $background;
+  }
 }
 
 .close-btn {
@@ -49,5 +60,8 @@
     cursor: pointer;
     opacity: 0.8;
     color: rgb(135, 9, 9);
+  }
+  &_dark {
+    background-color: $background;
   }
 }
