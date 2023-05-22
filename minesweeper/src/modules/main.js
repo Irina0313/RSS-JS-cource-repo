@@ -6,12 +6,9 @@ import {
   setMinesCouner,
 } from './functions';
 
-
-
 const localStor = new LocalStorageActions();
 
 function createCells(field, width, height) {
-
   if (!localStor.getItem('first-step')) {
     localStor.setItem('first-step', 'true');
     localStor.setItem('checked-cells', '');
@@ -29,7 +26,6 @@ function createCells(field, width, height) {
       const styleItem = localStor.getItem(`${i + 1}`);
       let cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
       cell = cell.createElement();
-
     }
   }
 }
@@ -242,4 +238,9 @@ export function createGameFooterHTML() {
 export function clearGame() {
   const main = document.querySelector('.main');
   main.remove();
+}
+
+export function clearHeader() {
+  const header = document.querySelector('.header');
+  header.remove();
 }

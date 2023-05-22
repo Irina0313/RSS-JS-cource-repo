@@ -32,9 +32,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.[contenthash].css',
     }),
-    // new CopyPlugin({
-    //   patterns: [{ from: 'static', to: './' }],
-    // }),
   ],
   module: {
     rules: [

@@ -97,11 +97,12 @@ export function changeStepsCouner(option) {
 export function setMinesCouner(option) {
   const classArr = ['num0', 'num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9', 'num-minus'];
   const minesCounter = document.querySelector('.mines-amount');
+  const level = localStorage.getItem('active-level').toLowerCase();
   const firstNum = minesCounter.children[0];
   const secondNum = minesCounter.children[1];
   const thirdNum = minesCounter.children[2];
-  const hiddenMines = document.querySelectorAll('.cell-mined_closed');
-  const minesHidden = hiddenMines.length;
+  // const hiddenMines = document.querySelectorAll('.cell-mined_closed');
+  const minesHidden = localStorage.getItem(`${level}-mines`);
 
   function fillCounter(minesHiddenArr) {
     minesHiddenArr.forEach((item, i) => {
@@ -138,7 +139,7 @@ export function setMinesCouner(option) {
   }
 
   if (option === 'init') {
-    const minesHiddenArr = String(minesHidden).split('');
+    const minesHiddenArr = minesHidden.split('');
     while (minesHiddenArr.length < 3) {
       minesHiddenArr.unshift('0');
     }
@@ -181,7 +182,6 @@ export function setTimer() {
   const secondNum = timerWindow.children[1];
   const thirdNum = timerWindow.children[2];
 
-
   function fillCounter(array) {
     array.forEach((item, i) => {
       if (i === 0) {
@@ -219,11 +219,11 @@ export function setTimer() {
   const firstStep = localStorage.getItem('first-step');
   let prevTimer = 0;
   if (firstStep === 'false') {
-    prevTimer = Number(localStorage.getItem('timer'))
+    prevTimer = Number(localStorage.getItem('timer'));
   }
 
   const currTimer = String(prevTimer + 1);
-  //console.log(currTimer)
+  // console.log(currTimer)
   localStorage.setItem('timer', `${currTimer}`);
 
   const currTimerArr = currTimer.split('');
@@ -231,7 +231,6 @@ export function setTimer() {
     currTimerArr.unshift('0');
   }
   fillCounter(currTimerArr);
-
 }
 
 export function getTime() {
@@ -272,54 +271,52 @@ export function saveGameResult(steps, time) {
   const activeLevel = document.querySelector('.level_active');
   const level = activeLevel.innerText.toLowerCase();
   if (localStorage.getItem('results')) {
-    let resultsObj = JSON.parse(localStorage.results);
-    const targetLevelObj = resultsObj[level];
+    const resultsObject = JSON.parse(localStorage.results);
+    const targetLevelObj = resultsObject[level];
     if (targetLevelObj) {
       const resultsLength = Object.keys(targetLevelObj).length;
-      //console.log(resultsObj)
+      // console.log(resultsObj)
       if (resultsLength < 10) {
-        let resultNumber = resultsLength + 1;
+        const resultNumber = resultsLength + 1;
         targetLevelObj[resultNumber] = {
-          steps: steps,
-          time: time,
-        }
-        localStorage.results = JSON.stringify(resultsObj);
+          steps,
+          time,
+        };
+        localStorage.results = JSON.stringify(resultsObject);
       } else {
         for (let i = 1; i < 11; i += 1) {
           if (i < 10) {
             const nextResult = i + 1;
-            const value = targetLevelObj[nextResult]
+            const value = targetLevelObj[nextResult];
             targetLevelObj[i] = value;
           } else if (i === 10) {
             const resultNumber = 10;
             targetLevelObj[resultNumber] = {
-              steps: steps,
-              time: time,
-            }
+              steps,
+              time,
+            };
           }
         }
-        localStorage.results = JSON.stringify(resultsObj);
+        localStorage.results = JSON.stringify(resultsObject);
       }
     } else {
-      let resultsObj = JSON.parse(localStorage.results);
-      console.log(resultsObj)
+      const resultsObj = JSON.parse(localStorage.results);
       resultsObj[level] = {
         1: {
-          steps: steps,
-          time: time,
-        }
-      }
+          steps,
+          time,
+        },
+      };
       localStorage.results = JSON.stringify(resultsObj);
     }
   } else {
-    let resultsObj = JSON.parse(localStorage.results);
-    console.log(resultsObj)
+    const resultsObj = JSON.parse(localStorage.results);
     resultsObj[level] = {
       1: {
-        steps: steps,
-        time: time,
-      }
-    }
+        steps,
+        time,
+      },
+    };
     localStorage.results = JSON.stringify(resultsObj);
   }
 }

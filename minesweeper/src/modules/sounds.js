@@ -3,7 +3,6 @@ import flag from '../sounds/flag.mp3';
 import loser from '../sounds/looser.mp3';
 import winner from '../sounds/winner.mp3';
 
-
 export function playSound(option) {
   const soundSetting = localStorage.getItem('sound');
 
@@ -24,8 +23,5 @@ export function playSound(option) {
       const sound = new Audio(winner);
       sound.play();
     }
-
-  } else if (soundSetting === 'off') {
   }
-
 }

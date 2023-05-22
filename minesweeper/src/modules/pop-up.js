@@ -62,25 +62,17 @@ export function showMessage(option) {
     });
   }
 
-
-
   /* Results */
   if (option === 'results') {
-    const steps = localStorage.getItem('steps-counter');
     const activeLevel = document.querySelector('.level_active');
     const level = activeLevel.innerText.toLowerCase();
 
     title.innerText = `Last 10 results of ${activeLevel.innerText} level`;
 
     if (localStorage.getItem('results')) {
-
-
-
-      let resultsObj = JSON.parse(localStorage.results);
-      let targetLevelObj = resultsObj[level];
+      const resultsObj = JSON.parse(localStorage.results);
+      const targetLevelObj = resultsObj[level];
       if (targetLevelObj) {
-
-
         let table = new ElementBuilder('div', messageContainer, 'results-table');
 
         table = table.createElement();
@@ -104,9 +96,8 @@ export function showMessage(option) {
         }
         tableItemHeader.innerText = 'Time';
 
-        let resultsLength = Object.keys(targetLevelObj).length;
+        const resultsLength = Object.keys(targetLevelObj).length;
         for (let i = 1; i < resultsLength + 1; i += 1) {
-
           let tableItem = new ElementBuilder('div', table, 'result-steps');
           tableItem = tableItem.createElement();
 
@@ -122,9 +113,7 @@ export function showMessage(option) {
           if (theme === 'dark') {
             tableItem.classList.add('result-time_dark');
           }
-
         }
-
       } else {
         let messageText = new ElementBuilder('p', messageContainer, 'message-text');
 
@@ -132,7 +121,7 @@ export function showMessage(option) {
         if (theme === 'dark') {
           messageText.classList.add('message-text_dark');
         }
-        messageText.innerText = `There is no results. You can be first! Start game!`;
+        messageText.innerText = 'There is no results. You can be first! Start game!';
       }
     } else {
       let messageText = new ElementBuilder('p', messageContainer, 'message-text');
@@ -140,7 +129,7 @@ export function showMessage(option) {
       if (theme === 'dark') {
         messageText.classList.add('message-text_dark');
       }
-      messageText.innerText = `There is no results. You can be first! Start game!`;
+      messageText.innerText = 'There is no results. You can be first! Start game!';
     }
 
     let closeBtn = new ElementBuilder('button', messageContainer, 'close-btn');
@@ -159,5 +148,4 @@ export function showMessage(option) {
       }
     });
   }
-
 }

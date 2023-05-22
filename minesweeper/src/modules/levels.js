@@ -1,22 +1,33 @@
 import { LocalStorageActions } from './functions';
 
 const localStor = new LocalStorageActions();
+const level = localStor.getItem('active-level').toLowerCase();
+function getMines() {
+  if (!localStor.getItem(`${level}-mines`)) {
+    return 10;
+  }
+  if (localStor.getItem(`${level}-mines`)) {
+    return Number(localStor.getItem(`${level}-mines`));
+  }
+}
+
+const mines = getMines();
 
 export const options = {
   Beginner: {
     width: 10,
     height: 10,
-    mines: 10,
+    mines: mines,
   },
   Intermediate: {
     width: 15,
     height: 15,
-    mines: 40,
+    mines: mines,
   },
   Expert: {
     width: 25,
     height: 25,
-    mines: 99,
+    mines: mines,
   },
 };
 
@@ -26,9 +37,7 @@ function getWidthSetting() {
 function getHeightSetting() {
   return Number(localStor.getItem('custom-height'));
 }
-function getMines() {
-  return Number(localStor.getItem('custom-mines'));
-}
+
 
 export class GetLevelOptions {
   constructor(level) {

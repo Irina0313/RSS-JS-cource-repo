@@ -170,6 +170,7 @@
   font-weight: 400;
   letter-spacing: 0.01em;
   border: solid 1px $dark-text-color;
+  border-radius: 15px;
   &:hover {
     cursor: pointer;
     color: $light-text-color;

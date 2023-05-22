@@ -2,10 +2,12 @@ import { ElementBuilder } from './elem-builder';
 import { LocalStorageActions } from './functions';
 
 export function createHeaderHTML() {
-  const theme = localStorage.getItem('theme');
-  const sound = localStorage.getItem('sound');
   const localStor = new LocalStorageActions();
 
+  if (!localStor.getItem('active-level')) {
+    localStor.setItem('active-level', 'Beginner');
+  }
+  const activeLevelSaved = localStor.getItem('active-level');
   const body = document.querySelector('body');
 
   let header = new ElementBuilder('header', body, 'header');
@@ -31,10 +33,8 @@ export function createHeaderHTML() {
   themeSwitherName = themeSwitherName.createElement();
   themeSwitherName.innerText = 'Theme:';
 
-
   let themeSwither = new ElementBuilder('label', firstRow, 'swither');
   themeSwither = themeSwither.createElement();
-
 
   let switherInput = new ElementBuilder('input', themeSwither, 'swither__input');
   switherInput = switherInput.createElement();
@@ -43,16 +43,14 @@ export function createHeaderHTML() {
   const switherSpan = new ElementBuilder('span', themeSwither, 'theme', 'swither__span');
   switherSpan.createElement();
 
-  /*Sound */
+  /* Sound */
 
   let soundSwitherName = new ElementBuilder('li', firstRow, 'swither-name');
   soundSwitherName = soundSwitherName.createElement();
   soundSwitherName.innerText = 'Sound:';
 
-
   let soundSwither = new ElementBuilder('label', firstRow, 'swither');
   soundSwither = soundSwither.createElement();
-
 
   let soundInput = new ElementBuilder('input', soundSwither, 'swither__input');
   soundInput = soundInput.createElement();
@@ -68,104 +66,123 @@ export function createHeaderHTML() {
     soundInput.setAttribute('checked', 'true');
   }
 
-
-
   /* Levels */
 
   let levelsList = new ElementBuilder('ul', wrapperHeader, 'levels');
   levelsList = levelsList.createElement();
 
-  let level = new ElementBuilder('li', levelsList, 'level', 'level_active');
+  let level = new ElementBuilder('li', levelsList, 'level');
   level = level.createElement();
   level.innerText = 'Beginner';
+  if (level.innerText === activeLevelSaved) {
+    level.classList.add('level_active');
+  }
+
 
   level = new ElementBuilder('li', levelsList, 'level');
   level = level.createElement();
   level.innerText = 'Intermediate';
+  if (level.innerText === activeLevelSaved) {
+    level.classList.add('level_active');
+  }
 
   level = new ElementBuilder('li', levelsList, 'level');
   level = level.createElement();
   level.innerText = 'Expert';
+  if (level.innerText === activeLevelSaved) {
+    level.classList.add('level_active');
+  }
 
   level = new ElementBuilder('li', levelsList, 'level');
   level = level.createElement();
   level.innerText = 'Custom';
+  if (level.innerText === activeLevelSaved) {
+    level.classList.add('level_active');
+  }
+
 
   /* Custom settings */
-  let customSettingsList = new ElementBuilder('ul', wrapperHeader, 'custom-settings', 'hidden');
+  const activeLevel = document.querySelector('.level_active');
+  let customSettingsList = new ElementBuilder('ul', wrapperHeader, 'custom-settings');
   customSettingsList = customSettingsList.createElement();
+
+  if (activeLevel.innerText === 'Custom') {
+    let settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item');
+    settingsItem = settingsItem.createElement();
+    let label = new ElementBuilder('label', settingsItem, 'settings-item__name');
+    label = label.createElement();
+
+    label.innerText = 'Width: ';
+    label.htmlFor = 'custom-width';
+    let input = new ElementBuilder('input', label, 'settings-item__field');
+    input = input.createElement();
+    input.setAttribute('type', 'number');
+    input.setAttribute('id', 'custom-width');
+    input.setAttribute('max', '100');
+    input.setAttribute('min', '10');
+    if (localStorage['custom-width']) {
+      if (!localStor.getItem('custom-width')) {
+        localStor.changeValue('custom-width', '10');
+        input.value = 10;
+      } else {
+        input.value = Number(localStor.getItem('custom-width'));
+      }
+    } else {
+      input.value = 10;
+      localStor.setItem('custom-width', input.value);
+    }
+
+    settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item');
+    settingsItem = settingsItem.createElement();
+    label = new ElementBuilder('label', settingsItem, 'settings-item__name');
+    label = label.createElement();
+    label.innerText = 'Height: ';
+    label.htmlFor = 'custom-height';
+    input = new ElementBuilder('input', label, 'settings-item__field');
+    input = input.createElement();
+    input.setAttribute('type', 'number');
+    input.setAttribute('id', 'custom-height');
+    input.setAttribute('max', '100');
+    input.setAttribute('min', '10');
+    if (localStorage['custom-height']) {
+      if (!localStor.getItem('custom-height')) {
+        localStor.changeValue('custom-height', '10');
+        input.value = 10;
+      } else {
+        input.value = Number(localStor.getItem('custom-height'));
+      }
+    } else {
+      input.value = 10;
+      localStor.setItem('custom-height', input.value);
+    }
+  }
+
 
   let settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item');
   settingsItem = settingsItem.createElement();
   let label = new ElementBuilder('label', settingsItem, 'settings-item__name');
   label = label.createElement();
-
-  label.innerText = 'Width: ';
-  label.htmlFor = 'custom-width';
-  let input = new ElementBuilder('input', label, 'settings-item__field');
-  input = input.createElement();
-  input.setAttribute('type', 'number');
-  input.setAttribute('id', 'custom-width');
-  input.setAttribute('max', '100');
-  input.setAttribute('min', '10');
-  if (localStorage['custom-width']) {
-    if (!localStor.getItem('custom-width')) {
-      localStor.changeValue('custom-width', '10');
-      input.value = 10;
-    } else {
-      input.value = Number(localStor.getItem('custom-width'));
-    }
-  } else {
-    input.value = 10;
-    localStor.setItem('custom-width', input.value);
-  }
-
-  settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item');
-  settingsItem = settingsItem.createElement();
-  label = new ElementBuilder('label', settingsItem, 'settings-item__name');
-  label = label.createElement();
-  label.innerText = 'Height: ';
-  label.htmlFor = 'custom-height';
-  input = new ElementBuilder('input', label, 'settings-item__field');
-  input = input.createElement();
-  input.setAttribute('type', 'number');
-  input.setAttribute('id', 'custom-height');
-  input.setAttribute('max', '100');
-  input.setAttribute('min', '10');
-  if (localStorage['custom-height']) {
-    if (!localStor.getItem('custom-height')) {
-      localStor.changeValue('custom-height', '10');
-      input.value = 10;
-    } else {
-      input.value = Number(localStor.getItem('custom-height'));
-    }
-  } else {
-    input.value = 10;
-    localStor.setItem('custom-height', input.value);
-  }
-
-  settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item');
-  settingsItem = settingsItem.createElement();
-  label = new ElementBuilder('label', settingsItem, 'settings-item__name');
-  label = label.createElement();
   label.innerText = 'Mines: ';
   label.htmlFor = 'custom-mines';
-  input = new ElementBuilder('input', label, 'settings-item__field');
+  let input = new ElementBuilder('input', label, 'settings-item__field');
   input = input.createElement();
   input.setAttribute('type', 'number');
   input.setAttribute('id', 'custom-mines');
   input.setAttribute('max', '99');
   input.setAttribute('min', '10');
-  if (localStorage['custom-mines']) {
-    if (!localStor.getItem('custom-mines')) {
-      localStor.changeValue('custom-mines', '10');
+
+
+
+  if (localStorage[`${activeLevel.innerText.toLowerCase()}-mines`]) {
+    if (!localStor.getItem(`${activeLevel.innerText.toLowerCase()}-mines`)) {
+      localStor.setItem(`${activeLevel.innerText.toLowerCase()}-mines`, '10');
       input.value = 10;
     } else {
-      input.value = Number(localStor.getItem('custom-mines'));
+      input.value = Number(localStor.getItem(`${activeLevel.innerText.toLowerCase()}-mines`));
     }
   } else {
     input.value = 10;
-    localStor.setItem('custom-mines', input.value);
+    localStor.setItem(`${activeLevel.innerText.toLowerCase()}-mines`, input.value);
   }
 
   settingsItem = new ElementBuilder('li', customSettingsList, 'settings-item', 'update-btn');
