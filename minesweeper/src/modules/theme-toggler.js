@@ -11,12 +11,12 @@ export function themeToggler() {
   const results = document.querySelector('.results');
   results.classList.toggle('results_dark');
 
-  const themeSwitherName = document.querySelector('.theme-swither-name');
-  themeSwitherName.classList.toggle('theme-swither-name_dark');
+  const SwitherName = document.querySelector('.swither-name');
+  SwitherName.classList.toggle('swither-name_dark');
 
 
-  const themeSwitherSpan = document.querySelector('.theme-swither__span');
-  themeSwitherSpan.classList.toggle('theme-swither__span_dark');
+  const SwitherSpan = document.querySelector('.swither__span');
+  SwitherSpan.classList.toggle('swither__span_dark');
 
   const level = document.querySelectorAll('.level');
   level.forEach(item => {
@@ -28,7 +28,6 @@ export function themeToggler() {
     const settingsItem = document.querySelectorAll('.settings-item');
 
     settingsItem.forEach(item => {
-      console.log(item)
       item.classList.toggle('settings-item_dark')
       if (item.children[0]) {
         item.children[0].classList.toggle('settings-item__name_dark')

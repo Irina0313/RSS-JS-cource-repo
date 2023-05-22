@@ -96,7 +96,7 @@
   }
 }
 
-.theme-swither-name {
+.swither-name {
   list-style-type: none;
   color: $dark-text-color;
   font-size: 1.6em;
@@ -105,7 +105,7 @@
   }
 }
 
-.theme-swither {
+.swither {
   position: relative;
   display: inline-block;
   width: 50px;
@@ -114,11 +114,11 @@
   color: $dark-text-color;
 }
 
-.theme-swither__input {
+.swither__input {
   display: none;
 }
 
-.theme-swither__span {
+.swither__span {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -140,7 +140,7 @@
     border-radius: 50%;
   }
 }
-.theme-swither__input:checked + .theme-swither__span {
+.swither__input:checked + .swither__span {
   background-color: $background;
   &::before {
     left: 25px;

@@ -3,6 +3,7 @@ import { LocalStorageActions } from './functions';
 
 export function createHeaderHTML() {
   const theme = localStorage.getItem('theme');
+  const sound = localStorage.getItem('sound');
   const localStor = new LocalStorageActions();
 
   const body = document.querySelector('body');
@@ -17,29 +18,55 @@ export function createHeaderHTML() {
   h1 = h1.createElement();
   h1.innerText = 'Minesweeper';
 
-  /* Best results, Theme */
+  /* Best results, Theme, Sound */
   let firstRow = new ElementBuilder('ul', wrapperHeader, 'first-row');
   firstRow = firstRow.createElement();
 
   let results = new ElementBuilder('li', firstRow, 'results');
   results = results.createElement();
   results.innerText = 'Best results';
+  /* Theme */
 
-  let themeSwitherName = new ElementBuilder('li', firstRow, 'theme-swither-name');
+  let themeSwitherName = new ElementBuilder('li', firstRow, 'swither-name');
   themeSwitherName = themeSwitherName.createElement();
-  themeSwitherName.innerText = 'Light/dark theme:';
+  themeSwitherName.innerText = 'Theme:';
 
 
-  let themeSwither = new ElementBuilder('label', firstRow, 'theme-swither');
+  let themeSwither = new ElementBuilder('label', firstRow, 'swither');
   themeSwither = themeSwither.createElement();
 
 
-  let switherInput = new ElementBuilder('input', themeSwither, 'theme-swither__input');
+  let switherInput = new ElementBuilder('input', themeSwither, 'swither__input');
   switherInput = switherInput.createElement();
   switherInput.setAttribute('type', 'checkbox');
 
-  const switherSpan = new ElementBuilder('span', themeSwither, 'theme-swither__span');
+  const switherSpan = new ElementBuilder('span', themeSwither, 'theme', 'swither__span');
   switherSpan.createElement();
+
+  /*Sound */
+
+  let soundSwitherName = new ElementBuilder('li', firstRow, 'swither-name');
+  soundSwitherName = soundSwitherName.createElement();
+  soundSwitherName.innerText = 'Sound:';
+
+
+  let soundSwither = new ElementBuilder('label', firstRow, 'swither');
+  soundSwither = soundSwither.createElement();
+
+
+  let soundInput = new ElementBuilder('input', soundSwither, 'swither__input');
+  soundInput = soundInput.createElement();
+  soundInput.setAttribute('type', 'checkbox');
+
+  const soundSpan = new ElementBuilder('span', soundSwither, 'sound', 'swither__span');
+  soundSpan.createElement();
+
+  const soundSetting = localStorage.getItem('sound');
+  if (!soundSetting) {
+    localStorage.setItem('sound', 'on');
+  } else if (soundSetting === 'off') {
+    soundInput.setAttribute('checked', 'true');
+  }
 
 
 

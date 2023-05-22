@@ -105,6 +105,13 @@ module.exports = {
         type: 'asset/resource',
       },
       {
+        test: /\.mp3$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'sounds/[name][ext]',
+        },
+      },
+      {
         test: /\.m?js$/i,
         exclude: /(node_modules|bower_components)/,
         use: {

@@ -6,6 +6,8 @@ import {
   setMinesCouner,
 } from './functions';
 
+
+
 const localStor = new LocalStorageActions();
 
 function createCells(field, width, height) {
@@ -27,7 +29,7 @@ function createCells(field, width, height) {
       const styleItem = localStor.getItem(`${i + 1}`);
       let cell = new ElementBuilder('div', field, 'cell', `${i + 1}`, styleItem);
       cell = cell.createElement();
-      console.log(cell)
+
     }
   }
 }
