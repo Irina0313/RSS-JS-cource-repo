@@ -1042,13 +1042,18 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 var localStor = new _functions__WEBPACK_IMPORTED_MODULE_0__.LocalStorageActions();
-var level = localStor.getItem('active-level').toLowerCase();
+var activeLevel = localStor.getItem('active-level');
+// eslint-disable-next-line consistent-return
 function getMines() {
-  if (!localStor.getItem("".concat(level, "-mines"))) {
+  if (activeLevel) {
+    if (!localStor.getItem("".concat(activeLevel.toLowerCase(), "-mines"))) {
+      return 10;
+    }
+    if (localStor.getItem("".concat(activeLevel.toLowerCase(), "-mines"))) {
+      return Number(localStor.getItem("".concat(activeLevel.toLowerCase(), "-mines")));
+    }
+  } else {
     return 10;
-  }
-  if (localStor.getItem("".concat(level, "-mines"))) {
-    return Number(localStor.getItem("".concat(level, "-mines")));
   }
 }
 var mines = getMines();
@@ -13031,6 +13036,8 @@ function gameInit() {
 gameInit();
 var levels = document.querySelector('.levels');
 var savingSettings = ['custom-mines', 'custom-height', 'custom-width', 'results', 'sound', 'theme', 'active-level', 'beginner-mines', 'intermediate-mines', 'expert-mines'];
+
+// eslint-disable-next-line consistent-return
 function getMinesValue() {
   var localStor = new _modules_functions__WEBPACK_IMPORTED_MODULE_5__.LocalStorageActions();
   var level = localStor.getItem('active-level');
@@ -13300,4 +13307,4 @@ document.addEventListener('contextmenu', function (e) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index.7d3e02ccf21b8ec6785f.js.map
+//# sourceMappingURL=index.d343cb7d9fd8d19c2fd6.js.map
