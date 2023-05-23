@@ -1350,6 +1350,7 @@ function createGameFooterHTML() {
   num = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', timer, 'num', 'third-num');
   num.createElement();
   (0,_functions__WEBPACK_IMPORTED_MODULE_2__.setTimer)('init');
+  localStorage.setItem('timerRestored', 'true');
 
   /* Right footer border */
   var rightBorder = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', gameFooter, 'right-border', 'right-border_footer');
@@ -13431,6 +13432,7 @@ document.addEventListener('click', function (e) {
       (0,_modules_mineBuilder__WEBPACK_IMPORTED_MODULE_7__.createMineField)(Number(e.target.classList[1]) - 1);
       (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setMinesCouner)('init');
       var timer = setInterval(function () {
+        localStorage.setItem('timerRestored', 'false');
         (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setTimer)('continue');
         if (_localStor.getItem('game-over') === 'true') {
           clearInterval(timer);
@@ -13444,12 +13446,14 @@ document.addEventListener('click', function (e) {
       (0,_modules_open_empty_cells__WEBPACK_IMPORTED_MODULE_8__.openCellsAround)();
       _localStor.changeValue('first-step', 'false');
     } else {
-      var _timer = setInterval(function () {
-        (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setTimer)('continue');
-        if (_localStor.getItem('game-over') === 'true') {
-          clearInterval(_timer);
-        }
-      }, 1000);
+      if (localStorage.getItem('timerRestored') === 'true') {
+        var _timer = setInterval(function () {
+          (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setTimer)('continue');
+          if (_localStor.getItem('game-over') === 'true') {
+            clearInterval(_timer);
+          }
+        }, 1000);
+      }
       var _closedStyle = e.target.classList[2];
       if (!_closedStyle.includes('flaged-right') && !_closedStyle.includes('flaged-wrong')) {
         (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.changeStepsCouner)('game');
@@ -13629,4 +13633,4 @@ document.addEventListener('contextmenu', function (e) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index.a332198393c0903fe118.js.map
+//# sourceMappingURL=index.0e54b86f475aa186b5f3.js.map
