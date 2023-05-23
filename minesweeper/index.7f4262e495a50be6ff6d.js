@@ -834,7 +834,8 @@ function saveGameResult(steps, time) {
       localStorage.results = JSON.stringify(resultsObj);
     }
   } else {
-    var _resultsObj = JSON.parse(localStorage.results);
+    // const resultsObj = JSON.parse(localStorage.results);
+    var _resultsObj = {};
     _resultsObj[level] = {
       1: {
         steps: steps,
@@ -13504,10 +13505,10 @@ document.addEventListener('click', function (e) {
       }
     }
     /* winner */
+    var activeLevel = document.querySelector('.level.level_active');
     var rightFlagedMines = document.querySelectorAll('.flaged-right_cell-mined_closed');
     var closedMines = document.querySelectorAll('.cell-mined_closed');
     var hiddenMines = rightFlagedMines.length + closedMines.length;
-    var activeLevel = document.querySelector('.level.level_active');
     var closedSells = [];
     cellsArr.forEach(function (item) {
       if (!item.classList.contains('cell-mined_closed') && !item.classList.contains('flaged-right_cell-mined_closed')) {
@@ -13517,7 +13518,8 @@ document.addEventListener('click', function (e) {
       }
     });
     var minesAmount = Number(localStorage.getItem("".concat(activeLevel.innerText.toLowerCase(), "-mines")));
-    if (hiddenMines === minesAmount && closedSells.length === 0) {
+    console.log(hiddenMines, minesAmount, closedSells);
+    if (hiddenMines === minesAmount && closedSells.length === 0 || rightFlagedMines.length === minesAmount) {
       var steps = localStorage.getItem('steps-counter');
       var time = (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.getTime)();
       (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.saveGameResult)(steps, time);
@@ -13607,10 +13609,10 @@ document.addEventListener('contextmenu', function (e) {
   }
 
   /* winner */
+  var activeLevel = document.querySelector('.level.level_active');
   var rightFlagedMines = document.querySelectorAll('.flaged-right_cell-mined_closed');
   var closedMines = document.querySelectorAll('.cell-mined_closed');
   var hiddenMines = rightFlagedMines.length + closedMines.length;
-  var activeLevel = document.querySelector('.level.level_active');
   var closedSells = [];
   cellsArr.forEach(function (item) {
     if (!item.classList.contains('cell-mined_closed') && !item.classList.contains('flaged-right_cell-mined_closed')) {
@@ -13620,7 +13622,8 @@ document.addEventListener('contextmenu', function (e) {
     }
   });
   var minesAmount = Number(localStorage.getItem("".concat(activeLevel.innerText.toLowerCase(), "-mines")));
-  if (hiddenMines === minesAmount && closedSells.length === 0) {
+  console.log(hiddenMines, minesAmount, closedSells);
+  if (hiddenMines === minesAmount && closedSells.length === 0 || rightFlagedMines.length === minesAmount) {
     var steps = localStorage.getItem('steps-counter');
     var time = (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.getTime)();
     (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.saveGameResult)(steps, time);
@@ -13633,4 +13636,4 @@ document.addEventListener('contextmenu', function (e) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index.0e54b86f475aa186b5f3.js.map
+//# sourceMappingURL=index.7f4262e495a50be6ff6d.js.map
