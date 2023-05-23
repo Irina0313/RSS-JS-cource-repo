@@ -1182,6 +1182,7 @@ function createMainHeaderHTML() {
   var activeLevel = document.querySelector('.level.level_active');
   var options = new _levels__WEBPACK_IMPORTED_MODULE_1__.GetLevelOptions(activeLevel.innerText);
   var body = document.querySelector('body');
+  var theme = localStor.getItem('theme');
   var main = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('main', body, 'main');
   main = main.createElement();
   var wrapper = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', main, 'wrapper');
@@ -1216,6 +1217,9 @@ function createMainHeaderHTML() {
   var gameHeaderContainer = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', gameHeader, 'game__header-container');
   gameHeaderContainer = gameHeaderContainer.createElement();
   gameHeaderContainer.style.width = "".concat(options.getWidthPixels(), "px");
+  if (theme === 'dark') {
+    gameHeaderContainer.classList.add('dark');
+  }
 
   /*  Mines counter */
   var minesAmount = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', gameHeaderContainer, 'mines-amount');
@@ -1265,11 +1269,14 @@ function createGameFieldHTML() {
   var activeLevel = document.querySelector('.level.level_active');
   var options = new _levels__WEBPACK_IMPORTED_MODULE_1__.GetLevelOptions(activeLevel.innerText);
   var game = document.querySelector('.game');
+  var theme = localStorage.getItem('theme');
 
   /* Container */
   var gameFieldContainer = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', game, 'game__field-container');
   gameFieldContainer = gameFieldContainer.createElement();
-
+  if (theme === 'dark') {
+    gameFieldContainer.classList.add('dark');
+  }
   /* Left border */
   var leftBorderField = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', gameFieldContainer, 'left-border', 'left-border_field');
   leftBorderField = leftBorderField.createElement();
@@ -1296,6 +1303,7 @@ function createGameFooterHTML() {
   var game = document.querySelector('.game');
   var activeLevel = document.querySelector('.level.level_active');
   var options = new _levels__WEBPACK_IMPORTED_MODULE_1__.GetLevelOptions(activeLevel.innerText);
+  var theme = localStorage.getItem('theme');
 
   /* Game footer  */
 
@@ -1323,7 +1331,9 @@ function createGameFooterHTML() {
   var gameFooterContainer = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', gameFooter, 'game__footer-container');
   gameFooterContainer = gameFooterContainer.createElement();
   gameFooterContainer.style.width = "".concat(options.getWidthPixels(), "px");
-
+  if (theme === 'dark') {
+    gameFooterContainer.classList.add('dark');
+  }
   /* Timer */
 
   var timer = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', gameFooterContainer, 'timer');
@@ -1985,7 +1995,7 @@ function themeToggler() {
   }
 }
 function toggleThemeGameField() {
-  var targetClasses = ['.cell_closed', '.cell-mined_closed', '.cell-one_closed', '.cell-two_closed', '.cell-three_closed', '.cell-four_closed', '.cell-five_closed', '.cell-six_closed', '.cell-seven_closed', '.cell-eight_closed', '.game__header-container', '.game__footer-container', '.smile_unpressed', '.cell_opened', '.cell-one_opened', '.cell-two_opened', '.cell-three_opened', '.cell-four_opened', '.cell-five_opened', '.cell-six_opened', '.cell-seven_opened', '.cell-eight_opened', '.cell-mined_opened-loss', '.cell-mined_opened', '.update-btn'];
+  var targetClasses = ['.cell_closed', '.cell-mined_closed', '.cell-one_closed', '.cell-two_closed', '.cell-three_closed', '.cell-four_closed', '.cell-five_closed', '.cell-six_closed', '.cell-seven_closed', '.cell-eight_closed', '.game__header-container', '.game__footer-container', '.smile_unpressed', '.cell_opened', '.cell-one_opened', '.cell-two_opened', '.cell-three_opened', '.cell-four_opened', '.cell-five_opened', '.cell-six_opened', '.cell-seven_opened', '.cell-eight_opened', '.cell-mined_opened-loss', '.cell-mined_opened', '.update-btn', '.smile'];
   for (var i = 0; i < targetClasses.length; i += 1) {
     var cellsClosed = document.querySelectorAll(targetClasses[i]);
     cellsClosed.forEach(function (item) {
@@ -2013,7 +2023,6 @@ function themeAddDark() {
   if (custom && !custom.classList.contains('hidden')) {
     var settingsItem = document.querySelectorAll('.settings-item');
     settingsItem.forEach(function (item) {
-      console.log(item);
       if (!item.classList.contains('settings-item_dark')) {
         item.classList.add('settings-item_dark');
         if (item.children[0]) {
@@ -2022,7 +2031,7 @@ function themeAddDark() {
       }
     });
   }
-  var targetClasses = ['.update-btn'];
+  var targetClasses = ['.update-btn', '.game__header-container', '.game__footer-container'];
   for (var i = 0; i < targetClasses.length; i += 1) {
     var cellsClosed = document.querySelectorAll(targetClasses[i]);
     cellsClosed.forEach(function (item) {
@@ -13332,7 +13341,6 @@ document.addEventListener('click', function (e) {
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createGameFieldHTML)();
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createGameFooterHTML)();
     if (localStorage.getItem('theme') === 'dark') {
-      (0,_modules_theme_toggler__WEBPACK_IMPORTED_MODULE_10__.themeAddDark)();
       var swither = document.querySelector('.theme').previousSibling;
       swither.setAttribute('checked', 'true');
       (0,_modules_theme_toggler__WEBPACK_IMPORTED_MODULE_10__.themeAddDark)();
@@ -13569,4 +13577,4 @@ document.addEventListener('contextmenu', function (e) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index.c9b6a94b1d462434b5c9.js.map
+//# sourceMappingURL=index.cdffefe3fc5051d64815.js.map
