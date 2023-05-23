@@ -704,7 +704,7 @@ function setMinesCouner(option) {
 
 /* Timer */
 
-function setTimer() {
+function setTimer(option) {
   var classArr = ['num0', 'num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'];
   var timerWindow = document.querySelector('.timer');
   var firstNum = timerWindow.children[0];
@@ -747,8 +747,13 @@ function setTimer() {
   if (firstStep === 'false') {
     prevTimer = Number(localStorage.getItem('timer'));
   }
-  var currTimer = String(prevTimer + 1);
-  // console.log(currTimer)
+  function getCurrTimer() {
+    if (option !== 'init') {
+      return String(prevTimer + 1);
+    }
+    return String(prevTimer);
+  }
+  var currTimer = getCurrTimer();
   localStorage.setItem('timer', "".concat(currTimer));
   var currTimerArr = currTimer.split('');
   while (currTimerArr.length < 3) {
@@ -1344,6 +1349,7 @@ function createGameFooterHTML() {
   num = num.createElement();
   num = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', timer, 'num', 'third-num');
   num.createElement();
+  (0,_functions__WEBPACK_IMPORTED_MODULE_2__.setTimer)('init');
 
   /* Right footer border */
   var rightBorder = new _elem_builder__WEBPACK_IMPORTED_MODULE_0__.ElementBuilder('div', gameFooter, 'right-border', 'right-border_footer');
@@ -13320,18 +13326,6 @@ function getMinesValue() {
   var level = localStor.getItem('active-level');
   var mines = document.getElementById('custom-mines');
   localStor.setItem("".concat(level.toLowerCase(), "-mines"), "".concat(mines.value));
-  /*if (level === 'Beginner') {
-    return Number(mines.value);
-  }
-  if (level === 'Intermediate') {
-    return Number(mines.value);
-  }
-  if (level === 'Expert') {
-    return Number(mines.value);
-  }
-  if (level === 'Custon') {
-    return Number(mines.value);
-  }*/
   return Number(mines.value);
 }
 document.addEventListener('click', function (e) {
@@ -13437,7 +13431,7 @@ document.addEventListener('click', function (e) {
       (0,_modules_mineBuilder__WEBPACK_IMPORTED_MODULE_7__.createMineField)(Number(e.target.classList[1]) - 1);
       (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setMinesCouner)('init');
       var timer = setInterval(function () {
-        (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setTimer)();
+        (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setTimer)('continue');
         if (_localStor.getItem('game-over') === 'true') {
           clearInterval(timer);
         }
@@ -13450,6 +13444,12 @@ document.addEventListener('click', function (e) {
       (0,_modules_open_empty_cells__WEBPACK_IMPORTED_MODULE_8__.openCellsAround)();
       _localStor.changeValue('first-step', 'false');
     } else {
+      var _timer = setInterval(function () {
+        (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.setTimer)('continue');
+        if (_localStor.getItem('game-over') === 'true') {
+          clearInterval(_timer);
+        }
+      }, 1000);
       var _closedStyle = e.target.classList[2];
       if (!_closedStyle.includes('flaged-right') && !_closedStyle.includes('flaged-wrong')) {
         (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.changeStepsCouner)('game');
@@ -13629,4 +13629,4 @@ document.addEventListener('contextmenu', function (e) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index.2f2ae8002dc257c158c6.js.map
+//# sourceMappingURL=index.a332198393c0903fe118.js.map
