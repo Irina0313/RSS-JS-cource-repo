@@ -13321,7 +13321,6 @@ document.addEventListener('click', function (e) {
     }
     localStor.setItem('first-step', 'true');
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createMainHeaderHTML)();
-    min;
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createGameFieldHTML)();
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createGameFooterHTML)();
   }
@@ -13496,4 +13495,4 @@ document.addEventListener('contextmenu', function (e) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index.dbde84589d62729e16c5.js.map
+//# sourceMappingURL=index.0e9067adab261dafaa0b.js.map
