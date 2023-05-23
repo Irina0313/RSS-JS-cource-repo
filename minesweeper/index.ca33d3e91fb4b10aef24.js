@@ -1056,22 +1056,24 @@ function getMines() {
     return 10;
   }
 }
-var mines = getMines();
+
+//const mines = getMines();
+
 var options = {
   Beginner: {
     width: 10,
     height: 10,
-    mines: mines
+    mines: getMines()
   },
   Intermediate: {
     width: 15,
     height: 15,
-    mines: mines
+    mines: getMines()
   },
   Expert: {
     width: 25,
     height: 25,
-    mines: mines
+    mines: getMines()
   }
 };
 function getWidthSetting() {
@@ -1379,7 +1381,13 @@ function createMineField(number) {
   var options = new _levels__WEBPACK_IMPORTED_MODULE_1__.GetLevelOptions(activeLevel.innerText);
   var cellsArr = document.querySelectorAll('.cell');
   var cellsAmount = cellsArr.length;
-  var minesAmount = options.getMines();
+  function getMines() {
+    if (!localStorage.getItem("".concat(activeLevel.innerText.toLowerCase(), "-mines"))) {
+      return 10;
+    } else {
+      return Number(localStorage.getItem("".concat(activeLevel.innerText.toLowerCase(), "-mines")));
+    }
+  }
   var openedCell = number;
 
   /* Get rundom number */
@@ -1400,10 +1408,10 @@ function createMineField(number) {
       getMinedCellsArr(newNum);
     }
   }
-  while (minedCells.length < minesAmount) {
+  while (minedCells.length < getMines()) {
     getMinedCellsArr(num);
   }
-
+  console.log(minedCells.length, getMines());
   /* Change styles and local storage value of mined cells */
 
   minedCells.forEach(function (item) {
@@ -13042,7 +13050,8 @@ function getMinesValue() {
   var localStor = new _modules_functions__WEBPACK_IMPORTED_MODULE_5__.LocalStorageActions();
   var level = localStor.getItem('active-level');
   var mines = document.getElementById('custom-mines');
-  if (level === 'Beginner') {
+  localStor.setItem("".concat(level.toLowerCase(), "-mines"), "".concat(mines.value));
+  /*if (level === 'Beginner') {
     return Number(mines.value);
   }
   if (level === 'Intermediate') {
@@ -13053,7 +13062,8 @@ function getMinesValue() {
   }
   if (level === 'Custon') {
     return Number(mines.value);
-  }
+  }*/
+  return Number(mines.value);
 }
 document.addEventListener('click', function (e) {
   // console.log(e.target);
@@ -13135,10 +13145,9 @@ document.addEventListener('click', function (e) {
         localStorage.removeItem(_key);
       }
     }
-    var level = localStor.getItem('active-level');
-    localStor.setItem("".concat(level.toLowerCase(), "-mines"), "".concat(mines.value));
     localStor.setItem('first-step', 'true');
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createMainHeaderHTML)();
+    min;
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createGameFieldHTML)();
     (0,_modules_main__WEBPACK_IMPORTED_MODULE_4__.createGameFooterHTML)();
   }
@@ -13291,10 +13300,12 @@ document.addEventListener('contextmenu', function (e) {
     localStor.setItem(e.target.classList[1], e.target.classList[2]);
   }
   var rightFlagedMines = document.querySelectorAll('.flaged-right_cell-mined_closed');
+  var closedMines = document.querySelectorAll('.mined_closed');
+  var hiddenMines = rightFlagedMines.length + closedMines.length;
   var activeLevel = document.querySelector('.level.level_active');
   var options = new _modules_levels__WEBPACK_IMPORTED_MODULE_6__.GetLevelOptions(activeLevel.innerText);
   var minesAmount = options.getMines();
-  if (rightFlagedMines.length === minesAmount) {
+  if (hiddenMines === minesAmount) {
     var steps = localStorage.getItem('steps-counter');
     var time = (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.getTime)();
     (0,_modules_functions__WEBPACK_IMPORTED_MODULE_5__.saveGameResult)(steps, time);
@@ -13307,4 +13318,4 @@ document.addEventListener('contextmenu', function (e) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index.d343cb7d9fd8d19c2fd6.js.map
+//# sourceMappingURL=index.ca33d3e91fb4b10aef24.js.map
