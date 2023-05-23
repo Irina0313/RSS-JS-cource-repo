@@ -17,15 +17,15 @@
       }
 
       .fil4 {
-        fill: white
+        fill: #a1a0a0
       }
 
       .fil0 {
-        fill: gray
+        fill: #363535
       }
 
       .fil1 {
-        fill: #c6c6c6
+        fill: #5c5c5c
       }
 
       .fil3 {
