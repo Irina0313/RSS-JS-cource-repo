@@ -6,7 +6,7 @@ class Loader {
         this.options = options;
     }
     protected getResp(
-        { endpoint, options = {} }: { endpoint: string; options: object },
+        { endpoint, options = {} }: { endpoint: string; options?: object },
         callback = (): void => {
             console.error('No callback for GET response');
         }
