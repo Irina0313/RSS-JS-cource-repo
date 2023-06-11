@@ -21,7 +21,6 @@ export interface SourcesData {
     name: string;
     url: string;
 }
-
 export interface DrawNewsData {
     articles: NewsData[];
     status: string;
