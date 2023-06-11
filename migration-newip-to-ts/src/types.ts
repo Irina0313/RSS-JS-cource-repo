@@ -21,3 +21,14 @@ export interface SourcesData {
     name: string;
     url: string;
 }
+
+export interface DrawNewsData {
+    articles: NewsData[];
+    status: string;
+    totalResults: number;
+}
+
+export interface DrawSourcesData {
+    sources: SourcesData[];
+    status: string;
+}
