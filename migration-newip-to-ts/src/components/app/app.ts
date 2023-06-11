@@ -9,7 +9,7 @@ class App {
         this.view = new AppView();
     }
 
-    protected start(): void {
+    public start(): void {
         const sources = document.querySelector('.sources') as HTMLElement;
         if (sources !== null) {
             sources.addEventListener('click', (e: MouseEvent) =>
