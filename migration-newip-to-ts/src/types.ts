@@ -11,3 +11,13 @@ export interface NewsData {
     url: string;
     urlToImage: string;
 }
+
+export interface SourcesData {
+    category: string;
+    country: string;
+    description: string;
+    id: string;
+    language: string;
+    name: string;
+    url: string;
+}
