@@ -3,12 +3,7 @@ import { DrawNewsData, DrawSourcesData } from '../../types';
 //type GetSourcesCallback<T> = (data: T) => void;
 class AppController extends AppLoader {
     public getSources(callback: ((data?: DrawSourcesData) => void) | undefined): void {
-        super.getResp(
-            {
-                endpoint: 'sources',
-            },
-            callback
-        );
+        super.getResp({ endpoint: 'sources' }, callback);
     }
 
     public getNews(e: MouseEvent, callback: ((data?: DrawNewsData | undefined) => void) | undefined): void {

@@ -31,3 +31,8 @@ export type DrawSourcesData = {
     sources: SourcesData[];
     status: string;
 };
+
+export type GetRespObj = {
+    endpoint: string | undefined;
+    options: object;
+};
