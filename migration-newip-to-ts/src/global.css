@@ -18,18 +18,49 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    column-gap: 20px;
 }
+
 footer .copyright {
     font-size: 14px;
-    color: #333;
+    color: #FFFF;
     text-align: center;
 }
+
 footer .copyright a {
-    color: #444;
+    color: #FFFF;
 }
-footer .copyright a:hover {
-    color: #555;
-}
+
+
 footer .copyright:before {
     content: '©';
+}
+
+footer .rss-logo {
+    background-image: url('./components/img/rs_school_js.png');
+    width: 70px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+footer .rss-logo a,
+footer .git a {
+    display: block;
+    width: 70px;
+    height: 40px;
+}
+
+footer .git {
+    background-image: url('./components/img/github-svgrepo-com.svg');
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+footer .git:hover,
+footer .rss-logo:hover,
+footer .copyright a:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
 }
