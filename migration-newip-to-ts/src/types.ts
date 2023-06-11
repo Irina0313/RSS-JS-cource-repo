@@ -21,13 +21,13 @@ export interface SourcesData {
     name: string;
     url: string;
 }
-export interface DrawNewsData {
+export type DrawNewsData = {
     articles: NewsData[];
     status: string;
     totalResults: number;
-}
+};
 
-export interface DrawSourcesData {
+export type DrawSourcesData = {
     sources: SourcesData[];
     status: string;
-}
+};
