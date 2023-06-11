@@ -1,8 +1,8 @@
 import AppLoader from './appLoader';
-import { NewsData, SourcesData } from '../../types';
+import { DrawNewsData, DrawSourcesData } from '../../types';
 //type GetSourcesCallback<T> = (data: T) => void;
 class AppController extends AppLoader {
-    private getSources(callback: ((data?: SourcesData) => void) | undefined): void {
+    public getSources(callback: ((data?: DrawSourcesData) => void) | undefined): void {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    private getNews(e: MouseEvent, callback: ((data?: NewsData) => void) | undefined): void {
+    public getNews(e: MouseEvent, callback: ((data?: DrawNewsData | undefined) => void) | undefined): void {
         let target = e.target as HTMLElement;
         if (target !== null) {
             const newsContainer = e.currentTarget as HTMLElement;
