@@ -42,3 +42,8 @@ interface TypesGetRespObj {
 }
 
 export type GetRespObj = Pick<TypesGetRespObj, 'endpoint' | 'options'>;
+
+export enum ErrorsCodes {
+    Unauthorized = 401,
+    PaymentRequired = 404,
+}

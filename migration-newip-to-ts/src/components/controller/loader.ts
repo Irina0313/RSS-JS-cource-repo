@@ -1,4 +1,4 @@
-import { GetRespObj } from '../../types';
+import { GetRespObj, ErrorsCodes } from '../../types';
 class Loader {
     private baseLink: string;
     private options: { apiKey: string };
@@ -17,7 +17,7 @@ class Loader {
 
     private static errorHandler(res: Response): Response {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === ErrorsCodes.Unauthorized || res.status === ErrorsCodes.PaymentRequired)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
