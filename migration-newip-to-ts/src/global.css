@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     color: #fff;
     background: #17181c;
@@ -11,6 +15,11 @@ header {
 header h1 {
     font-size: 40px;
     font-weight: 800;
+}
+
+header h2:hover {
+    cursor: pointer;
+    text-shadow: 3px 3px 2px #3fcc59;
 }
 
 footer {
@@ -63,4 +72,33 @@ footer .git:hover,
 footer .rss-logo:hover,
 footer .copyright a:hover {
     box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+}
+
+.up-btn {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    background-image: url("./components/img/knopka-vverh-v-cs-cart.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 20px;
+    bottom: 50px;
+}
+
+.up-btn a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.up-btn:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    header h1 {
+        font-size: 30px;
+        text-align: center;
+    }
 }

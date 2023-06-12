@@ -32,9 +32,9 @@ export type DrawSourcesData = {
     status: string;
 };
 
-type Pick<T, K extends keyof T> = {
+/*type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
-};
+};*/
 interface TypesGetRespObj {
     endpoint: string | undefined;
     options: object;

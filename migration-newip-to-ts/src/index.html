@@ -10,10 +10,11 @@
 
 <body>
     <header>
-        <h1>News Portal</h1>
+        <h1 id="title">News Portal</h1>
+        <h2 class="categories">Categories </h2>
     </header>
     <main>
-        <div class="sources buttons"></div>
+        <div class="sources sources_hidden buttons"></div>
         <div class="news"></div>
     </main>
     <footer>
@@ -27,7 +28,9 @@
             <a href="https://github.com/Irina0313" target="_blank"></a>
         </div>
     </footer>
-
+    <div class="up-btn">
+        <a href="#title"></a>
+    </div>
     <template id="sourceItemTemp">
         <div class="source__item">
             <span class="source__item-name"></span>
