@@ -20,7 +20,7 @@ module.exports = {
     open: true,
     hot: true,
   },
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  entry: path.resolve(__dirname, 'src', 'index.ts'),
   resolve: {
     extensions: ['.ts', '.js'],
 },
