@@ -1,0 +1,29 @@
+.footer-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 30px;
+  list-style-type: none;
+}
+.footer-list__item {
+  text-decoration: none;
+}
+.git-link {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-image: url("../../assets/img/footer/git.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.year {
+  font-size: 2em;
+}
+.rss-link {
+  display: block;
+  width: 80px;
+  height: 35px;
+  background-image: url("../../assets/img/footer/rs_school_js.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}

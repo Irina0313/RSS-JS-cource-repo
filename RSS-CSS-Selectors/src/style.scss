@@ -1,47 +1,5 @@
-.visualization {
-  display: flex;
-  align-items: flex-end;
-  position: relative;
-  grid-area: visualization;
-  background-image: url("./assets/img/background/grass.png"), url("./assets/img/background/sky.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-.code-area {
-  grid-area: code-area;
-}
-
-.levels {
-  grid-area: levels;
-  background-color: rgb(222, 241, 14);
-}
-
-.wrapper-main {
-  height: 100vh;
-  display: grid;
-  grid-template-areas:
-    "visualization visualization  levels"
-    "code-area code-area levels";
-  gap: 10px;
-  padding: 10px;
-}
-
-.fly {
-  position: absolute;
-  left: 30px;
-  bottom: 130px;
-  transition: all 2s ease-out;
-  display: block;
-  width: 100px;
-  height: 100px;
-}
-
-.fly_away {
-  transform: translate3d(500px, -250px, -70px);
-}
-
-.rose {
-  width: 103.15;
-  height: 200px;
-}
+@import "./styles/normalize.css";
+@import "./components/base-structure/base-structure";
+@import "./components/left-side/left-side";
+@import "./components/right-side/right-side";
+@import "./components/footer/footer";

@@ -1,0 +1,50 @@
+// right-side
+.right-side {
+  width: 375px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.levels-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 3em;
+}
+
+//burger
+
+.burger {
+  position: relative;
+  width: 30px;
+  height: 21px;
+  border-bottom: 3px solid #212121;
+  border-top: 3px solid #212121;
+  box-sizing: border-box;
+
+  &::after {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: #212121;
+    content: "";
+    top: 6px;
+  }
+
+  &_opened {
+    transform: rotate(45deg);
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+    &::before {
+      transform: rotate(90deg);
+      transition-duration: 0.5s;
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background-color: #212121;
+      content: "";
+      top: 6px;
+    }
+  }
+}
