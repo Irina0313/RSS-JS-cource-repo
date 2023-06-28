@@ -25,7 +25,9 @@
   display: flex;
   align-items: flex-end;
   position: relative;
-  background-image: url("../../assets/img/background/sky.png");
+  //background-image: url("../../assets/img/background/sky.png");
+  background-image: url("../../assets/img/background/3d-illustration-close-up-of-green-grass-with-blue-sky_258743-174.avif");
+
   background-size: 100% 100%;
   background-repeat: no-repeat;
   z-index: 1;
@@ -41,65 +43,60 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  //column-gap: 30px;
-  z-index: 2;
 }
 .grass {
   width: 100%;
   height: 60%;
-  z-index: 3;
+  // z-index: 3;
 }
 
 .grass__image {
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/img/background/grass.png");
+  // background-image: url("../../assets/img/background/grass.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-}
-
-.code-area {
-  grid-area: code-area;
 }
 
 .visual-set {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100px;
   height: 200px;
 }
-.fly {
-  //position: absolute;
-  //left: 130px;
-  //bottom: 90px;
+
+.butterfly {
+  position: relative;
   background-image: url("../../assets/img/blue-but.gif");
   background-repeat: no-repeat;
   background-size: contain;
-  transition: all 2s ease-out;
+  //transition: all 2s ease-out;
   display: block;
-  width: 100px;
-  height: 100px;
-  z-index: 3;
+  width: 84px;
+  height: 84px;
+  z-index: 4;
 }
 
-.fly_away {
+.butterfly_away {
   transform: translate3d(500px, -250px, -70px);
 }
 
 .rose {
-  //position: relative;
-  //left: 130px;
-  //bottom: 0;
-  background-image: url("../../assets/img/flowers/rose.png");
+  position: relative;
+  display: flex;
+  justify-content: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 74px;
-  height: 144px;
-  margin-top: -40px;
-  //z-index: 2;
+  background-position: bottom;
+  width: 84px;
+  height: 200px;
 }
-
+._active {
+  transform: translate3d(12px, -10%, 3em);
+}
+.red-rose {
+  background-image: url("../../assets/img/cube.png");
+}
 // editor
 
 .editor {

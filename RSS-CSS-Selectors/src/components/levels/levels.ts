@@ -1,4 +1,7 @@
 import { ILevel } from '../../interfaces/level';
+import { VisualItemsTemplates } from './html-components-templates';
+
+const visualTemplate = new VisualItemsTemplates();
 export const levels: Record<number, ILevel> = {
     1: {
         number: 1,
@@ -6,11 +9,14 @@ export const levels: Record<number, ILevel> = {
         desriptionTitle: 'Type Selector',
         descriptionValue: 'Select elements by their type',
         examples: 'div selects all div elements.',
-        selector: 'fly',
+        selector: 'butterfly',
         htmlViver: `<body>/n <rose>/n </fly>/n</rose>/n</body>`,
-        setNumber: 2,
-        rose: 2,
-        butterfly: 2,
+        sets: [
+            { rose: visualTemplate.redRose, butterfly: visualTemplate.blueFly },
+            { rose: visualTemplate.redRose },
+            { butterfly: visualTemplate.blueFly },
+            { rose: visualTemplate.redRose },
+        ],
     },
     2: {
         number: 2,
@@ -18,10 +24,11 @@ export const levels: Record<number, ILevel> = {
         desriptionTitle: 'Type Selector',
         descriptionValue: 'Select elements by their ID',
         examples: '',
-        selector: 'fly',
+        selector: 'butterfly',
         htmlViver: '',
-        setNumber: 2,
-        rose: 2,
-        butterfly: 2,
+        sets: [
+            { rose: visualTemplate.redRose, butterfly: visualTemplate.blueFly },
+            { rose: visualTemplate.redRose, rose1: visualTemplate.redRose, rose2: visualTemplate.redRose },
+        ],
     },
 };

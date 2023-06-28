@@ -1,3 +1,7 @@
+import { IHTMLElement } from './html-elem';
+export interface ISetObj {
+    [key: string]: IHTMLElement;
+}
 export interface ILevel {
     readonly number: number;
     readonly title: string;
@@ -6,7 +10,5 @@ export interface ILevel {
     readonly examples: string;
     readonly selector: string;
     readonly htmlViver: string;
-    readonly setNumber?: number;
-    readonly rose?: number;
-    readonly butterfly?: number;
+    readonly sets: ISetObj[];
 }

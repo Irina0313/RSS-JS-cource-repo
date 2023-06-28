@@ -1,7 +1,7 @@
-import { node } from 'webpack';
 import { IHTMLElement } from '../../interfaces/html-elem';
 import { createElement } from '../../modules/create-HTML-elem';
 import { getCurrLevelValue } from '../../modules/levelsActions';
+import { ISetObj } from '../../interfaces/level';
 
 /* left side */
 const leftSideTempl: IHTMLElement = {
@@ -178,41 +178,13 @@ export function buildEditor(): void {
 }
 
 export function addVisualItems(): void {
-    const currLevel: object = getCurrLevelValue();
     const visualItemsContainer = document.querySelector('.visual-items') as HTMLElement;
-    const visualSetTempl: IHTMLElement = {
-        tag: 'div',
-        class: ['visual-set'],
-    };
-
-    /*roses */
-    const rosesAmount: number = currLevel['rose' as keyof typeof currLevel];
-
-    const roseTempl: IHTMLElement = {
-        tag: 'div',
-        class: ['rose'],
-    };
-    const setAmount: number = currLevel['setNumber' as keyof typeof currLevel];
-    /* butterflies */
-
-    const butterflyAmount: number = currLevel['butterfly' as keyof typeof currLevel];
-
-    const butterflyTempl: IHTMLElement = {
-        tag: 'div',
-        class: ['fly'],
-    };
-
-    for (let i = 0; i < setAmount; i += 1) {
-        const visualSet: HTMLElement = createElement(visualSetTempl, visualItemsContainer);
-        createElement(butterflyTempl, visualSet);
-        createElement(roseTempl, visualSet);
-    }
-    const roses: NodeList = document.querySelectorAll('.rose');
-    if (roses) {
-        for (let i = 0; i < roses.length; i += 1) {
-            const nodeItem = roses[i] as HTMLElement;
-            nodeItem.setAttribute('id', `rose${String(i + 1)}`);
-        }
-    }
-    
+    const currLevel: object = getCurrLevelValue();
+    const sets: ISetObj[] = currLevel['sets' as keyof typeof currLevel];
+    sets.forEach(function (set: object): void {
+        const values = Object.values(set);
+        values.reduce(function (curr: HTMLElement, next: IHTMLElement): HTMLElement {
+            return createElement(next, curr);
+        }, visualItemsContainer);
+    });
 }

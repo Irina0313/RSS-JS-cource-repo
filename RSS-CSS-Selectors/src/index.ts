@@ -17,4 +17,17 @@ window.addEventListener('load', function () {
     /* add roses and butterflies */
     addVisualItems();
     /* add HTMLviver */
+    const cont = document.querySelector('.visual-items') as HTMLElement;
+    cont.addEventListener('mouseover', (e) => {
+        const targetElem = e.target as HTMLElement;
+        if (targetElem.classList.contains('rose') || targetElem.classList.contains('butterfly')) {
+            targetElem.classList.add('_active');
+        }
+    });
+    cont.addEventListener('mouseout', (e) => {
+        const targetElem = e.target as HTMLElement;
+        if (targetElem.classList.contains('rose') || targetElem.classList.contains('butterfly')) {
+            targetElem.classList.remove('_active');
+        }
+    });
 });

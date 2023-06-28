@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="5333.3335"
+   height="5333.3335"
+   viewBox="0 0 5333.3335 5333.3335"
+   sodipodi:docname="vecteezy_isometric-cube-on-a-white-background_.eps"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,5333.3333)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="M 40000,0 H 0 V 40000 H 40000 V 0"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+      <path
+         d="M 9240.88,13748.5 V 26185.6 L 20000,19967.1 V 7540.9 L 9240.88,13748.5"
+         style="fill:#12b5db;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path14" />
+      <path
+         d="M 30759.1,13748.5 V 26185.6 L 20000,19967.1 V 7540.9 l 10759.1,6207.6"
+         style="fill:#0e98af;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path16" />
+      <path
+         d="M 9240.88,26185.6 20000,32459.1 30759.1,26185.6 20000,19967.1 9240.88,26185.6"
+         style="fill:#26daf7;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path18" />
+    </g>
+  </g>
+</svg>
