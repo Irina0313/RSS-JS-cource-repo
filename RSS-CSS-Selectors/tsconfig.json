@@ -6,7 +6,13 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
-  },
-  
+    "skipLibCheck": true,
+    "typeRoots" : ["node_modules/@types", "src/types"],
+    "lib": [
+      "ES2021.String"
+    ]
 }
+  }
+  
+    
+

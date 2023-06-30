@@ -57,7 +57,9 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-
+.visual-items img {
+  width: 65px;
+}
 .visual-set {
   display: flex;
   flex-direction: column;
@@ -88,16 +90,18 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
-  width: 84px;
-  height: 200px;
+  //width: 84px;
+  //height: 84px;
+  z-index: 5;
 }
-._active {
-  transform: translate3d(12px, -10%, 3em);
+.rose.active {
+  //transform: scale(1.2);
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 7px white);
 }
-.red-rose {
-  background-image: url("../../assets/img/cube.png");
+.code.active .hljs-name {
+  color: red;
 }
-// editor
 
 .editor {
   width: 100%;
@@ -111,7 +115,10 @@
 .html-viver {
   width: 48%;
 }
-
+.html-viver {
+  display: flex;
+  flex-wrap: wrap;
+}
 .css-editor__main {
   display: flex;
   flex-wrap: wrap;
@@ -119,6 +126,7 @@
 }
 
 .editor__header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   font-size: 2em;
@@ -134,7 +142,9 @@
   flex-wrap: wrap;
   width: calc(100% - 40px);
 }
-
+.viver-wrapper {
+  width: calc(100% - 40px);
+}
 .css-editor__input {
   display: block;
   width: 80%;
@@ -144,7 +154,31 @@
 .css-editor__button {
   height: 1.7em;
 }
-.css-editor__rules {
+.css-editor__rules,
+.codePre {
   font-size: 1.7em;
   width: calc(100% - 60px);
+}
+
+.code {
+  display: block;
+  width: 100%;
+  font-size: 1.6em;
+}
+
+.modal-str {
+  position: absolute;
+  top: -20px;
+  left: 40px;
+  text-align: center;
+  font-size: 1.3em;
+  padding: 3px;
+  border-radius: 20px;
+  border: 1px solid black;
+  font-weight: 600;
+  background-color: bisque;
+  min-width: 90px;
+  &.hidden {
+    display: none;
+  }
 }

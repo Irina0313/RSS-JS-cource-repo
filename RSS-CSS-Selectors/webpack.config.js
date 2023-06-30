@@ -25,6 +25,10 @@ module.exports = {
     extensions: ['.ts', '.js'],
 },
   output: {
+    assetModuleFilename: pathData => {
+      const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
+      return `${filepath}/[name][ext]`;
+  },
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     filename: 'index.[contenthash].js',
@@ -73,9 +77,9 @@ module.exports = {
       {
         test: /\.(jpe?g|png|webp|gif|svg)$/i,
         type: 'asset/resource',
-        generator: {
+        /*generator: {
           filename: 'images/[name][ext]',
-        },
+        },*/
       },
       {
         test: /\.woff2?$/i,

@@ -9,6 +9,10 @@ export interface ILevel {
     readonly descriptionValue: string;
     readonly examples: string;
     readonly selector: string;
-    readonly htmlViver: string;
-    readonly sets: ISetObj[];
+    readonly sets: { [key: string]: IHTMLElement }[];
+    readonly htmlViver: {
+        [key: string]: string[];
+    };
+    readonly setsIdenticClasses: string[];
+    readonly pseudoCodeIdenticClasses: string[];
 }

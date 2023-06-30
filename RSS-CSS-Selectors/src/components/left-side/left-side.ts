@@ -1,5 +1,5 @@
 import { IHTMLElement } from '../../interfaces/html-elem';
-import { createElement } from '../../modules/create-HTML-elem';
+import { createElement, createImageElement } from '../../modules/create-HTML-elem';
 import { getCurrLevelValue } from '../../modules/levelsActions';
 import { ISetObj } from '../../interfaces/level';
 
@@ -181,10 +181,18 @@ export function addVisualItems(): void {
     const visualItemsContainer = document.querySelector('.visual-items') as HTMLElement;
     const currLevel: object = getCurrLevelValue();
     const sets: ISetObj[] = currLevel['sets' as keyof typeof currLevel];
-    sets.forEach(function (set: object): void {
-        const values = Object.values(set);
+    sets.forEach(function (set: object, ind: number): void {
+        const values: IHTMLElement[] = Object.values(set);
         values.reduce(function (curr: HTMLElement, next: IHTMLElement): HTMLElement {
-            return createElement(next, curr);
+            const newElem: HTMLElement = createImageElement(next, curr);
+            newElem.classList.add(currLevel['setsIdenticClasses' as keyof typeof currLevel][ind]);
+            return newElem;
         }, visualItemsContainer);
     });
+    //const newImg: HTMLImageElement = new Image(Cofee);
+    //newImg.src = Cofee;
+    //console.log(newImg);
+    //const image1 = visualItemsContainer.appendChild(newImg);
+    //image1.setAttribute('width', '65');
+    //image1.classList.add('cofee');
 }

@@ -3,4 +3,5 @@ export interface IHTMLElement {
     class: string[];
     attribute?: object;
     innerHTML?: string;
+    imageLink?: string;
 }
