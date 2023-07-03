@@ -10,7 +10,7 @@
     "clear": "rd /s /q dist",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --fix",
-    "deploy": "npm run build && npx gh-pages -d RSS-CSS-Selectors/dist -e RSS-CSS-Selectors"
+    "deploy": "npm run build-prod && npx gh-pages -d dist -e RSS-CSS-Selectors"
   },
   "keywords": [],
   "author": "",
