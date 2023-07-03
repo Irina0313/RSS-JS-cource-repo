@@ -8,7 +8,7 @@ export interface ILevel {
     readonly desriptionTitle: string;
     readonly descriptionValue: string;
     readonly examples: string;
-    readonly selector: string;
+    readonly answer: string[];
     readonly sets: { [key: string]: IHTMLElement }[];
     readonly htmlViver: {
         [key: string]: string[];

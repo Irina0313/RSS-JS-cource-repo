@@ -1,15 +1,19 @@
 // Base
 html {
   font-size: 10px;
+  transition: all 0.2s ease-out;
 }
-.body {
+body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: $main-color1-light-strong;
+  font-family: $mainFont;
+  height: 100vh;
+  padding: 0 50px 30px 50px;
 }
 .wrapper-main {
   display: flex;
-
-  gap: 10px;
+  gap: 30px;
   padding: 10px;
 }
