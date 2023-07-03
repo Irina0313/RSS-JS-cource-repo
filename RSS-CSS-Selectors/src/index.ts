@@ -5,15 +5,12 @@ import { buildLeftSideHeader, buildVisualisation, buildEditor, addVisualItems } 
 import { buildRightSide } from './components/right-side/right-side';
 import { buildFooter } from './components/footer/footer';
 import { buildPseudoCode } from './components/left-side/visualCode';
-import { getEmitterMouseMove, addEmitter } from './classes/emiter';
-import { IHTMLElement } from './interfaces/html-elem';
-import { createElement } from './modules/create-HTML-elem';
+import { addEmitter } from './classes/emiter';
 window.addEventListener('load', function () {
     /* initialization */
 
     buildMain();
     buildLeftSideHeader();
-
     buildVisualisation();
     buildEditor();
     buildRightSide();

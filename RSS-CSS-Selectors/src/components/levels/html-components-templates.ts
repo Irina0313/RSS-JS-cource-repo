@@ -4,10 +4,6 @@ import { IHTMLElement } from '../../interfaces/html-elem';
 import RedRose from '../../assets/img/flowers/rose.png';
 import YellowRose from '../../assets/img/flowers/yellow-rose.png';
 
-/*function getImageLink(image): string{
-const newImageEl: HTMLImageElement = new Image(image);
-newImageEl.src = image;
-}*/
 export class VisualItemsTemplates {
     public redRose: IHTMLElement = {
         tag: 'rose',

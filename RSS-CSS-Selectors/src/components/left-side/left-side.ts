@@ -211,7 +211,6 @@ export function buildEditor(): void {
     /* HTML viver */
     const htmlViver: HTMLElement = createElement(htmlViverTempl, editor);
     const viverEditorHeader: HTMLElement = createElement(editorHeaderTempl, htmlViver);
-    //createElement(viverHeaderItem1, viverEditorHeader);
     createElement(viverHeaderItem2, viverEditorHeader);
     buildLines(htmlViver);
 }

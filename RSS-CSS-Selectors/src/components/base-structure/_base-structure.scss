@@ -11,9 +11,15 @@ body {
   font-family: $mainFont;
   height: 100vh;
   padding: 0 50px 30px 50px;
+  @media screen and (max-width: 1400px) {
+    padding: 0 30px 30px 30px;
+  }
 }
 .wrapper-main {
   display: flex;
   gap: 30px;
   padding: 10px;
+  @media screen and (max-width: 950px) {
+    flex-wrap: wrap;
+  }
 }
