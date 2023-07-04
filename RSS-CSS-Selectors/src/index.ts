@@ -17,6 +17,7 @@ window.addEventListener('load', function () {
     buildFooter();
     /* add roses and butterflies */
     addVisualItems();
+
     /* add HTMLviver */
     buildPseudoCode();
     addEmitter();

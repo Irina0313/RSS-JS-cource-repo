@@ -38,6 +38,8 @@ export function loadLevel(levelNumber: number): void {
     changeLevelTitle();
     const visualItems = document.querySelector('.visual-items') as HTMLElement;
     deleteChildren(visualItems);
+    const glade = document.querySelector('glade') as HTMLElement;
+    deleteChildren(glade);
     addVisualItems();
     const editor = document.querySelector('.editor') as HTMLElement;
     deleteHTML(editor);

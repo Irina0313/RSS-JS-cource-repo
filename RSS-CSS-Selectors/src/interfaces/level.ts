@@ -10,6 +10,7 @@ export interface ILevel {
     readonly examples: string;
     readonly answer: string[];
     readonly sets: { [key: string]: IHTMLElement }[];
+    readonly setsTempl: { [key: string]: IHTMLElement }[];
     readonly htmlViver: {
         [key: string]: string[];
     };

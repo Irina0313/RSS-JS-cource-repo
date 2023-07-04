@@ -366,3 +366,9 @@ pre code.hljs {
 #error-animation {
   animation: shake 0.8s;
 }
+
+.visual-for-check {
+  position: absolute;
+  top: 8000px;
+  left: 8000px;
+}

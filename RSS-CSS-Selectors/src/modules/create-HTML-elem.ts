@@ -2,9 +2,11 @@ import { IHTMLElement } from '../interfaces/html-elem';
 
 export function createElement(newElem: IHTMLElement, parentElem: HTMLElement): HTMLElement {
     const tag = document.createElement(newElem.tag);
-    newElem.class.forEach(function (item: string): void {
-        tag.classList.add(`${item}`);
-    });
+    if (newElem.class) {
+        newElem.class.forEach(function (item: string): void {
+            tag.classList.add(`${item}`);
+        });
+    }
     if (newElem['innerHTML']) {
         tag.innerHTML = newElem['innerHTML'];
     }
@@ -29,9 +31,11 @@ export function createElement(newElem: IHTMLElement, parentElem: HTMLElement): H
 
 export function createImageElement(newElem: IHTMLElement, parentElem: HTMLElement): HTMLElement {
     const tag = document.createElement(newElem.tag);
-    newElem.class.forEach(function (item: string): void {
-        tag.classList.add(`${item}`);
-    });
+    if (newElem.class) {
+        newElem.class.forEach(function (item: string): void {
+            tag.classList.add(`${item}`);
+        });
+    }
     if (newElem.imageLink) {
         const imageLink: string = newElem.imageLink;
         const newImage: HTMLImageElement = new Image();

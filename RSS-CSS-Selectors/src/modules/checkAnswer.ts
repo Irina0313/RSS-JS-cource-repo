@@ -23,66 +23,51 @@ function showErrorAnimation(action: string): void {
         }
     }
 }
+
 // eslint-disable-next-line max-lines-per-function
 export function checkUserUnswer(value: string): void {
-    value = value
-        .replaceAll(`'`, `"`)
-        .replaceAll(' ', '')
-        .replaceAll('`', `"`)
-        .replaceAll('body', '')
-        .toLowerCase()
-        .split(',')
-        .sort()
-        .join(',');
-
     const passedLevels = new PassedLevels();
     const passedLevelsWithHelp = new PassedLevelsWithHelp();
     const currLevel = getCurrLevelValue();
     const currLevelNumber: number = currLevel['number' as keyof typeof currLevel];
-    const rightAnswers: string[] = currLevel['answer' as keyof typeof currLevel];
-    const newArr: string[] = [];
-    rightAnswers.forEach((answer: string): void => {
-        newArr.push(
-            answer
-                .replaceAll(`'`, `"`)
-                .replaceAll(' ', '')
-                .replaceAll('`', `"`)
-                .replaceAll('body', '')
-                .toLowerCase()
-                .split(',')
-                .sort()
-                .join(',')
+    try {
+        const rigthAnswer = Array.from(
+            document.querySelectorAll(`.visual-for-check ${currLevel['answer' as keyof typeof currLevel][0]}`)
         );
-    });
-    console.log(newArr, value);
-    if (newArr.includes(value)) {
-        showWinnerAnimation(currLevel);
-        setTimeout(function (): void {
-            passedLevels.addPassed(currLevelNumber);
-            const levelsAmount = getLevelsAmount();
-            let levelsPassed = 0;
-            if (localStorage.passedLevelsWithHelp) {
-                levelsPassed += passedLevelsWithHelp.getPassed().length;
-            }
-            if (localStorage.passedLevels) {
-                levelsPassed += passedLevels.getPassed().length;
-            }
-            if (levelsPassed === levelsAmount) {
-                loadLevel(currLevelNumber);
-                return showErrorMessage('Congratulations!!! <br> You passed all the levels!');
-            } else if (currLevelNumber >= levelsAmount && levelsPassed < levelsAmount) {
-                loadLevel(currLevelNumber);
-                return showErrorMessage(
-                    'This was the last level. <br> There are still levels that have not been completed.<br> Try to pass them.'
-                );
-            } else if (currLevelNumber < levelsAmount) {
-                loadLevel(currLevelNumber + 1);
-            }
-        }, 1500);
-    } else {
-        showErrorAnimation('set');
-        setTimeout((): void => {
-            showErrorAnimation('remove');
-        }, 1300);
+        const userAnswer = Array.from(document.querySelectorAll(`.visual-for-check ${value}`));
+        const difference = rigthAnswer.filter((item) => !userAnswer.includes(item));
+        //console.log(rigthAnswer, userAnswer, difference);
+        if (difference.length === 0) {
+            showWinnerAnimation(currLevel);
+            setTimeout(function (): void {
+                passedLevels.addPassed(currLevelNumber);
+                const levelsAmount = getLevelsAmount();
+                let levelsPassed = 0;
+                if (localStorage.passedLevelsWithHelp) {
+                    levelsPassed += passedLevelsWithHelp.getPassed().length;
+                }
+                if (localStorage.passedLevels) {
+                    levelsPassed += passedLevels.getPassed().length;
+                }
+                if (levelsPassed === levelsAmount) {
+                    loadLevel(currLevelNumber);
+                    return showErrorMessage('Congratulations!!! <br> You passed all the levels!');
+                } else if (currLevelNumber >= levelsAmount && levelsPassed < levelsAmount) {
+                    loadLevel(currLevelNumber);
+                    return showErrorMessage(
+                        'This was the last level. <br> There are still levels that have not been completed.<br> Try to pass them.'
+                    );
+                } else if (currLevelNumber < levelsAmount) {
+                    loadLevel(currLevelNumber + 1);
+                }
+            }, 1500);
+        } else {
+            showErrorAnimation('set');
+            setTimeout((): void => {
+                showErrorAnimation('remove');
+            }, 1300);
+        }
+    } catch (err) {
+        return showErrorMessage('Not valide selector');
     }
 }

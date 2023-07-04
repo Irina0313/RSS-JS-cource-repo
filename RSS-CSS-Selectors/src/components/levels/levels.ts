@@ -18,21 +18,33 @@ export const levels: Record<number, ILevel> = {
             'rose:not(:has(:first-child))',
             'rose:nth-of-type(n+1)',
             'rose:nth-of-type(n)',
+            'rose:nth-of-type(*)',
             'rose:nth-child(n)',
+            'rose:nth-child(*)',
+            'rose:nth-last-of-type(n)',
+            'rose:nth-last-of-type(*)',
             'rose:nth-child(1),rose:nth-child(2),rose:nth-child(3)',
+            'rose:nth-of-type(1),nth-of-type(2),nth-of-type(3)',
+            'rose:first-child,rose:last-of-type,rose:nth-of-type(2)',
+            'rose:first-of-type,rose:last-of-type,rose:nth-of-type(2)',
         ],
         sets: [
             { rose1: visualTemplate.animated },
             { rose2: visualTemplate.animated },
             { rose3: visualTemplate.animated },
         ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTempl },
+            { rose2: visualTemplate.roseTempl },
+            { rose3: visualTemplate.roseTempl },
+        ],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `  &nbsp;&nbsp;&lt;rose&gt;&lt;/rose&gt;`,
                 ` &nbsp;&nbsp;&lt;rose&gt;&lt;/rose>`,
                 `  &nbsp;&nbsp;&lt;rose>&lt;/rose&gt;`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         setsIdenticClasses: ['rose1', 'rose2', 'rose3'],
@@ -47,19 +59,24 @@ export const levels: Record<number, ILevel> = {
         answer: ['#blue', 'butterfly', 'rosebutterfly', 'rose>butterfly', 'butterfly:only-child'],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `  &nbsp;&nbsp;&lt;rose&gt;`,
                 `&nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly id = "blue" >&lt;/butterfly&gt;`,
                 `  &nbsp;&nbsp;&lt;/rose&gt;`,
                 `  &nbsp;&nbsp;&lt;rose&gt;&lt;/rose>`,
                 `  &nbsp;&nbsp;&lt;rose>&lt;/rose&gt;`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
             { rose1: visualTemplate.redRose, butterfly1: visualTemplate.blueFly },
             { rose2: visualTemplate.redRose },
             { rose3: visualTemplate.redRose },
+        ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTempl, butterfly1: visualTemplate.buttrflyIdBlue },
+            { rose2: visualTemplate.roseTempl },
+            { rose3: visualTemplate.roseTempl },
         ],
         setsIdenticClasses: ['butterfly1'],
         pseudoCodeIdenticClasses: ['body', 'rose1', 'butterfly1', 'rose1', 'rose2', 'rose3', 'body'],
@@ -83,19 +100,24 @@ export const levels: Record<number, ILevel> = {
         ],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `  &nbsp;&nbsp;&lt;rose&gt;&lt;/rose&gt`,
                 `  &nbsp;&nbsp;&lt;rose&gt;&lt;/rose>`,
                 `  &nbsp;&nbsp;&lt;rose>`,
                 `&nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
                 `&nbsp;&nbsp;&lt;/rose&gt;`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
             { rose1: visualTemplate.redRose },
             { rose2: visualTemplate.redRose },
             { rose3: visualTemplate.redRose, butterfly1: visualTemplate.blueFly },
+        ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTempl },
+            { rose2: visualTemplate.roseTempl },
+            { rose3: visualTemplate.roseTempl, butterfly1: visualTemplate.buttrflyTempl },
         ],
         setsIdenticClasses: ['butterfly1'],
         pseudoCodeIdenticClasses: ['body', 'rose1', 'rose2', 'rose3', 'butterfly1', 'rose3', 'body'],
@@ -110,7 +132,7 @@ export const levels: Record<number, ILevel> = {
         answer: ['rose:nth-of-type(even)', 'rose:nth-child(2n)', 'rose:nth-of-type(2n)', 'rose:nth-child(even)'],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
 
                 `       &nbsp;&nbsp;&lt;rose&gt;&lt;/rose&gt`,
                 `       &nbsp;&nbsp;&lt;rose&gt;&lt;/rose&gt`,
@@ -123,7 +145,7 @@ export const levels: Record<number, ILevel> = {
                 `&nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
                 `       &nbsp;&nbsp;&lt;/rose&gt`,
 
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
@@ -133,6 +155,14 @@ export const levels: Record<number, ILevel> = {
             { rose4: visualTemplate.animated },
             { rose5: visualTemplate.redRose },
             { rose6: visualTemplate.animated, butterfly1: visualTemplate.blueFlyStatic },
+        ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTempl },
+            { rose2: visualTemplate.roseTempl },
+            { rose3: visualTemplate.roseTempl },
+            { rose4: visualTemplate.roseTempl },
+            { rose5: visualTemplate.roseTempl },
+            { rose6: visualTemplate.roseTempl, butterfly1: visualTemplate.buttrflyTempl },
         ],
         setsIdenticClasses: ['rose2', 'rose4', 'rose6'],
         pseudoCodeIdenticClasses: [
@@ -158,14 +188,14 @@ export const levels: Record<number, ILevel> = {
         answer: ['butterfly:not(:first-child)'],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `  &nbsp;&nbsp;&lt;rose&gt;&lt;/rose&gt`,
                 `  &nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
                 `  &nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
                 `  &nbsp;&nbsp;&lt;rose>`,
                 `&nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
                 `&nbsp;&nbsp;&lt;/rose&gt;`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
@@ -173,6 +203,12 @@ export const levels: Record<number, ILevel> = {
             { butterfly1: visualTemplate.butterflyOnGrass },
             { butterfly2: visualTemplate.butterflyOnGrass },
             { rose2: visualTemplate.redRose, butterfly3: visualTemplate.blueFlyStatic },
+        ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTempl },
+            { butterfly1: visualTemplate.buttrflyTempl },
+            { butterfly2: visualTemplate.buttrflyTempl },
+            { rose2: visualTemplate.roseTempl, butterfly3: visualTemplate.buttrflyTempl },
         ],
         setsIdenticClasses: ['butterfly1', 'butterfly2'],
         pseudoCodeIdenticClasses: ['body', 'rose1', 'butterfly1', 'butterfly2', 'rose2', 'butterfly3', 'rose2', 'body'],
@@ -193,7 +229,7 @@ export const levels: Record<number, ILevel> = {
         ],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `   &nbsp;&nbsp;&lt;rose class = "yellow" &gt;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "yellow" &gt;`,
                 `       &nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
@@ -205,7 +241,7 @@ export const levels: Record<number, ILevel> = {
                 `   &nbsp;&nbsp;&lt;rose class = "red" &gt;`,
                 `       &nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
                 `   &nbsp;&nbsp;&lt;/rose&gt`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
@@ -214,6 +250,13 @@ export const levels: Record<number, ILevel> = {
             { rose3: visualTemplate.redRose },
             { rose4: visualTemplate.yellowRoseAnimated, butterfly2: visualTemplate.blueFlyStatic },
             { rose5: visualTemplate.redRose, butterfly3: visualTemplate.blueFlyStatic },
+        ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTemplWithYellowClass },
+            { rose2: visualTemplate.roseTemplWithYellowClass, butterfly1: visualTemplate.buttrflyTempl },
+            { rose3: visualTemplate.roseTemplWithRedClass },
+            { rose4: visualTemplate.roseTemplWithYellowClass, butterfly2: visualTemplate.buttrflyTempl },
+            { rose5: visualTemplate.roseTemplWithRedClass, butterfly3: visualTemplate.buttrflyTempl },
         ],
         setsIdenticClasses: ['rose2', 'rose4'],
         pseudoCodeIdenticClasses: [
@@ -240,15 +283,15 @@ export const levels: Record<number, ILevel> = {
             'The CSS attribute selector matches elements based on the element having a given attribute explicitly set, with options for defining an attribute value or substring value match.',
         examples: '',
         answer: [
-            'rose.[data-purpouse*="bouquet"]',
-            `.yellow[data-purpouse*="bouquet"],.red[data-purpouse*="bouquet"]`,
-            `*[data-purpouse*="bouquet"]`,
-            `.yellow[data-purpouse*="bouquet"],.red[data-purpouse*="bouquet"]`,
-            'rose[data-purpouse=`yellow-bouquet`],rose[data-purpouse=`red-bouquet`]',
+            'rose[data-purpose*="bouquet"]',
+            `.yellow[data-purpose*="bouquet"],.red[data-purpose*="bouquet"]`,
+            `*[data-purpose*="bouquet"]`,
+            `.yellow[data-purpose*="bouquet"],.red[data-purpose*="bouquet"]`,
+            'rose[data-purpose=`yellow-bouquet`],rose[data-purpose=`red-bouquet`]',
         ],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `   &nbsp;&nbsp;&lt;rose class = "yellow" &gt;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "yellow" data-purpose = "yellow-bouquet" &gt;`,
                 `       &nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
@@ -258,7 +301,7 @@ export const levels: Record<number, ILevel> = {
                 `       &nbsp;&nbsp;&nbsp;&nbsp;&lt;butterfly>&lt;/butterfly&gt;`,
                 `   &nbsp;&nbsp;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "red" data-purpose = "red-bouquet" &gt;&lt;/rose&gt`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
@@ -267,6 +310,13 @@ export const levels: Record<number, ILevel> = {
             { rose3: visualTemplate.redRose },
             { rose4: visualTemplate.animated, butterfly2: visualTemplate.blueFlyStatic },
             { rose5: visualTemplate.animated },
+        ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTemplWithYellowClass },
+            { rose2: visualTemplate.roseTemplWithYellowClassAttr, butterfly1: visualTemplate.buttrflyTempl },
+            { rose3: visualTemplate.roseTemplWithRedClass },
+            { rose4: visualTemplate.roseTemplWithRedClassAttr, butterfly2: visualTemplate.buttrflyTempl },
+            { rose5: visualTemplate.roseTemplWithRedClassAttr },
         ],
         setsIdenticClasses: ['rose2', 'rose4', 'rose5'],
         pseudoCodeIdenticClasses: [
@@ -290,10 +340,10 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The :empty CSS pseudo-class represents any element that has no children. Children can be either element nodes or text (including whitespace). Comments, processing instructions, and CSS content do not affect whether an element is considered empty.',
         examples: '',
-        answer: ['*:empty', `.red,h3,.yellow:last-of-type`, `.red,h3,.yellow:nth-of-type(odd)`],
+        answer: ['*:empty', `.red,butterfly,.yellow:last-of-type`, `.red,h3,.yellow:nth-of-type(odd)`],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `   &nbsp;&nbsp;&lt;rose class = "red" &gt;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "yellow" &gt;`,
@@ -302,7 +352,7 @@ export const levels: Record<number, ILevel> = {
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "yellow" &gt;&lt;/rose&gt`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
@@ -312,6 +362,14 @@ export const levels: Record<number, ILevel> = {
             { butterfly3: visualTemplate.butterflyOnGrass },
             { butterfly4: visualTemplate.butterflyOnGrass },
             { rose3: visualTemplate.yellowRoseAnimated },
+        ],
+        setsTempl: [
+            { rose1: visualTemplate.roseTemplWithRedClass },
+            { butterfly1: visualTemplate.buttrflyTempl },
+            { rose2: visualTemplate.roseTemplWithYellowClass, butterfly2: visualTemplate.buttrflyTempl },
+            { butterfly3: visualTemplate.buttrflyTempl },
+            { butterfly4: visualTemplate.buttrflyTempl },
+            { rose3: visualTemplate.roseTemplWithYellowClass },
         ],
         setsIdenticClasses: ['rose1', 'butterfly1', 'butterfly2', 'butterfly3', 'butterfly4', 'rose3'],
         pseudoCodeIdenticClasses: [
@@ -336,14 +394,14 @@ export const levels: Record<number, ILevel> = {
         answer: ['.red+butterfly', `rose+butterfly`, `butterfly:nth-of-type(2)`],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "red" &gt;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "red" &gt;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
@@ -353,6 +411,14 @@ export const levels: Record<number, ILevel> = {
             { butterfly2: visualTemplate.butterflyOnGrass },
             { butterfly3: visualTemplate.blueFlyStaticGrass },
             { butterfly4: visualTemplate.blueFlyStaticGrass },
+        ],
+        setsTempl: [
+            { butterfly1: visualTemplate.buttrflyTempl },
+            { rose1: visualTemplate.roseTemplWithRedClass },
+            { rose2: visualTemplate.roseTemplWithRedClass },
+            { butterfly2: visualTemplate.buttrflyTempl },
+            { butterfly3: visualTemplate.buttrflyTempl },
+            { butterfly4: visualTemplate.buttrflyTempl },
         ],
         setsIdenticClasses: ['butterfly2'],
         pseudoCodeIdenticClasses: [
@@ -376,14 +442,14 @@ export const levels: Record<number, ILevel> = {
         answer: ['.red~butterfly', `rose~butterfly`, `butterfly:nth-of-type(2)`],
         htmlViver: {
             pseudoCode: [
-                `&lt;body&gt;`,
+                `&lt;glade&gt;`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "red" &gt;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;rose class = "red" &gt;&lt;/rose&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
                 `   &nbsp;&nbsp;&lt;butterfly &gt;&lt;/butterfly&gt`,
-                `&lt;/body&gt;`,
+                `&lt;/glade&gt;`,
             ],
         },
         sets: [
@@ -393,6 +459,14 @@ export const levels: Record<number, ILevel> = {
             { butterfly2: visualTemplate.butterflyOnGrass },
             { butterfly3: visualTemplate.butterflyOnGrass },
             { butterfly4: visualTemplate.butterflyOnGrass },
+        ],
+        setsTempl: [
+            { butterfly1: visualTemplate.buttrflyTempl },
+            { rose1: visualTemplate.roseTemplWithRedClass },
+            { rose2: visualTemplate.roseTemplWithRedClass },
+            { butterfly2: visualTemplate.buttrflyTempl },
+            { butterfly3: visualTemplate.buttrflyTempl },
+            { butterfly4: visualTemplate.buttrflyTempl },
         ],
         setsIdenticClasses: ['butterfly2', 'butterfly3', 'butterfly4'],
         pseudoCodeIdenticClasses: [

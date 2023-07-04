@@ -45,4 +45,32 @@ export class VisualItemsTemplates {
         tag: 'butterfly',
         class: ['butterfly', 'blue-burtterfly-grass'],
     };
+    public roseTempl: IHTMLElement = {
+        tag: 'rose',
+    };
+    public roseTemplWithYellowClass: IHTMLElement = {
+        tag: 'rose',
+        class: ['yellow'],
+    };
+    public roseTemplWithYellowClassAttr: IHTMLElement = {
+        tag: 'rose',
+        class: ['yellow'],
+        attribute: { ['data-purpose']: 'yellow-bouquet' },
+    };
+    public roseTemplWithRedClass: IHTMLElement = {
+        tag: 'rose',
+        class: ['red'],
+    };
+    public roseTemplWithRedClassAttr: IHTMLElement = {
+        tag: 'rose',
+        class: ['red'],
+        attribute: { ['data-purpose']: 'red-bouquet' },
+    };
+    public buttrflyTempl: IHTMLElement = {
+        tag: 'butterfly',
+    };
+    public buttrflyIdBlue: IHTMLElement = {
+        tag: 'butterfly',
+        attribute: { id: 'blue' },
+    };
 }

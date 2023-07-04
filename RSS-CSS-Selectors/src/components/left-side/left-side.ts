@@ -33,6 +33,13 @@ const visualItemsTempl: IHTMLElement = {
     tag: 'div',
     class: ['visual-items'],
 };
+const visuaGladeTempl: IHTMLElement = {
+    tag: 'glade',
+};
+const visualItemsDivTempl: IHTMLElement = {
+    tag: 'div',
+    class: ['visual-for-check'],
+};
 
 /* Editor */
 const editorTempl: IHTMLElement = {
@@ -176,6 +183,8 @@ export function buildVisualisation(): void {
 
     const visualisation: HTMLElement = createElement(visualizationTempl, leftSide);
     createElement(visualItemsTempl, visualisation);
+    const divTempl = createElement(visualItemsDivTempl, visualisation);
+    createElement(visuaGladeTempl, divTempl);
 }
 
 export function buildEditor(): void {
@@ -217,17 +226,25 @@ export function buildEditor(): void {
 
 export function addVisualItems(): void {
     const visualItemsContainer = document.querySelector('.visual-items') as HTMLElement;
+    const visualItemsGlade = document.querySelector('glade') as HTMLElement;
     const currLevel: object = getCurrLevelValue();
     const sets: ISetObj[] = currLevel['sets' as keyof typeof currLevel];
+    const setsTempl: ISetObj[] = currLevel['setsTempl' as keyof typeof currLevel];
     sets.forEach(function (set: object): void {
         const values: IHTMLElement[] = Object.values(set);
         const keys: string[] = Object.keys(set);
-        //console.log(keys);
         values.reduce(function (curr: HTMLElement, next: IHTMLElement, ind: number): HTMLElement {
             const newElem: HTMLElement = createImageElement(next, curr);
-            // console.log('ind', ind)
             newElem.classList.add(keys[ind]);
             return newElem;
         }, visualItemsContainer);
+    });
+    setsTempl.forEach(function (set: object): void {
+        const values: IHTMLElement[] = Object.values(set);
+        values.reduce(function (curr: HTMLElement, next: IHTMLElement): HTMLElement {
+            const newElem: HTMLElement = createElement(next, curr);
+            //newElem.classList.add(keys[ind]);
+            return newElem;
+        }, visualItemsGlade);
     });
 }
