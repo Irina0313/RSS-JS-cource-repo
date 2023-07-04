@@ -25,13 +25,37 @@ function showErrorAnimation(action: string): void {
 }
 // eslint-disable-next-line max-lines-per-function
 export function checkUserUnswer(value: string): void {
-    value = value.replaceAll(`'`, `"`).replaceAll(' ', '').replaceAll('`', `"`).replaceAll('body', '');
+    value = value
+        .replaceAll(`'`, `"`)
+        .replaceAll(' ', '')
+        .replaceAll('`', `"`)
+        .replaceAll('body', '')
+        .toLowerCase()
+        .split(',')
+        .sort()
+        .join(',');
+
     const passedLevels = new PassedLevels();
     const passedLevelsWithHelp = new PassedLevelsWithHelp();
     const currLevel = getCurrLevelValue();
     const currLevelNumber: number = currLevel['number' as keyof typeof currLevel];
     const rightAnswers: string[] = currLevel['answer' as keyof typeof currLevel];
-    if (rightAnswers.includes(value)) {
+    const newArr: string[] = [];
+    rightAnswers.forEach((answer: string): void => {
+        newArr.push(
+            answer
+                .replaceAll(`'`, `"`)
+                .replaceAll(' ', '')
+                .replaceAll('`', `"`)
+                .replaceAll('body', '')
+                .toLowerCase()
+                .split(',')
+                .sort()
+                .join(',')
+        );
+    });
+    console.log(newArr, value);
+    if (newArr.includes(value)) {
         showWinnerAnimation(currLevel);
         setTimeout(function (): void {
             passedLevels.addPassed(currLevelNumber);

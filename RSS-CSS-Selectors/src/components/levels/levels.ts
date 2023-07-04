@@ -9,7 +9,18 @@ export const levels: Record<number, ILevel> = {
         desriptionTitle: 'Select by tag',
         descriptionValue: 'Select elements by their tag',
         examples: '',
-        answer: ['rose', 'body>*', 'body*', 'bodyrose', 'body >rose'],
+        answer: [
+            'rose',
+            'body>*',
+            'body*',
+            'bodyrose',
+            'body>rose',
+            'rose:not(:has(:first-child))',
+            'rose:nth-of-type(n+1)',
+            'rose:nth-of-type(n)',
+            'rose:nth-child(n)',
+            'rose:nth-child(1),rose:nth-child(2),rose:nth-child(3)',
+        ],
         sets: [
             { rose1: visualTemplate.animated },
             { rose2: visualTemplate.animated },
@@ -233,7 +244,7 @@ export const levels: Record<number, ILevel> = {
             `.yellow[data-purpouse*="bouquet"],.red[data-purpouse*="bouquet"]`,
             `*[data-purpouse*="bouquet"]`,
             `.yellow[data-purpouse*="bouquet"],.red[data-purpouse*="bouquet"]`,
-            `rose[data-purpouse="yellow-bouquet"],rose[data-purpouse="red-bouquet"]`,
+            'rose[data-purpouse=`yellow-bouquet`],rose[data-purpouse=`red-bouquet`]',
         ],
         htmlViver: {
             pseudoCode: [

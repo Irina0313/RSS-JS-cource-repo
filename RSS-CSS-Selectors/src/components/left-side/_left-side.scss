@@ -19,7 +19,7 @@
 
 .help {
   text-align: center;
-  font-size: 1.8em;
+  font-size: 1.8rem;
   color: $main-color1-dark;
   text-shadow: 1px -1px $main-color2-dark-strong;
   margin: 10px;
@@ -108,13 +108,9 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
-  //width: 84px;
-  //height: 84px;
-  //z-index: 5;
 }
 
 .rose.active {
-  //transform: scale(1.2);
   transform: scale(1.05);
   filter: drop-shadow(0 0 7px white);
 }
@@ -174,6 +170,9 @@
 .html-viver {
   display: flex;
   flex-wrap: wrap;
+  &:hover {
+    cursor: default;
+  }
 }
 .css-editor__main {
   justify-content: center;
@@ -186,7 +185,7 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   font-weight: 600;
   margin: 0 0 10px 0;
   color: $main-color2-dark-strong;
@@ -234,15 +233,15 @@
 }
 .css-editor__rules,
 .codePre {
-  line-height: 1.9em;
-  font-size: 1.7em;
+  line-height: 1.9rem;
+  font-size: 1.7rem;
   width: calc(100% - 70px);
 }
 
 .code {
   display: block;
   width: 100%;
-  font-size: 1.6em;
+  font-size: 1.6rem;
   background-color: $main-color1-light-strong;
 }
 code.hljs {
@@ -254,7 +253,7 @@ code.hljs {
   top: -20px;
   left: -10px;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.3rem;
   padding: 3px;
   border-radius: 7px;
   border: 1px solid black;
@@ -278,7 +277,7 @@ input {
   z-index: 4;
   color: transparent;
   caret-color: $main-color2-dark-strong;
-  font-size: 1.6em;
+  font-size: 1.6rem;
   line-height: 1.15;
   height: 18px;
   border: 2px solid $main-color1-light;
@@ -294,7 +293,7 @@ input {
   margin: 0;
 }
 .css-code {
-  font-size: 1.6em;
+  font-size: 1.6rem;
   padding: 0;
   max-width: 700px;
   background-color: $main-color1-light-strong;
