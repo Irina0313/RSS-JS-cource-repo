@@ -199,6 +199,15 @@
   width: 30px;
   padding: 0 8px 0;
   box-sizing: border-box;
+  @media screen and (max-width: 680px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 610px) {
+    font-size: 1.3rem;
+  }
+  @media screen and (max-width: 545px) {
+    font-size: 1.1rem;
+  }
 }
 
 .input-wrapper {
@@ -243,7 +252,17 @@
   width: 100%;
   font-size: 1.6rem;
   background-color: $main-color1-light-strong;
+  @media screen and (max-width: 680px) {
+    font-size: 1.4rem;
+  }
+  @media screen and (max-width: 610px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: 545px) {
+    font-size: 1rem;
+  }
 }
+
 code.hljs {
   padding: 0;
   margin: 1px;
