@@ -3,7 +3,8 @@
   "plugins": [
       "prettier",
       "import",
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "jest"
   ],
   "extends": [
       "eslint:recommended",
@@ -19,7 +20,9 @@
   "env": {
       "es6": true,
       "browser": true,
-      "node": true
+      "node": true,
+      "jasmine": true,
+    "jest/globals": true
   },
   "root": true,
   "rules": {
