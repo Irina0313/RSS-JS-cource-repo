@@ -133,14 +133,14 @@ export function buildLevelTitle(): void {
     createElement(levelTitleTempl, leftSide);
 }
 
+export const delay = (ms: number): Promise<object> =>
+    new Promise((res) => {
+        setTimeout(res, ms);
+    });
+
 function buildHelpButton(): void {
     const leftSide = document.querySelector('.left-side') as HTMLElement;
     const helpBtn = createElement(helpTempl, leftSide);
-
-    const delay = (ms: number): Promise<object> =>
-        new Promise((res) => {
-            setTimeout(res, ms);
-        });
 
     helpBtn.addEventListener('click', async () => {
         const input = document.querySelector('.css-editor__input') as HTMLInputElement;
@@ -150,7 +150,7 @@ function buildHelpButton(): void {
         input.value = '';
         code.innerHTML = '';
         for (const letter of rightAnswer) {
-            await delay(500);
+            await delay(400);
             input.value += letter;
             code.innerText = `${input['value' as keyof typeof input]}`;
             hljs.highlightElement(code);

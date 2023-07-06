@@ -24,7 +24,6 @@ export function createElement(newElem: IHTMLElement, parentElem: HTMLElement): H
             }
         }
     }
-
     parentElem.append(tag);
     return tag;
 }
@@ -63,9 +62,12 @@ export function createImageElement(newElem: IHTMLElement, parentElem: HTMLElemen
 }
 
 export function deleteHTML(...args: HTMLElement[]): void {
-    args.forEach((item): void => {
+    if (!args) {
+        throw new Error('There is not element');
+    }
+    args.forEach((item: HTMLElement): void => {
         item.remove();
-        console.log('element deleted');
+        //console.log('element deleted');
     });
 }
 

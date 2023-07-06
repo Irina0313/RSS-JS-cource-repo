@@ -24,9 +24,6 @@ export class EventEmitter {
             this.events[eventName] = [fn];
         }
         this.events[eventName].push(fn);
-        /*return () => {
-            this.events[eventName] = this.events[eventName].filter((eventFn) => fn !== eventFn);
-        };*/
     }
 }
 
@@ -37,7 +34,6 @@ export function getEmitterMouseMove(
     elemListener: HTMLElement | Element,
     listenerName: string
 ): void {
-    //console.log('5', elemEmiter, emiterName, elemListener, listenerName);
     const emitter = new EventEmitter();
 
     elemEmiter.addEventListener('mouseover', (e) => {

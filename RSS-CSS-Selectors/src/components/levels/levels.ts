@@ -9,25 +9,7 @@ export const levels: Record<number, ILevel> = {
         desriptionTitle: 'Select by tag',
         descriptionValue: 'Select elements by their tag',
         examples: '',
-        answer: [
-            'rose',
-            'body>*',
-            'body*',
-            'bodyrose',
-            'body>rose',
-            'rose:not(:has(:first-child))',
-            'rose:nth-of-type(n+1)',
-            'rose:nth-of-type(n)',
-            'rose:nth-of-type(*)',
-            'rose:nth-child(n)',
-            'rose:nth-child(*)',
-            'rose:nth-last-of-type(n)',
-            'rose:nth-last-of-type(*)',
-            'rose:nth-child(1),rose:nth-child(2),rose:nth-child(3)',
-            'rose:nth-of-type(1),nth-of-type(2),nth-of-type(3)',
-            'rose:first-child,rose:last-of-type,rose:nth-of-type(2)',
-            'rose:first-of-type,rose:last-of-type,rose:nth-of-type(2)',
-        ],
+        answer: ['rose'],
         sets: [
             { rose1: visualTemplate.animated },
             { rose2: visualTemplate.animated },
@@ -56,7 +38,7 @@ export const levels: Record<number, ILevel> = {
         desriptionTitle: 'Select by ID',
         descriptionValue: 'Select elements by their ID',
         examples: '',
-        answer: ['#blue', 'butterfly', 'rosebutterfly', 'rose>butterfly', 'butterfly:only-child'],
+        answer: ['#blue'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,
@@ -88,16 +70,7 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The :only-child CSS pseudo-class represents an element without any siblings. This is the same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity.',
         examples: '',
-        answer: [
-            'butterfly:only-child',
-            'rose>butterfly',
-            'butterfly',
-            'body butterfly',
-            'body>rose>butterfly',
-            'rose+butterfly',
-            'butterfly:nth-child(1)',
-            'butterfly:only-of-type',
-        ],
+        answer: ['butterfly:only-child'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,
@@ -129,7 +102,7 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The :nth-of-type() CSS pseudo-class matches elements based on their position among siblings of the same type (tag name).',
         examples: '',
-        answer: ['rose:nth-of-type(even)', 'rose:nth-child(2n)', 'rose:nth-of-type(2n)', 'rose:nth-child(even)'],
+        answer: ['rose:nth-of-type(even)'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,
@@ -220,13 +193,7 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The functional :has() CSS pseudo-class represents an element if any of the relative selectors that are passed as an argument match at least one element when anchored against this element. This pseudo-class presents a way of selecting a parent element or a previous sibling element with respect to a reference element by taking a relative selector list as an argument.',
         examples: '',
-        answer: [
-            'rose.yellow:has(butterfly)',
-            'rose.yellow:has(*)',
-            '.yellow:nth-of-type(-2n+4)',
-            '.yellow:nth-of-type(2),.yellow:nth-of-type(4)',
-            '.yellow:not(:first-of-type)',
-        ],
+        answer: ['rose.yellow:has(butterfly)'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,
@@ -282,13 +249,7 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The CSS attribute selector matches elements based on the element having a given attribute explicitly set, with options for defining an attribute value or substring value match.',
         examples: '',
-        answer: [
-            'rose[data-purpose*="bouquet"]',
-            `.yellow[data-purpose*="bouquet"],.red[data-purpose*="bouquet"]`,
-            `*[data-purpose*="bouquet"]`,
-            `.yellow[data-purpose*="bouquet"],.red[data-purpose*="bouquet"]`,
-            'rose[data-purpose=`yellow-bouquet`],rose[data-purpose=`red-bouquet`]',
-        ],
+        answer: ['rose[data-purpose*="bouquet"]'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,
@@ -340,7 +301,7 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The :empty CSS pseudo-class represents any element that has no children. Children can be either element nodes or text (including whitespace). Comments, processing instructions, and CSS content do not affect whether an element is considered empty.',
         examples: '',
-        answer: ['*:empty', `.red,butterfly,.yellow:last-of-type`, `.red,h3,.yellow:nth-of-type(odd)`],
+        answer: ['*:empty'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,
@@ -391,7 +352,7 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The + combinator matches the second element only if it immediately follows the first element.',
         examples: '',
-        answer: ['.red+butterfly', `rose+butterfly`, `butterfly:nth-of-type(2)`],
+        answer: ['.red+butterfly'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,
@@ -439,7 +400,7 @@ export const levels: Record<number, ILevel> = {
         descriptionValue:
             'The ~ combinator selects siblings. This means that the second element follows the first (though not necessarily immediately), and both share the same parent.',
         examples: '',
-        answer: ['.red~butterfly', `rose~butterfly`, `butterfly:nth-of-type(2)`],
+        answer: ['.red~butterfly'],
         htmlViver: {
             pseudoCode: [
                 `&lt;glade&gt;`,

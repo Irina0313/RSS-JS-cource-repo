@@ -27,12 +27,4 @@ export function buildPseudoCode(): void {
         const codeStr = createElement(codeTempl, viverWrapper);
         hljs.highlightElement(codeStr);
     });
-    /*
-    
-    const sp = hljs.highlightElement(code);
-    console.log(sp);*/
-
-    //const cofee = document.querySelector('.cofee') as HTMLElement;
-
-    //getEmitterMouseMove(cofee, 'cofee', code, 'code');
 }
