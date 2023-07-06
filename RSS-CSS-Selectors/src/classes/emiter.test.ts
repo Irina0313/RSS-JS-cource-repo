@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { EventEmitter } from '../classes/emiter';
+import { EventEmitter } from './emiter';
 
 describe('check if EventEmitter class has nesessary methods', () => {
     const _ = new EventEmitter();

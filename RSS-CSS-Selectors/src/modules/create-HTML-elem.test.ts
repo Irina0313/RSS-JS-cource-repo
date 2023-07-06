@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { IHTMLElement } from '../interfaces/html-elem';
-import { createElement, deleteHTML } from '../modules/create-HTML-elem';
+import { createElement, deleteHTML } from './create-HTML-elem';
 
 test('function createElement creates HTMLElement with right tag', () => {
     const parentElement = document.querySelector('body') as HTMLElement;

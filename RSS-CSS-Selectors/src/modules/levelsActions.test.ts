@@ -1,4 +1,4 @@
-import { getLevelsAmount, getLevel } from '../modules/levelsActions';
+import { getLevelsAmount, getLevel } from './levelsActions';
 
 test('levels amount is 10', () => {
     expect(getLevelsAmount()).toBe(10);
