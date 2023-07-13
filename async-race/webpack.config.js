@@ -90,4 +90,5 @@ plugins: [
       },
     ],
   },
+  stats: 'errors-only',
 };

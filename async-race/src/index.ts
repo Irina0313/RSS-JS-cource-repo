@@ -1,8 +1,10 @@
 import './index.html';
 import './styles.scss';
 
+import { createHeader } from './sections/header';
 
 
-//import { sum } from "./module";
 
-//console.log(sum(2,3))
+
+/* init */
+createHeader();

@@ -1,0 +1,25 @@
+.button {
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 90px;
+  height: 20px;
+  border: 2px solid $button-border-color;
+  box-shadow: 1.5px 1.5px 3px $shadow-color;
+  box-sizing: border-box;
+  padding: 0;
+  &_type1 {
+    background-color: $button-type1-color;
+  }
+  &_type2 {
+    background-color: $button-type2-color;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    margin: 1px;
+    width: 88px;
+    height: 18px;
+    box-shadow: 1px 1px 1px $shadow-color;
+  }
+}
