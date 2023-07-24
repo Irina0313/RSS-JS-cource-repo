@@ -2,15 +2,15 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "commonjs",
     "target": "es2016",
     "strict": true,
     "allowJs": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "typeRoots" : ["node_modules/@types", "src/types"],
+    "typeRoots" : ["node_modules/@types", "types"],
     "lib": [
       "ES2021.String", "es5", "es6", "dom", "dom.iterable"
-    ]
+    ],
   }
 }

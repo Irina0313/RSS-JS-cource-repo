@@ -1,10 +1,6 @@
 import './index.html';
 import './styles.scss';
+import { App } from './app';
 
-import { createHeader } from './sections/header';
-
-
-
-
-/* init */
-createHeader();
+const app = new App();
+app.run();

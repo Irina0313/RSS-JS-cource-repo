@@ -1,25 +1,129 @@
 .button {
   text-transform: uppercase;
   font-weight: bold;
-  width: 90px;
-  height: 20px;
+
   border: 2px solid $button-border-color;
   box-shadow: 1.5px 1.5px 3px $shadow-color;
   box-sizing: border-box;
   padding: 0;
+
   &_type1 {
     background-color: $button-type1-color;
+    &_unactive {
+      background-color: $input-light-color;
+    }
   }
   &_type2 {
     background-color: $button-type2-color;
+
+    &_unactive {
+      background-color: $input-light-color;
+    }
   }
+
   &:hover {
     cursor: pointer;
   }
   &:active {
     margin: 1px;
+    box-shadow: 1px 1px 1px $shadow-color;
+  }
+}
+
+.header .button {
+  width: 90px;
+  height: 20px;
+  &:active {
     width: 88px;
     height: 18px;
+  }
+}
+.car-header .button {
+  width: 55px;
+  height: 18px;
+  &:active {
+    width: 53px;
+    height: 16px;
+    margin: 1;
+  }
+  &:disabled {
+    background: $input-light-color;
+    &:active {
+      margin: 0;
+      width: 55px;
+      height: 18px;
+    }
+  }
+}
+
+.car-main-btns {
+  display: flex;
+  column-gap: 6px;
+  width: 55px;
+  margin-bottom: 8px;
+
+  .button {
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+    &:active {
+      margin: 1px;
+      width: 18px;
+      height: 18px;
+    }
+    &:disabled {
+      background: $input-light-color;
+      &:active {
+        box-shadow: 1.5px 1.5px 3px $shadow-color;
+        margin: 0;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+.cars-actions-section .button {
+  width: 90px;
+  height: 20px;
+  &:active {
+    width: 88px;
+    height: 18px;
+    margin: 1px;
     box-shadow: 1px 1px 1px $shadow-color;
+  }
+  &:disabled {
+    background: $input-light-color;
+    &:active {
+      margin: 0;
+      width: 90px;
+      height: 20px;
+      border: 2px solid $button-border-color;
+      box-shadow: 1.5px 1.5px 3px $shadow-color;
+      box-sizing: border-box;
+      padding: 0;
+    }
+  }
+}
+
+.paginator-row .button_type1 {
+  width: 90px;
+  height: 20px;
+  &:active {
+    width: 88px;
+    height: 18px;
+    margin: 1px;
+    box-shadow: 1px 1px 1px $shadow-color;
+  }
+  &:disabled {
+    background: $input-light-color;
+    &:active {
+      margin: 0;
+      width: 90px;
+      height: 20px;
+      border: 2px solid $button-border-color;
+      box-shadow: 1.5px 1.5px 3px $shadow-color;
+      box-sizing: border-box;
+      padding: 0;
+    }
   }
 }

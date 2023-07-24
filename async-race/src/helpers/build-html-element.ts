@@ -1,6 +1,6 @@
-import { IHTMLElement } from "./interfaces";
+import { IHTMLElement } from './interfaces';
 
-export function createElement(newElem: IHTMLElement, parentElem: HTMLElement): HTMLElement {
+export function createElement(newElem: IHTMLElement): HTMLElement {
     const tag = document.createElement(newElem.tag);
     if (newElem.class) {
         newElem.class.forEach(function (item: string): void {
@@ -24,6 +24,6 @@ export function createElement(newElem: IHTMLElement, parentElem: HTMLElement): H
             }
         }
     }
-    parentElem.append(tag);
+    //parentElem.append(tag);
     return tag;
 }

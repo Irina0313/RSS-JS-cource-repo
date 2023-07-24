@@ -5,3 +5,8 @@ body {
   padding: 10px;
   background-color: $background-main-color;
 }
+
+.title,
+.subtitle {
+  color: $input-light-color;
+}

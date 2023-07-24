@@ -18,7 +18,7 @@ module.exports = {
     open: true,
     hot: true,
   },
-  entry: './src/index.ts',
+  entry: path.resolve(__dirname, 'src', 'index.ts'),
   resolve: {
     extensions: ['.ts', '.js'],
 },
@@ -26,7 +26,9 @@ plugins: [
   new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'src', 'index.html'),
   }),
-  
+  new MiniCssExtractPlugin({
+    filename: 'styles.[contenthash].css',
+  }),
 ],
   output: {
     assetModuleFilename: pathData => {
@@ -70,8 +72,12 @@ plugins: [
         ],
       },
       {
-        test: /\.(jpe?g|png|webp|gif|svg)$/i,
+        test: /\.(jpe?g|png|webp|gif)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.svg$/,
+        type: "asset/source",
       },
       {
         test: /\.m?js$/i,
