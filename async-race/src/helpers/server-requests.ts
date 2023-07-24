@@ -85,4 +85,42 @@ export class Server {
         const data: IWin[] = await response.json();
         return data;
     };
+    public getWinner = async (winId: number): Promise<IWin | null> => {
+        const response: Response = await fetch(`${this.baseUrl}${this.path.winners}`);
+        const data: IWin[] = await response.json();
+        const winner = data.find((item: IWin): boolean => item.id === winId);
+        if (winner) {
+            return winner;
+        }
+        return null;
+    };
+    public updateWinner = async (winProp: IWin): Promise<Response> => {
+        const response: Response = await fetch(`${this.baseUrl}${this.path.winners}/${winProp.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                wins: winProp.wins,
+                time: winProp.time,
+            }),
+        });
+        return response;
+    };
+    public createWinner = async (winnerTempl: IWin): Promise<Response> => {
+        const response: Response = await fetch(`${this.baseUrl}${this.path.winners}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(winnerTempl),
+        });
+        return response;
+    };
+    public deleteWinner = async (id: number): Promise<Response> => {
+        const response: Response = await fetch(`${this.baseUrl}${this.path.winners}/${id}`, {
+            method: 'DELETE',
+        });
+        return response;
+    };
 }

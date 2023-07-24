@@ -17,7 +17,7 @@ const colNames: IColName[] = [
     },
     {
         name: 'Car',
-        class: 'car-image_small',
+        class: 'car',
     },
     {
         name: 'Model',
@@ -95,8 +95,18 @@ export class WinnersPage extends Page {
                     const winCar: HTMLElement = createElement(winnersTableItemTempl);
                     winCar.classList.add(`${colNames[1].class}`);
                     winCar.innerHTML = `${car}`;
+                    winCar.classList.add('car-image_small');
                     winCar.style.fill = carProp.color;
-                    tableRow.append(winId, winCar);
+                    const winModel: HTMLElement = createElement(winnersTableItemTempl);
+                    winModel.classList.add(`${colNames[2].class}`);
+                    winModel.innerHTML = `${carProp.name}`;
+                    const winWins: HTMLElement = createElement(winnersTableItemTempl);
+                    winWins.classList.add(`${colNames[3].class}`);
+                    winWins.innerHTML = `${winner.wins}`;
+                    const winTime: HTMLElement = createElement(winnersTableItemTempl);
+                    winTime.classList.add(`${colNames[4].class}`);
+                    winTime.innerHTML = `${winner.time}`;
+                    tableRow.append(winId, winCar, winModel, winWins, winTime);
                 });
             });
         });

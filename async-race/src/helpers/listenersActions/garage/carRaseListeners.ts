@@ -1,5 +1,5 @@
 import { Server } from '../../server-requests';
-import { IEngineResponse, IRaceResult } from '../../interfaces';
+import { IEngineResponse, IRaceResult, IWin } from '../../interfaces';
 import { getElementFromDOM, getElementsListFromDOM } from '../../get-DOMEelements';
 import { showModalMessage } from '../../showMessage';
 import { initCarPosition } from '../../../pages/garage';
@@ -156,6 +156,7 @@ function getWinner(resultArr: IRaceResult[]): void {
     if (winnerBrand) {
         showModalMessage(`The first went ${winnerBrand} [${winner.time}]`);
     }
+    recordWinner(winner.id, winner.time);
 }
 
 function returnCars(): void {
@@ -176,4 +177,25 @@ function returnCars(): void {
             button.parentElement?.parentElement?.classList.remove('broked');
         });
     }
+}
+/* Record winner */
+function recordWinner(winId: number, winTime: number): void {
+    serv.getWinner(winId).then((winner: IWin | null) => {
+        if (winner) {
+            const newWins: number = winner.wins + 1;
+            const newWinnerProp: IWin = {
+                id: winId,
+                wins: newWins,
+                time: Math.min(winTime, winner.time),
+            };
+            serv.updateWinner(newWinnerProp);
+        } else {
+            const newWinnerProp: IWin = {
+                id: winId,
+                wins: 1,
+                time: winTime,
+            };
+            serv.createWinner(newWinnerProp);
+        }
+    });
 }

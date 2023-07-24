@@ -1,18 +1,39 @@
 .winners-table-header,
 .winners-row {
-  width: 500px;
+  width: 450px;
   position: relative;
   margin: 0;
   display: inline-flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   font-size: 1.4rem;
   list-style-type: none;
   column-gap: 5px;
   padding: 3px 0;
 }
 
+.model {
+  width: 160px;
+}
+.wins,
+.number {
+  width: 50px;
+}
+.car {
+  box-sizing: border-box;
+}
+.car-image_small,
+.car {
+  box-sizing: content-box;
+  width: 32px;
+}
+.best-rime {
+  width: 85px;
+}
 .winners-table-header {
   background-color: $button-type2-color;
+}
+.winners-row {
+  background-color: $input-light-color;
 }
 .winners-table-col,
 .winners-item {
@@ -20,9 +41,6 @@
   text-align: center;
 }
 
-.model {
-  min-width: 70px;
-}
 .winners-table {
   width: 100%;
   display: flex;

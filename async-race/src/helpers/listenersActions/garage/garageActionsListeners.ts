@@ -1,4 +1,4 @@
-import { ICar } from '../../interfaces';
+import { ICar, IWin } from '../../interfaces';
 import { Server, carsForPageLimit } from '../../server-requests';
 import { getElementFromDOM } from '../../get-DOMEelements';
 import { createNewCar, addCarOnPage } from '../../../pages/garage';
@@ -104,6 +104,7 @@ function removeCarBtnAction(targetEl: HTMLElement): void {
             }
             addCarOnPage();
             checkIfButtonActive('garage');
+            checkToDeleteFromWinners(carId);
         });
     }
 }
@@ -148,4 +149,13 @@ async function generateCarsBtnAction(): Promise<void> {
         const promise = generateNewCar(carTempl);
         await promise;
     }
+}
+
+/* check deleted car in winners  */
+function checkToDeleteFromWinners(carId: number): void {
+    serv.getWinner(carId).then((winner: IWin | null): void => {
+        if (winner) {
+            serv.deleteWinner(carId);
+        }
+    });
 }
