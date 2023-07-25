@@ -1,11 +1,9 @@
-import { getElementFromDOM } from '../../get-DOMEelements';
+import { getElementFromDOM, getElementsListFromDOM } from '../../get-DOMEelements';
 import { ICar } from '../../interfaces';
 import { Server } from '../../server-requests';
 import { createNewCar } from '../../../pages/garage';
 import { checkIfButtonActive } from '../../templates/page';
 import { createWinners } from '../../../pages/winners';
-
-const serv = new Server();
 
 export function addpaginatorBtnsListeners(): void {
     document.addEventListener('click', (e: MouseEvent): void => {
@@ -17,33 +15,44 @@ export function addpaginatorBtnsListeners(): void {
             if (targetEl.innerHTML === 'next' && currPage === 'garage') {
                 nextGaragePageBtnAction();
             }
-            if (targetEl.innerHTML === 'next' && currPage === 'winners') {
-                nextWinnersPageBtnAction();
-            }
+
             /* rprev page */
             if (targetEl.innerHTML === 'prev' && currPage === 'garage') {
                 prevGaragePageBtnAction();
             }
+        }
+    });
+}
+export function addpaginatorWinnersBtnsListeners(): void {
+    document.addEventListener('click', (e: MouseEvent): void => {
+        if (e.target) {
+            const currPage = localStorage.page;
+            const targetEl = e.target as HTMLElement;
+            /* next page */
+
+            if (targetEl.innerHTML === 'next' && currPage === 'winners') {
+                nextWinnersPageBtnAction();
+            }
+            /* rprev page */
+
             if (targetEl.innerHTML === 'prev' && currPage === 'winners') {
                 prevWinnersPageBtnAction();
             }
         }
     });
 }
-
+const serv = new Server();
 /* NEXT button */
 function nextGaragePageBtnAction(): void {
     const raceBtn = getElementFromDOM('.buttons-row')?.children[0] as HTMLInputElement;
     raceBtn.disabled = false;
     const resetBtn = raceBtn.nextSibling as HTMLInputElement;
     resetBtn.disabled = false;
-    const carsWrapper = getElementFromDOM('.cars-wrapper') as HTMLElement;
-    if (carsWrapper.children) {
-        while (carsWrapper.children[0]) {
-            carsWrapper.children[0].remove();
-        }
-    }
-    setTimeout(() => {
+    const carWrappers: NodeListOf<Element> | undefined = getElementsListFromDOM('.car-wrapper');
+    if (carWrappers) {
+        carWrappers.forEach((item): void => {
+            item.remove();
+        });
         const nextPageNumber = Number(localStorage.getItem('page-number')) + 1;
         const resp: Promise<ICar[]> = serv.getCars(nextPageNumber);
         resp.then((value: ICar[]) => {
@@ -54,7 +63,7 @@ function nextGaragePageBtnAction(): void {
             changePageNumber(nextPageNumber);
             checkIfButtonActive('garage');
         });
-    }, 300);
+    }
 }
 
 function nextWinnersPageBtnAction(): void {
@@ -74,6 +83,7 @@ function nextWinnersPageBtnAction(): void {
 }
 /* PREV button */
 function prevGaragePageBtnAction(): void {
+    const serv = new Server();
     const carsWrapper = getElementFromDOM('.cars-wrapper') as HTMLElement;
     if (carsWrapper.children) {
         while (carsWrapper.children[0]) {

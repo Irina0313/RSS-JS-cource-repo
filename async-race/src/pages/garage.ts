@@ -6,9 +6,6 @@ import { car, flag } from '../components/images';
 import { getElementFromDOM } from '../helpers/get-DOMEelements';
 import { Server, carsForPageLimit } from '../helpers/server-requests';
 import { Car } from '../helpers/classes/carClass';
-import { addGarageActionsListeners } from '../helpers/listenersActions/garage/garageActionsListeners';
-import { addCarRaceListeners } from '../helpers/listenersActions/garage/carRaseListeners';
-import { addpaginatorBtnsListeners } from '../helpers/listenersActions/garage/paginatorBtnsListeners';
 
 /* Garage  */
 const garageSectionTempl: IHTMLElement = {
@@ -169,9 +166,6 @@ export class GaragePage extends Page {
 
         const paginatorBtns = this.createPaginatorsBtns(this.buttonsPaginatorRowTempl);
         this.container.append(title, pageNum, mainWrapper, paginatorBtns);
-        addGarageActionsListeners();
-        addCarRaceListeners();
-        addpaginatorBtnsListeners();
         return this.container;
     }
 }

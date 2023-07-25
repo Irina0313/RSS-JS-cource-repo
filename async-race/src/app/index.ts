@@ -5,6 +5,12 @@ import { GaragePage } from '../pages/garage';
 import { WinnersPage } from '../pages/winners';
 import { getElementFromDOM } from '../helpers/get-DOMEelements';
 import { ISavedValue } from '../helpers/interfaces';
+import { addGarageActionsListeners } from '../helpers/listenersActions/garage/garageActionsListeners';
+import { addCarRaceListeners } from '../helpers/listenersActions/garage/carRaseListeners';
+import {
+    addpaginatorBtnsListeners,
+    addpaginatorWinnersBtnsListeners,
+} from '../helpers/listenersActions/garage/paginatorBtnsListeners';
 
 export class App {
     private static container: HTMLElement = document.body;
@@ -71,6 +77,10 @@ export class App {
         page = localStorage.page;
         App.renderNewPage(page);
         checkIfButtonActive(page);
+        addGarageActionsListeners();
+        addCarRaceListeners();
+        addpaginatorBtnsListeners();
+        addpaginatorWinnersBtnsListeners();
         this.enableRouteChange();
     }
 }

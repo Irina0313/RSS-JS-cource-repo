@@ -11,7 +11,6 @@ export function addCarRaceListeners(): void {
         //console.log(e.target);
         if (e.target) {
             const targetEl = e.target as HTMLElement;
-
             /* start engine */
             if (targetEl.innerHTML === 'a') {
                 const startBtn = targetEl as HTMLInputElement;
@@ -34,19 +33,34 @@ export function addCarRaceListeners(): void {
                 raceBtn.disabled = true;
                 const resetBtn = raceBtn.nextSibling as HTMLInputElement;
                 resetBtn.disabled = true;
-                startCarRace().then((raceResultsArray: IRaceResult[]) => {
-                    getWinner(raceResultsArray);
+                changeBtnsForRace(false);
+                startCarRace().then(() => {
+                    changeBtnsForRace(true);
                 });
             }
             /* reset */
             if (targetEl.innerHTML === 'reset') {
-                //const raceBtn = targetEl as HTMLInputElement;
                 returnCars();
             }
         }
     });
 }
 
+function changeBtnsForRace(param: boolean): void {
+    const resetBtn = document.querySelector('.buttons-row button:nth-of-type(2)') as HTMLInputElement;
+    const nextBtn = document.querySelector('.paginator-row button:nth-of-type(2)') as HTMLInputElement;
+    const prevBtn = document.querySelector('.paginator-row button:nth-of-type(1)') as HTMLInputElement;
+    if (param) {
+        resetBtn.disabled = false;
+        nextBtn.disabled = false;
+        prevBtn.disabled = false;
+    }
+    if (!param) {
+        resetBtn.disabled = true;
+        nextBtn.disabled = true;
+        prevBtn.disabled = true;
+    }
+}
 /* A (start car engine) */
 
 let requestId: number;
@@ -99,7 +113,6 @@ function getAnimation(
     return animateImg(duration);
 }
 
-// eslint-disable-next-line max-lines-per-function
 async function startCarEngineBtnAction(
     carImage: HTMLElement,
     carId: number,
@@ -126,6 +139,7 @@ function stopAnimation(requestId: number, carImage: HTMLElement, initPosition: n
 function startCarRace(): Promise<IRaceResult[]> {
     const cars: NodeListOf<Element> | undefined = getElementsListFromDOM('.car-image');
     const raceResults: Promise<IRaceResult>[] = [];
+    const raceAllResults: Promise<IRaceResult>[] = [];
     if (cars) {
         cars.forEach((car: Element) => {
             const carImage = car as HTMLElement;
@@ -136,29 +150,40 @@ function startCarRace(): Promise<IRaceResult[]> {
             const startBtn = stopBtn.previousSibling as HTMLInputElement;
             startBtn.disabled = true;
             const race: Promise<IRaceResult> = Promise.resolve(startCarEngineBtnAction(carImage, carId, stopBtn));
-            raceResults.push(race);
+            const headerBtns: NodeListOf<Element> | undefined = getElementsListFromDOM('.header .button');
+            if (headerBtns) {
+                const toWinnersBtn = headerBtns[1] as HTMLElement;
+                toWinnersBtn.addEventListener('click', prevent);
+            }
+            const res = Promise.resolve(race);
+            res.then((data): void => {
+                if (data.result === 'finish' && raceResults.length === 0) {
+                    getWinner(race);
+                    raceResults.push(race);
+                }
+            });
+            raceAllResults.push(race);
         });
     }
-    return Promise.all(raceResults);
+    return Promise.all(raceAllResults);
+}
+export function prevent(e: MouseEvent): void {
+    e.preventDefault();
 }
 
-function getWinner(resultArr: IRaceResult[]): void {
-    const fisihedCarsArr: IRaceResult[] = resultArr.filter((car) => car.result === 'finish');
-    const winner: IRaceResult = fisihedCarsArr.reduce((curr, next) => {
-        if (curr.time < next.time) {
-            return curr;
+function getWinner(resultArr: Promise<IRaceResult>): void {
+    const res = Promise.resolve(resultArr);
+    res.then((data): void => {
+        const winner = data;
+        const winnerElem = document.getElementById(`${winner.id}`) as HTMLElement;
+        const winnerBrand: string = winnerElem.children[0].children[2].innerHTML;
+        //console.log(resultArr, fisihedCarsArr, winner)
+        if (winnerBrand) {
+            showModalMessage(`The first went ${winnerBrand} [${winner.time}]`);
         }
-        return next;
-    }, fisihedCarsArr[0]);
-    const winnerElem = document.getElementById(`${winner.id}`) as HTMLElement;
-    const winnerBrand: string = winnerElem.children[0].children[2].innerHTML;
-    //console.log(resultArr, fisihedCarsArr, winner)
-    if (winnerBrand) {
-        showModalMessage(`The first went ${winnerBrand} [${winner.time}]`);
-    }
-    recordWinner(winner.id, winner.time);
+        recordWinner(winner.id, winner.time);
+    });
 }
-
 function returnCars(): void {
     const raceBtn = getElementFromDOM('.buttons-row')?.children[0] as HTMLInputElement;
     const cars: NodeListOf<Element> | undefined = getElementsListFromDOM('.car-image');

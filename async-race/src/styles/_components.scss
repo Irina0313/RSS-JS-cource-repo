@@ -108,6 +108,28 @@
     }
   }
 }
+.cars-actions-section .button_type2 {
+  width: 95px;
+  height: 20px;
+  &:active {
+    width: 93px;
+    height: 18px;
+    margin: 1px;
+    box-shadow: 1px 1px 1px $shadow-color;
+  }
+  &:disabled {
+    background: $input-light-color;
+    &:active {
+      margin: 0;
+      width: 95px;
+      height: 20px;
+      border: 2px solid $button-border-color;
+      box-shadow: 1.5px 1.5px 3px $shadow-color;
+      box-sizing: border-box;
+      padding: 0;
+    }
+  }
+}
 
 .paginator-row .button_type1 {
   width: 90px;

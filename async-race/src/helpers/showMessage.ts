@@ -1,6 +1,7 @@
 import { IHTMLElement } from './interfaces';
 import { createElement } from './build-html-element';
-import { getElementFromDOM } from './get-DOMEelements';
+import { getElementFromDOM, getElementsListFromDOM } from './get-DOMEelements';
+import { prevent } from './listenersActions/garage/carRaseListeners';
 
 function hideMessage(message: HTMLElement): void {
     const listener = function (event: MouseEvent): void {
@@ -41,7 +42,10 @@ export function showModalMessage(message: string): void {
     parentEl.append(messageEl);
     document.onclick = (): void => {
         messageEl.remove();
-        const resetBtn = getElementFromDOM('.buttons-row')?.children[1] as HTMLInputElement;
-        resetBtn.disabled = false;
     };
+    const headerBtns: NodeListOf<Element> | undefined = getElementsListFromDOM('.header .button');
+    if (headerBtns) {
+        const toWinnersBtn = headerBtns[1] as HTMLElement;
+        toWinnersBtn.removeEventListener('click', prevent);
+    }
 }
