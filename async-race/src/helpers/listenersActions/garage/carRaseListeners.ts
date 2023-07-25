@@ -184,16 +184,16 @@ function recordWinner(winId: number, winTime: number): void {
         if (winner) {
             const newWins: number = winner.wins + 1;
             const newWinnerProp: IWin = {
-                id: winId,
                 wins: newWins,
                 time: Math.min(winTime, winner.time),
+                id: winId,
             };
             serv.updateWinner(newWinnerProp);
         } else {
             const newWinnerProp: IWin = {
-                id: winId,
                 wins: 1,
                 time: winTime,
+                id: winId,
             };
             serv.createWinner(newWinnerProp);
         }

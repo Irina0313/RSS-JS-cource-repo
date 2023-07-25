@@ -3,6 +3,7 @@ import { ICar } from '../../interfaces';
 import { Server } from '../../server-requests';
 import { createNewCar } from '../../../pages/garage';
 import { checkIfButtonActive } from '../../templates/page';
+import { createWinners } from '../../../pages/winners';
 
 const serv = new Server();
 
@@ -10,21 +11,28 @@ export function addpaginatorBtnsListeners(): void {
     document.addEventListener('click', (e: MouseEvent): void => {
         //console.log(e.target);
         if (e.target) {
+            const currPage = localStorage.page;
             const targetEl = e.target as HTMLElement;
             /* next page */
-            if (targetEl.innerHTML === 'next') {
-                nextPageBtnAction();
+            if (targetEl.innerHTML === 'next' && currPage === 'garage') {
+                nextGaragePageBtnAction();
+            }
+            if (targetEl.innerHTML === 'next' && currPage === 'winners') {
+                nextWinnersPageBtnAction();
             }
             /* rprev page */
-            if (targetEl.innerHTML === 'prev') {
-                prevPageBtnAction();
+            if (targetEl.innerHTML === 'prev' && currPage === 'garage') {
+                prevGaragePageBtnAction();
+            }
+            if (targetEl.innerHTML === 'prev' && currPage === 'winners') {
+                prevWinnersPageBtnAction();
             }
         }
     });
 }
 
 /* NEXT button */
-function nextPageBtnAction(): void {
+function nextGaragePageBtnAction(): void {
     const raceBtn = getElementFromDOM('.buttons-row')?.children[0] as HTMLInputElement;
     raceBtn.disabled = false;
     const resetBtn = raceBtn.nextSibling as HTMLInputElement;
@@ -48,8 +56,24 @@ function nextPageBtnAction(): void {
         });
     }, 300);
 }
+
+function nextWinnersPageBtnAction(): void {
+    const winnersTable: HTMLElement | undefined = getElementFromDOM('.winners-table');
+    if (winnersTable) {
+        while (winnersTable.children[0]) {
+            winnersTable.children[0].remove();
+        }
+        setTimeout(() => {
+            const nextPageNumber = Number(localStorage.getItem('winners-page-number')) + 1;
+            createWinners(winnersTable, nextPageNumber);
+            localStorage['winners-page-number'] = `${nextPageNumber}`;
+            changePageNumber(nextPageNumber);
+            checkIfButtonActive('winners');
+        }, 300);
+    }
+}
 /* PREV button */
-function prevPageBtnAction(): void {
+function prevGaragePageBtnAction(): void {
     const carsWrapper = getElementFromDOM('.cars-wrapper') as HTMLElement;
     if (carsWrapper.children) {
         while (carsWrapper.children[0]) {
@@ -68,6 +92,21 @@ function prevPageBtnAction(): void {
             checkIfButtonActive('garage');
         });
     }, 300);
+}
+function prevWinnersPageBtnAction(): void {
+    const winnersTable: HTMLElement | undefined = getElementFromDOM('.winners-table');
+    if (winnersTable) {
+        while (winnersTable.children[0]) {
+            winnersTable.children[0].remove();
+        }
+        setTimeout(() => {
+            const prevPageNumber = Number(localStorage.getItem('winners-page-number')) - 1;
+            createWinners(winnersTable, prevPageNumber);
+            localStorage['winners-page-number'] = `${prevPageNumber}`;
+            changePageNumber(prevPageNumber);
+            checkIfButtonActive('winners');
+        }, 300);
+    }
 }
 /* Change Page Number */
 function changePageNumber(pageNum: number): void {

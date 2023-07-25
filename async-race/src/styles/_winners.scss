@@ -10,13 +10,18 @@
   column-gap: 5px;
   padding: 3px 0;
 }
-
+.winners {
+  min-height: 350px;
+}
 .model {
   width: 160px;
 }
 .wins,
 .number {
   width: 50px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .car {
   box-sizing: border-box;
@@ -26,8 +31,11 @@
   box-sizing: content-box;
   width: 32px;
 }
-.best-rime {
+.best-time {
   width: 85px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .winners-table-header {
   background-color: $button-type2-color;

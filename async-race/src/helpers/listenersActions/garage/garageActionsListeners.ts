@@ -14,7 +14,6 @@ export function addGarageActionsListeners(): void {
         //console.log(e.target);
         if (e.target) {
             const targetEl = e.target as HTMLElement;
-
             /* create new car button */
             if (targetEl.innerHTML === 'create') {
                 createCarBtnAction();

@@ -3,6 +3,8 @@ import { Header } from '../components/header/header';
 import { PageId } from '../helpers/emuns';
 import { GaragePage } from '../pages/garage';
 import { WinnersPage } from '../pages/winners';
+import { getElementFromDOM } from '../helpers/get-DOMEelements';
+import { ISavedValue } from '../helpers/interfaces';
 
 export class App {
     private static container: HTMLElement = document.body;
@@ -25,14 +27,34 @@ export class App {
             const pageHTML = page.render();
             pageHTML.id = App.defaultPageId;
             App.container.append(pageHTML);
+            if (idPage === PageId.Winners) {
+                checkIfButtonActive(PageId.Winners);
+            }
+        }
+    }
+    private saveState(targetPage: string): void {
+        if (targetPage === 'winners') {
+            const inputTextCreate = getElementFromDOM('.input-row_create .input-text') as HTMLInputElement;
+            const inputColorCreate = getElementFromDOM('.input-row_create .input-color') as HTMLInputElement;
+            const inputTextUpdate = getElementFromDOM('.input-row_update .input-text') as HTMLInputElement;
+            const inputColorUpdate = getElementFromDOM('.input-row_update .input-color') as HTMLInputElement;
+            const valueForSave: ISavedValue = {
+                inputTextCr: inputTextCreate.value,
+                inputColorCr: inputColorCreate.value,
+                inputTextUpd: inputTextUpdate.value,
+                inputColorUpd: inputColorUpdate.value,
+            };
+            localStorage.savedGarageState = JSON.stringify(valueForSave);
         }
     }
 
     private enableRouteChange(): void {
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
+            this.saveState(hash);
             App.renderNewPage(hash);
             checkIfButtonActive(hash);
+            localStorage.page = hash;
         });
     }
 
@@ -42,8 +64,13 @@ export class App {
 
     public run(): void {
         App.container.append(this.header.render());
-        App.renderNewPage('garage');
-        checkIfButtonActive('garage');
+        let page = 'garage';
+        if (!localStorage.page) {
+            localStorage.setItem('page', 'garage');
+        }
+        page = localStorage.page;
+        App.renderNewPage(page);
+        checkIfButtonActive(page);
         this.enableRouteChange();
     }
 }

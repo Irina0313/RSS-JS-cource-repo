@@ -79,8 +79,12 @@ export class Server {
     /* Winners */
 
     public getWinners = async (pageNum: number = 1): Promise<IWin[]> => {
+        if (!localStorage.sort) {
+            localStorage.setItem('sort', JSON.stringify(['id', 'ASC']));
+        }
+        const sortParametrs: string[] = JSON.parse(localStorage.sort);
         const response: Response = await fetch(
-            `${this.baseUrl}${this.path.winners}?_page=${pageNum}&_limit=${winnersForPageLimit}`
+            `${this.baseUrl}${this.path.winners}?_page=${pageNum}&_limit=${winnersForPageLimit}&_sort=${sortParametrs[0]}&_order=${sortParametrs[1]}`
         );
         const data: IWin[] = await response.json();
         return data;
@@ -122,5 +126,13 @@ export class Server {
             method: 'DELETE',
         });
         return response;
+    };
+
+    public sortWinners = async (sortParametrs: string[], pageNum: number = 1): Promise<IWin[]> => {
+        const response: Response = await fetch(
+            `${this.baseUrl}${this.path.winners}?_page=${pageNum}&_limit=${winnersForPageLimit}&_sort=${sortParametrs[0]}&_order=${sortParametrs[1]}`
+        );
+        const data: IWin[] = await response.json();
+        return data;
     };
 }

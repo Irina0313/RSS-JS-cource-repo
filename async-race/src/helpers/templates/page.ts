@@ -1,7 +1,6 @@
 import { createElement } from '../build-html-element';
 import { IHTMLElement } from '../interfaces';
 import { Server, carsForPageLimit } from '../server-requests';
-import { getElementFromDOM } from '../get-DOMEelements';
 import { btnType1Templ } from './buttons';
 
 /* Elements templates */
@@ -33,8 +32,10 @@ export abstract class Page {
     protected pageNumTempl: IHTMLElement;
     protected buttonsPaginatorRowTempl: IHTMLElement;
     protected pageContainerTempl: IHTMLElement;
+    protected id: string;
 
     constructor(id: string) {
+        this.id = id;
         this.pageContainerTempl = pageContainerTempl;
         this.container = createElement(this.pageContainerTempl);
         this.container.id = id;
@@ -58,10 +59,18 @@ export abstract class Page {
 
     /* Create Page Number */
     protected createPageNum(templ: IHTMLElement): HTMLElement {
-        let pageNumber: string | null = localStorage.getItem('page-number');
-        if (!pageNumber) {
-            localStorage.setItem('page-number', '1');
-            pageNumber = '1';
+        let pageNumber: string | null = '1';
+        if (this.id === 'garage') {
+            if (!localStorage.getItem('page-number')) {
+                localStorage.setItem('page-number', '1');
+            }
+            pageNumber = localStorage.getItem('page-number');
+        }
+        if (this.id === 'winners') {
+            if (!localStorage.getItem('winners-page-number')) {
+                localStorage.setItem('winners-page-number', '1');
+            }
+            pageNumber = localStorage.getItem('winners-page-number');
         }
         const pageNumberText = `Page #${pageNumber}`;
         templ.innerHTML = pageNumberText;
@@ -98,10 +107,16 @@ export abstract class Page {
 }
 
 export function checkIfButtonActive(servPath: string): void {
-    const btnPrev = getElementFromDOM('#prevBtn') as HTMLInputElement;
-    const btnNext = getElementFromDOM('#nextBtn') as HTMLInputElement;
+    const btnPrev = document.getElementById('prevBtn') as HTMLInputElement;
+    const btnNext = document.getElementById('nextBtn') as HTMLInputElement;
     const carLimit = carsForPageLimit;
-    const currPageNum: number = Number(localStorage.getItem('page-number'));
+    let currPageNum: number = 1;
+    if (servPath === 'garage') {
+        currPageNum = Number(localStorage.getItem('page-number'));
+    }
+    if (servPath === 'winners') {
+        currPageNum = Number(localStorage.getItem('winners-page-number'));
+    }
     if (currPageNum > 1 && btnPrev.disabled === true) {
         btnPrev.disabled = false;
     }

@@ -1,5 +1,5 @@
 import { Page } from '../helpers/templates/page';
-import { IHTMLElement, ICar } from '../helpers/interfaces';
+import { IHTMLElement, ICar, ISavedValue } from '../helpers/interfaces';
 import { btnType1Templ, btnType2Templ } from '../helpers/templates/buttons';
 import { createElement } from '../helpers/build-html-element';
 import { car, flag } from '../components/images';
@@ -108,17 +108,14 @@ export class GaragePage extends Page {
         });
     }
 
-    protected createCarsActionsSection(garage: HTMLElement): void {
-        const carsActionsSection = createElement(carsActionsSectionTempl);
-        garage.append(carsActionsSection);
-
+    protected createInputs(carsActionsSection: HTMLElement): void {
         /* Row CREATE */
         const rowCreate = createElement(rowCreateTempl);
         carsActionsSection.append(rowCreate);
-        const inputTextCreate = createElement(inputTextTempl);
+        const inputTextCreate = createElement(inputTextTempl) as HTMLInputElement;
         //rowCreate.append(inputTextCreate);
         inputTextCreate.classList.add('inputText_light');
-        const inputColorCreate = createElement(inputColorTempl);
+        const inputColorCreate = createElement(inputColorTempl) as HTMLInputElement;
         //rowCreate.append(inputColorCreate);
         inputColorCreate.classList.add('inputColor_light');
         const btnCreate = createElement(btnType2Templ);
@@ -127,13 +124,29 @@ export class GaragePage extends Page {
         /* Row UPDATE */
         const rowUpdate = createElement(rowUpdateTempl);
         carsActionsSection.append(rowUpdate);
-        const inputTextUpdate = createElement(inputTextTempl);
+        const inputTextUpdate = createElement(inputTextTempl) as HTMLInputElement;
         inputTextUpdate.classList.add('inputText_dark');
-        const inputColorUpdate = createElement(inputColorTempl);
+        const inputColorUpdate = createElement(inputColorTempl) as HTMLInputElement;
         inputColorUpdate.classList.add('inputColor_dark');
         const btnUpdate = createElement(btnType2Templ);
         btnUpdate.innerHTML = 'update';
         rowUpdate.append(inputTextUpdate, inputColorUpdate, btnUpdate);
+        if (localStorage.savedGarageState) {
+            const savedState: ISavedValue = JSON.parse(localStorage.savedGarageState);
+            if (savedState) {
+                inputTextCreate.value = savedState.inputTextCr;
+                inputColorCreate.value = savedState.inputColorCr;
+                inputTextUpdate.value = savedState.inputTextUpd;
+                inputColorUpdate.value = savedState.inputColorUpd;
+            }
+        }
+    }
+
+    protected createCarsActionsSection(garage: HTMLElement): void {
+        const carsActionsSection = createElement(carsActionsSectionTempl);
+        garage.append(carsActionsSection);
+
+        this.createInputs(carsActionsSection);
 
         /* Buttons row */
 

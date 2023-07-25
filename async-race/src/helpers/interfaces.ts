@@ -34,7 +34,14 @@ export interface IColName {
 }
 
 export interface IWin {
-    id: number;
     wins: number;
     time: number;
+    id: number;
+}
+
+export interface ISavedValue {
+    inputTextCr: string;
+    inputColorCr: string;
+    inputTextUpd: string;
+    inputColorUpd: string;
 }
