@@ -148,6 +148,7 @@ async function generateCarsBtnAction(): Promise<void> {
         const promise = generateNewCar(carTempl);
         await promise;
     }
+    checkIfButtonActive('garage');
 }
 
 /* check deleted car in winners  */
