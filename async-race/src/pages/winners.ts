@@ -3,7 +3,6 @@ import { IHTMLElement, IColName, IWin, ICar } from '../helpers/interfaces';
 import { createElement } from '../helpers/build-html-element';
 import { Server } from '../helpers/server-requests';
 import { car } from '../components/images';
-import { addSortTableListener } from '../helpers/listenersActions/garage/winnersListeners';
 import { getElementFromDOM } from '../helpers/get-DOMEelements';
 
 /* Winners  */
@@ -93,9 +92,6 @@ export class WinnersPage extends Page {
         const mainWrapper = this.createMainWrapper(winnersSectionTempl);
         const paginatorBtns = this.createPaginatorsBtns(this.buttonsPaginatorRowTempl);
         this.container.append(title, pageNum, mainWrapper, paginatorBtns);
-
-        addSortTableListener();
-
         //addpaginatorBtnsListeners();
         return this.container;
     }
@@ -164,7 +160,8 @@ export function sortWinners(param: string): void {
             while (winnersTable.children[0]) {
                 winnersTable.children[0].remove();
             }
-            createWinners(winnersTable);
+            const currNum: number = Number(localStorage.getItem('winners-page-number'));
+            createWinners(winnersTable, currNum);
         }
     });
 }

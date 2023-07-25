@@ -1,6 +1,6 @@
 import { createElement } from '../build-html-element';
 import { IHTMLElement } from '../interfaces';
-import { Server, carsForPageLimit } from '../server-requests';
+import { Server, carsForPageLimit, winnersForPageLimit } from '../server-requests';
 import { btnType1Templ } from './buttons';
 
 /* Elements templates */
@@ -124,12 +124,24 @@ export function checkIfButtonActive(servPath: string): void {
         btnPrev.disabled = true;
     }
     const serv = new Server();
-    const totalCarsAmount: Promise<number> = serv.getItemsAmount(servPath);
-    totalCarsAmount.then((carsAmount: number) => {
-        if (currPageNum < Math.ceil(carsAmount / carLimit) && btnNext.disabled === true) {
-            btnNext.disabled = false;
-        } else if (currPageNum >= Math.ceil(carsAmount / carLimit) && btnNext.disabled === false) {
-            btnNext.disabled = true;
-        }
-    });
+    if (servPath === 'garage') {
+        const totalCarsAmount: Promise<number> = serv.getItemsAmount(servPath);
+        totalCarsAmount.then((carsAmount: number) => {
+            if (currPageNum < Math.ceil(carsAmount / carLimit) && btnNext.disabled === true) {
+                btnNext.disabled = false;
+            } else if (currPageNum >= Math.ceil(carsAmount / carLimit) && btnNext.disabled === false) {
+                btnNext.disabled = true;
+            }
+        });
+    }
+    if (servPath === 'winners') {
+        const totalWinnersAmount: Promise<number> = serv.getItemsAmount(servPath);
+        totalWinnersAmount.then((winnersAmount: number) => {
+            if (currPageNum < Math.ceil(winnersAmount / winnersForPageLimit) && btnNext.disabled === true) {
+                btnNext.disabled = false;
+            } else if (currPageNum >= Math.ceil(winnersAmount / winnersForPageLimit) && btnNext.disabled === false) {
+                btnNext.disabled = true;
+            }
+        });
+    }
 }

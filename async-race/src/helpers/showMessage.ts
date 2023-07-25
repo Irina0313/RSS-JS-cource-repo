@@ -1,7 +1,6 @@
 import { IHTMLElement } from './interfaces';
 import { createElement } from './build-html-element';
-import { getElementFromDOM, getElementsListFromDOM } from './get-DOMEelements';
-import { prevent } from './listenersActions/garage/carRaseListeners';
+import { getElementFromDOM } from './get-DOMEelements';
 
 function hideMessage(message: HTMLElement): void {
     const listener = function (event: MouseEvent): void {
@@ -43,9 +42,4 @@ export function showModalMessage(message: string): void {
     document.onclick = (): void => {
         messageEl.remove();
     };
-    const headerBtns: NodeListOf<Element> | undefined = getElementsListFromDOM('.header .button');
-    if (headerBtns) {
-        const toWinnersBtn = headerBtns[1] as HTMLElement;
-        toWinnersBtn.removeEventListener('click', prevent);
-    }
 }

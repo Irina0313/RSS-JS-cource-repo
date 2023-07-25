@@ -12,6 +12,9 @@
     &_unactive {
       background-color: $input-light-color;
     }
+    &.disabled {
+      background-color: $input-light-color;
+    }
   }
   &_type2 {
     background-color: $button-type2-color;
@@ -40,6 +43,16 @@
   &:active {
     width: 88px;
     height: 18px;
+  }
+  &.disabled {
+    &:active {
+      background-color: $input-dark-color;
+      border: 2px solid #cbcbcb;
+      box-shadow: 1.5px 1.5px 3px #f1fc93;
+      width: 90px;
+      height: 20px;
+      margin: 0;
+    }
   }
 }
 .car-header .button {

@@ -68,17 +68,16 @@ function nextGaragePageBtnAction(): void {
 
 function nextWinnersPageBtnAction(): void {
     const winnersTable: HTMLElement | undefined = getElementFromDOM('.winners-table');
-    if (winnersTable) {
-        while (winnersTable.children[0]) {
-            winnersTable.children[0].remove();
-        }
-        setTimeout(() => {
-            const nextPageNumber = Number(localStorage.getItem('winners-page-number')) + 1;
-            createWinners(winnersTable, nextPageNumber);
-            localStorage['winners-page-number'] = `${nextPageNumber}`;
-            changePageNumber(nextPageNumber);
-            checkIfButtonActive('winners');
-        }, 300);
+    const winnersRows: NodeListOf<Element> | undefined = getElementsListFromDOM('.winners-row');
+    if (winnersRows && winnersTable) {
+        winnersRows.forEach((item): void => {
+            item.remove();
+        });
+        const nextPageNumber = Number(localStorage.getItem('winners-page-number')) + 1;
+        createWinners(winnersTable, nextPageNumber);
+        localStorage['winners-page-number'] = `${nextPageNumber}`;
+        changePageNumber(nextPageNumber);
+        checkIfButtonActive('winners');
     }
 }
 /* PREV button */

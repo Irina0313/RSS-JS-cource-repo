@@ -11,6 +11,7 @@ import {
     addpaginatorBtnsListeners,
     addpaginatorWinnersBtnsListeners,
 } from '../helpers/listenersActions/garage/paginatorBtnsListeners';
+import { addSortTableListener } from '../helpers/listenersActions/garage/winnersListeners';
 
 export class App {
     private static container: HTMLElement = document.body;
@@ -33,9 +34,7 @@ export class App {
             const pageHTML = page.render();
             pageHTML.id = App.defaultPageId;
             App.container.append(pageHTML);
-            if (idPage === PageId.Winners) {
-                checkIfButtonActive(PageId.Winners);
-            }
+            checkIfButtonActive(idPage);
         }
     }
     private saveState(targetPage: string): void {
@@ -59,7 +58,7 @@ export class App {
             const hash = window.location.hash.slice(1);
             this.saveState(hash);
             App.renderNewPage(hash);
-            checkIfButtonActive(hash);
+            // checkIfButtonActive(hash);
             localStorage.page = hash;
         });
     }
@@ -76,11 +75,12 @@ export class App {
         }
         page = localStorage.page;
         App.renderNewPage(page);
-        checkIfButtonActive(page);
+
+        this.enableRouteChange();
         addGarageActionsListeners();
         addCarRaceListeners();
         addpaginatorBtnsListeners();
         addpaginatorWinnersBtnsListeners();
-        this.enableRouteChange();
+        addSortTableListener();
     }
 }

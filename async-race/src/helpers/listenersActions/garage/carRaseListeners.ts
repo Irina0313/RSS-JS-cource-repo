@@ -33,9 +33,9 @@ export function addCarRaceListeners(): void {
                 raceBtn.disabled = true;
                 const resetBtn = raceBtn.nextSibling as HTMLInputElement;
                 resetBtn.disabled = true;
-                changeBtnsForRace(false);
+                changeBtnsForRace('disable');
                 startCarRace().then(() => {
-                    changeBtnsForRace(true);
+                    changeBtnsForRace('activate');
                 });
             }
             /* reset */
@@ -46,24 +46,29 @@ export function addCarRaceListeners(): void {
     });
 }
 
-function changeBtnsForRace(param: boolean): void {
+function changeBtnsForRace(parametr: string): void {
+    const param = parametr;
     const resetBtn = document.querySelector('.buttons-row button:nth-of-type(2)') as HTMLInputElement;
     const nextBtn = document.querySelector('.paginator-row button:nth-of-type(2)') as HTMLInputElement;
     const prevBtn = document.querySelector('.paginator-row button:nth-of-type(1)') as HTMLInputElement;
-    if (param) {
+    if (param === 'activate') {
         resetBtn.disabled = false;
         nextBtn.disabled = false;
         prevBtn.disabled = false;
+        const headerBtns: NodeListOf<Element> | undefined = getElementsListFromDOM('.header .button');
+        if (headerBtns) {
+            const toWinnersBtn = headerBtns[1] as HTMLElement;
+            toWinnersBtn.removeEventListener('click', prevent);
+            toWinnersBtn.classList.remove('disabled');
+        }
     }
-    if (!param) {
+    if (param === 'disable') {
         resetBtn.disabled = true;
         nextBtn.disabled = true;
         prevBtn.disabled = true;
     }
 }
 /* A (start car engine) */
-
-let requestId: number;
 
 // eslint-disable-next-line max-lines-per-function
 function getAnimation(
@@ -75,17 +80,17 @@ function getAnimation(
     function animateImg(duration: number): Promise<IRaceResult> {
         let stopId: number = 0;
         const start: number = performance.now();
-        stopId = requestId = requestAnimationFrame(function animate(time: number) {
+        stopId = requestAnimationFrame(function animate(time: number) {
             let timeFraction = (time - start) / duration;
             if (timeFraction > 1) timeFraction = 1;
             const stopPoint: number = window.innerWidth - 200;
             carImage.style.left = initCarPosition + timeFraction * stopPoint + 'px';
             if (timeFraction < 1) {
-                stopId = requestId = requestAnimationFrame(animate);
+                stopId = requestAnimationFrame(animate);
             }
         });
         stopBtn.onclick = (): void => {
-            stopAnimation(requestId, carImage, initCarPosition, carId);
+            stopAnimation(stopId, carImage, initCarPosition, carId);
         };
         const respDrive = serv.startStopEngine(carId, 'drive');
         const resRes: Promise<IRaceResult> = respDrive.then((data) => {
@@ -123,6 +128,7 @@ async function startCarEngineBtnAction(
     const data = await getAnimation(value, carImage, carId, stopBtn);
     return data;
 }
+
 function stopAnimation(requestId: number, carImage: HTMLElement, initPosition: number, carId: number): void {
     cancelAnimationFrame(requestId);
     const resp = serv.startStopEngine(carId, 'stopped');
@@ -154,6 +160,7 @@ function startCarRace(): Promise<IRaceResult[]> {
             if (headerBtns) {
                 const toWinnersBtn = headerBtns[1] as HTMLElement;
                 toWinnersBtn.addEventListener('click', prevent);
+                toWinnersBtn.classList.add('disabled');
             }
             const res = Promise.resolve(race);
             res.then((data): void => {
