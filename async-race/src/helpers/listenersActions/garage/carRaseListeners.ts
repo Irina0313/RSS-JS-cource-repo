@@ -8,7 +8,6 @@ const serv = new Server();
 
 export function addCarRaceListeners(): void {
     document.addEventListener('click', (e: MouseEvent): void => {
-        //console.log(e.target);
         if (e.target) {
             const targetEl = e.target as HTMLElement;
             /* start engine */
@@ -25,6 +24,8 @@ export function addCarRaceListeners(): void {
             /* stop engine */
             if (targetEl.innerHTML === 'b') {
                 const startBtn = targetEl.previousSibling as HTMLInputElement;
+                const stopBtn = targetEl as HTMLInputElement;
+                stopBtn.disabled = true;
                 startBtn.disabled = false;
             }
             /* race */
@@ -89,7 +90,9 @@ function getAnimation(
                 stopId = requestAnimationFrame(animate);
             }
         });
+        let stop: boolean | null = null;
         stopBtn.onclick = (): void => {
+            stop = true;
             stopAnimation(stopId, carImage, initCarPosition, carId);
         };
         const respDrive = serv.startStopEngine(carId, 'drive');
@@ -104,6 +107,10 @@ function getAnimation(
                     result: 'stopped',
                 };
                 serv.startStopEngine(carId, 'stopped');
+                return raceResult;
+            }
+            if (stop) {
+                const raceResult: IRaceResult = { id: carId, time: +(duration / 1000).toFixed(2), result: 'stopped' };
                 return raceResult;
             }
             const raceResult: IRaceResult = { id: carId, time: +(duration / 1000).toFixed(2), result: 'finish' };
