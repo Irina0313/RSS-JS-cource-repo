@@ -12,7 +12,6 @@ export class Server {
 
     public getItemsAmount = async (param: string): Promise<number> => {
         const response: Response = await fetch(`${this.baseUrl}/${param}?_page=1&_limit=${carsForPageLimit}`);
-        //const data: ICar[] = await response.json();
         const carrsAmount: number = Number(response.headers.get('X-Total-Count'));
         return carrsAmount;
     };
