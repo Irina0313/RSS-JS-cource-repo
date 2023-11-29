@@ -1,0 +1,104 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: #fff;
+    background: #17181c;
+    font-family: sans-serif;
+}
+
+header {
+    padding: 10px 30px;
+}
+
+header h1 {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+header h2:hover {
+    cursor: pointer;
+    text-shadow: 3px 3px 2px #3fcc59;
+}
+
+footer {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+footer .copyright {
+    font-size: 14px;
+    color: #FFFF;
+    text-align: center;
+}
+
+footer .copyright a {
+    color: #FFFF;
+}
+
+
+footer .copyright:before {
+    content: '©';
+}
+
+footer .rss-logo {
+    background-image: url('./components/img/rs_school_js.png');
+    width: 70px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+footer .rss-logo a,
+footer .git a {
+    display: block;
+    width: 70px;
+    height: 40px;
+}
+
+footer .git {
+    background-image: url('./components/img/github-svgrepo-com.svg');
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+footer .git:hover,
+footer .rss-logo:hover,
+footer .copyright a:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+}
+
+.up-btn {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    background-image: url("./components/img/knopka-vverh-v-cs-cart.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 20px;
+    bottom: 50px;
+}
+
+.up-btn a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.up-btn:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    header h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+}
