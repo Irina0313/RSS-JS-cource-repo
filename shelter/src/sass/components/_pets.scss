@@ -1,0 +1,259 @@
+.pets {
+   background-color: $color-light-l;
+}
+
+.pets__wrapper {
+   padding: 80px 40px 4px;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   @media screen and (max-width: 1279px) {
+      box-sizing: border-box;
+      padding: 80px 30px 4px;
+   }
+   @include media-mobile {
+      padding: 40px 10px 4px;
+   }
+}
+
+.pets__title {
+   @extend %h3;
+   color: $color-dark-l;
+   max-width: 400px;
+   text-align: center;
+   margin: 0 0 60px;
+   @include media-mobile {
+      @extend %font-prim;
+      @include font($size: 2.5rem, $height: 130%);
+      letter-spacing: 0.06em;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 0 43px;
+   }
+}
+
+@keyframes move-right {
+   from {
+      left: -990px;
+   }
+   to {
+      left: -1980px;
+   }
+}
+@include media-laptop {
+   @keyframes move-right {
+      from {
+         left: -630px;
+      }
+      to {
+         left: -1260px;
+      }
+   }
+}
+@media screen and (max-width: 850px) {
+   @keyframes move-right {
+      from {
+         left: -570px;
+      }
+      to {
+         left: -1140px;
+      }
+   }
+}
+@media screen and (max-width: 755px) {
+   @keyframes move-right {
+      from {
+         left: -270px;
+      }
+      to {
+         left: -540px;
+      }
+   }
+}
+
+.transition-right {
+   animation-name: move-right;
+   animation-duration: 0.5s;
+}
+
+@keyframes move-left {
+   from {
+      left: -990px;
+   }
+   to {
+      left: 0px;
+   }
+}
+@include media-laptop {
+   @keyframes move-left {
+      from {
+         left: -630px;
+      }
+      to {
+         left: 0px;
+      }
+   }
+}
+@media screen and (max-width: 850px) {
+   @keyframes move-left {
+      from {
+         left: -570px;
+      }
+      to {
+         left: 0px;
+      }
+   }
+}
+@media screen and (max-width: 755px) {
+   @keyframes move-left {
+      from {
+         left: -270px;
+      }
+      to {
+         left: 0px;
+      }
+   }
+}
+
+.transition-left {
+   animation-name: move-left;
+   animation-duration: 0.5s;
+}
+
+.slider-pets {
+   overflow: hidden;
+   width: 990px;
+   @include media-laptop {
+      width: 630px;
+      margin: 0 160px;
+   }
+   @media screen and (max-width: 1125px) {
+      margin: 0;
+   }
+   @media screen and (max-width: 850px) {
+      width: 570px;
+      margin: 0;
+   }
+   @media screen and (max-width: 755px) {
+      width: 270px;
+   }
+}
+.carusel {
+   display: flex;
+   flex-wrap: nowrap;
+   position: relative;
+   left: -990px;
+   @include media-laptop {
+      left: -630px;
+   }
+   @media screen and (max-width: 850px) {
+      left: -570px;
+   }
+   @media screen and (max-width: 755px) {
+      left: -270px;
+   }
+}
+
+.pets__slider {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+   @media screen and (max-width: 755px) {
+      box-sizing: border-box;
+      padding: 0 200px;
+      flex-wrap: wrap;
+      justify-content: space-around;
+   }
+   @media screen and (max-width: 745px) {
+      padding: 0 180px;
+   }
+   @media screen and (max-width: 700px) {
+      padding: 0 130px;
+   }
+   @media screen and (max-width: 600px) {
+      padding: 0 80px;
+   }
+   @media screen and (max-width: 520px) {
+      padding: 0 40px;
+   }
+   @media screen and (max-width: 380px) {
+      padding: 0;
+   }
+}
+
+.slider-container {
+   display: flex;
+   column-gap: 90px;
+   justify-content: space-between;
+   align-items: center;
+   max-width: 990px;
+   width: 100%;
+   @include media-laptop {
+      justify-content: space-around;
+   }
+   @media screen and (max-width: 850px) {
+      column-gap: 30px;
+   }
+   @include media-tablet {
+      max-width: 580px;
+      justify-content: space-between;
+   }
+   @media screen and (max-width: 755px) {
+      max-width: 100%;
+      order: 1;
+      justify-content: center;
+   }
+}
+
+.pets__slider-container .slider-card:last-of-type {
+   @include media-laptop {
+      display: none;
+   }
+}
+.pets__slider-container .slider-card:nth-of-type(2) {
+   @media screen and (max-width: 755px) {
+      display: none;
+   }
+}
+.slider-card {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 270px;
+   background: $color-light-s;
+   border-radius: 9px;
+   padding: 0 0 30px 0;
+   cursor: pointer;
+   @extend %transition;
+   &:hover {
+      background: $color-light-xl;
+      box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+      .slider-card__button {
+         background-color: $color-primary-light;
+         border: 2px solid transparent;
+      }
+   }
+   @media screen and (max-width: 755px) {
+      padding: 0 0 30px 0;
+      margin: 0 0 20px 0;
+   }
+}
+
+.slider-card__image {
+   width: 100%;
+   height: 270px;
+   background-size: contain;
+   background-repeat: no-repeat;
+   border-radius: 9px 9px 0px 0px;
+   @extend %transition;
+}
+
+.slider-card__text {
+   @extend %pets-card-title;
+   text-align: center;
+   color: $color-dark-l;
+   margin: 30px 0 32px;
+   @extend %transition;
+}

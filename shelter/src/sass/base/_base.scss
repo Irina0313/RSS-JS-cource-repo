@@ -1,0 +1,26 @@
+html {
+   font-size: 10px;
+   scroll-behavior: smooth;
+}
+.body-scroll-hidden {
+   position: relative;
+}
+h1,
+h2 {
+   @extend %font-prim;
+   @include font($size: 4.4rem, $height: 130%);
+}
+.scroll-hidden,
+.scroll-hidden-burger {
+   overflow: hidden;
+   &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      width: calc(100%);
+      height: 200vh;
+      background: rgba(41, 41, 41, 0.6);
+   }
+}

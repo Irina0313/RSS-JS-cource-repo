@@ -1,0 +1,10 @@
+.in-addition__wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   max-width: 1200px;
+   margin: 0 auto;
+   @media screen and (max-width: 918px) {
+      flex-direction: column-reverse;
+   }
+}

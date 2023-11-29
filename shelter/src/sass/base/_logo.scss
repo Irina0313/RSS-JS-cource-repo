@@ -1,0 +1,55 @@
+.logo {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   max-width: 185.7px;
+   a {
+      text-decoration: none;
+   }
+   &:hover {
+      cursor: pointer;
+
+      .logo-title {
+         color: $color-light-l;
+      }
+      .logo-subtitle {
+         color: $color-light-l;
+      }
+   }
+
+   > * {
+      @extend %transition;
+   }
+}
+
+.logo-title {
+   cursor: pointer;
+
+   @extend %logo_title;
+   color: $color-primary;
+   margin-bottom: 10px;
+}
+.logo-subtitle {
+   text-align: center;
+   width: 100%;
+   @extend %logo_subtitle;
+   color: $color-light-xl;
+}
+
+.header_light {
+   .logo-title {
+      color: $color-dark-l;
+   }
+   .logo-subtitle {
+      color: $color-dark-3xl;
+   }
+}
+
+.header__logo-pets:hover {
+   .logo-title {
+      color: $color-primary;
+   }
+   .logo-subtitle {
+      color: $color-dark-3xl;
+   }
+}
