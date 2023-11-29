@@ -1,0 +1,20 @@
+html {
+  font-size: $base-font-size;
+}
+
+.body_dark {
+  background-color: $dark-text-color;
+}
+.wrapper {
+  box-sizing: border-box;
+  padding: 20px 50px;
+  overflow: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+ul {
+  padding: 0; /*reset default settings*/
+}

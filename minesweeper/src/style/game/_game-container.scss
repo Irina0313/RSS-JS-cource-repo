@@ -1,0 +1,288 @@
+.game {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.game__header,
+.game__field-container,
+.game__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game__header-container,
+.game__footer-container {
+  box-sizing: border-box;
+}
+
+.top-border,
+.middle-border,
+.bottom-border {
+  display: flex;
+  margin: 0;
+}
+
+/*  Corner  */
+
+.corner {
+  width: 18px;
+  height: 16.5px;
+  background-size: 100% 100%;
+}
+
+.left-top-corner {
+  background-image: url("../../img/field-borders/corner_up_left_2x.png");
+}
+
+.right-top-corner {
+  background-image: url("../../img/field-borders/corner_up_right_2x.png");
+}
+
+.left-middle-corner {
+  background-image: url("../../img/field-borders/t_left_2x.png");
+}
+
+.right-middle-corner {
+  background-image: url("../../img/field-borders/t_right_2x.png");
+}
+
+.left-bottom-corner {
+  background-image: url("../../img/field-borders/corner_bottom_left_2x.png");
+}
+
+.right-bottom-corner {
+  background-image: url("../../img/field-borders/corner_bottom_right_2x.png");
+}
+
+/* Lines  */
+
+.border-line {
+  height: 16.5px;
+  background-image: url("../../img/field-borders/border_hor_2x.png");
+  background-size: contain;
+  background-size: 100% 100%;
+}
+
+.left-border,
+.right-border {
+  background-image: url("../../img/field-borders/border_vert_2x.png");
+  background-size: contain;
+  width: 18px;
+}
+.left-border_header,
+.right-border_header {
+  height: 48px;
+}
+
+/* header/footer container  */
+
+.game__header-container,
+.game__footer-container {
+  padding: 4.5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $main-color;
+}
+
+/*  mines amount, timer, steps  */
+
+.mines-amount,
+.timer,
+.steps {
+  display: flex;
+  column-gap: 3px;
+  padding: 3px;
+  background-image: url("../../img/numbers-field/nums_background.svg");
+  background-size: contain;
+}
+
+.num {
+  width: 16.5px;
+  height: 31.5px;
+}
+
+.num0 {
+  background-image: url("../../img/numbers-field/d0.svg");
+  background-size: contain;
+}
+.num1 {
+  background-image: url("../../img/numbers-field/d1.svg");
+  background-size: contain;
+}
+.num2 {
+  background-image: url("../../img/numbers-field/d2.svg");
+  background-size: contain;
+}
+.num3 {
+  background-image: url("../../img/numbers-field/d3.svg");
+  background-size: contain;
+}
+.num4 {
+  background-image: url("../../img/numbers-field/d4.svg");
+  background-size: contain;
+}
+.num5 {
+  background-image: url("../../img/numbers-field/d5.svg");
+  background-size: contain;
+}
+.num6 {
+  background-image: url("../../img/numbers-field/d6.svg");
+  background-size: contain;
+}
+.num7 {
+  background-image: url("../../img/numbers-field/d7.svg");
+  background-size: contain;
+}
+.num8 {
+  background-image: url("../../img/numbers-field/d8.svg");
+  background-size: contain;
+}
+.num9 {
+  background-image: url("../../img/numbers-field/d9.svg");
+  background-size: contain;
+}
+.num-minus {
+  background-image: url("../../img/numbers-field/minus.svg");
+  background-size: contain;
+}
+
+/*  smile  */
+
+.smile {
+  width: 39px;
+  height: 39px;
+  background-size: contain;
+  &:hover {
+    cursor: pointer;
+  }
+  &_unpressed {
+    background-image: url("../../img/buttons/face_unpressed.svg");
+  }
+  &_pressed {
+    background-image: url("../../img/buttons/face_pressed.svg");
+  }
+  &_active {
+    background-image: url("../../img/buttons/face_active.svg");
+  }
+  &_lose {
+    background-image: url("../../img/buttons/face_lose.svg");
+  }
+}
+
+.game__field {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &_opened {
+    background-image: url("../../img/buttons/pressed.svg");
+  }
+}
+
+.cell_closed,
+.cell-mined_closed,
+.cell-one_closed,
+.cell-two_closed,
+.cell-three_closed,
+.cell-four_closed,
+.cell-five_closed,
+.cell-six_closed,
+.cell-seven_closed,
+.cell-eight_closed {
+  background-image: url("../../img/buttons/closed.svg");
+}
+
+.flaged-right_cell_closed,
+.flaged-right_cell-mined_closed,
+.flaged-right_cell-one_closed,
+.flaged-right_cell-two_closed,
+.flaged-right_cell-three_closed,
+.flaged-right_cell-four_closed,
+.flaged-right_cell-five_closed,
+.flaged-right_cell-six_closed,
+.flaged-right_cell-seven_closed,
+.flaged-right_cell-eight_closed,
+.flaged-right_cell-mined_closed,
+.flaged-wrong_cell_closed,
+.flaged-wrong_cell-one_closed,
+.flaged-wrong_cell-two_closed,
+.flaged-wrong_cell-three_closed,
+.flaged-wrong_cell-four_closed,
+.flaged-wrong_cell-five_closed,
+.flaged-wrong_cell-six_closed,
+.flaged-wrong_cell-seven_closed,
+.flaged-wrong_cell-eight_closed {
+  background-image: url("../../img/buttons/flag.svg");
+}
+.flaged-wrong-red {
+  background-image: url("../../img/buttons/mine_wrong.svg");
+}
+
+.cell-one_opened {
+  background-image: url("../../img/buttons/bombs-number/type1.svg");
+}
+.cell-two_opened {
+  background-image: url("../../img/buttons/bombs-number/type2.svg");
+}
+.cell-three_opened {
+  background-image: url("../../img/buttons/bombs-number/type3.svg");
+}
+.cell-four_opened {
+  background-image: url("../../img/buttons/bombs-number/type4.svg");
+}
+.cell-five_opened {
+  background-image: url("../../img/buttons/bombs-number/type5.svg");
+}
+.cell-six_opened {
+  background-image: url("../../img/buttons/bombs-number/type6.svg");
+}
+.cell-seven_opened {
+  background-image: url("../../img/buttons/bombs-number/type7.svg");
+}
+.cell-eight_opened {
+  background-image: url("../../img/buttons/bombs-number/type8.svg");
+}
+
+.cell-mined_opened-loss {
+  background-image: url("../../img/buttons/mine_red.svg");
+}
+
+.cell-mined_opened {
+  background-image: url("../../img/buttons/mine.svg");
+}
+/*DELETE!!!*/
+/*.cell-one_closed {
+  background-image: url("../../img/buttons/bombs-number/type1.svg");
+}
+.cell-two_closed {
+  background-image: url("../../img/buttons/bombs-number/type2.svg");
+}
+.cell-three_closed {
+  background-image: url("../../img/buttons/bombs-number/type3.svg");
+}
+.cell-four_closed {
+  background-image: url("../../img/buttons/bombs-number/type4.svg");
+}
+.cell-five_closed {
+  background-image: url("../../img/buttons/bombs-number/type5.svg");
+}
+.cell-six_closed {
+  background-image: url("../../img/buttons/bombs-number/type6.svg");
+}
+.cell-seven_closed {
+  background-image: url("../../img/buttons/bombs-number/type7.svg");
+}
+.cell-eight_closed {
+  background-image: url("../../img/buttons/bombs-number/type8.svg");
+}
+*/
