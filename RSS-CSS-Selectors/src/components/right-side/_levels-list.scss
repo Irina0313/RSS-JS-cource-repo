@@ -1,0 +1,44 @@
+.levels-list {
+  transition: all 0.4s;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  z-index: 3;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 4px solid $main-color1-light;
+  background: $main-color1-light-strong;
+  &_hidden {
+    transition: all 0.4s;
+    transform: translate(1000px);
+  }
+}
+
+.levels-title {
+  margin: 0;
+  color: $main-color2-dark-strong;
+  font-weight: 300;
+  font-size: 2.5rem;
+}
+.levels-row {
+  display: flex;
+  column-gap: 10px;
+  font-size: 1.6rem;
+  margin: 8px 0;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    font-weight: 800;
+    cursor: pointer;
+    border-bottom: 2px solid $main-color1-light;
+  }
+  &_active {
+    border-bottom: 2px solid $main-color1-light;
+  }
+}
+.levels-row:hover .levels-row-title,
+.levels-row:hover._passed {
+  font-weight: 800;
+}

@@ -1,0 +1,30 @@
+// Base
+html {
+  height: 100%;
+  font-size: 10px;
+  transition: all 0.2s ease-out;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $main-color1-light-strong;
+  font-family: $mainFont;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 50px;
+  @media screen and (max-width: 1400px) {
+    padding: 0 30px 30px 30px;
+  }
+}
+.wrapper-main {
+  margin: 0 auto;
+  max-width: 1350px;
+  display: flex;
+  gap: 30px;
+  padding: 10px;
+  flex: 1 0 auto;
+  @media screen and (max-width: 950px) {
+    flex-wrap: wrap;
+  }
+}

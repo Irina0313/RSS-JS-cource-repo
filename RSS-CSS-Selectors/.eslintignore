@@ -1,0 +1,5 @@
+package.json
+webpack.config.js
+dist
+index.d.ts
+fileTransformer.js

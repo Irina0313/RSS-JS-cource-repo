@@ -1,0 +1,11 @@
+@import "./styles/normalize.css";
+@import "../node_modules/highlight.js/styles/lightfair.css";
+@import "../src/styles/abstract";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap");
+
+@import "./components/base-structure/base-structure";
+@import "./components/left-side/left-side";
+@import "./components/right-side/right-side";
+@import "./components/footer/footer";
+@import "./components/right-side/levels-list";
+@import "./components/base-structure/pop-up";
